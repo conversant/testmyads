@@ -1,0 +1,42 @@
+<html>
+<title>PubCID Test</title>
+
+<head>
+    <script src="https://secure.cdn.fastclick.net/js/pubcid/latest/pubcid.min.js"></script>
+</head>
+
+<body>
+    <h1>PubCID Only Test</h1>
+    <p></p>
+    <form name="myForm" method="GET">
+        <label for="fname">Name:</label><br>
+        <input type="text" id="name" name="name" disabled="disabled"><br>
+        <label for="email">E-mail:</label><br>
+        <input type="text" id="email" name="email" disabled="disabled">
+    </form>
+    <input type="submit" value="Submit" onClick="submitForm()" disabled="disabled">
+    <input type="submit" value="Clear Cookies" onClick="clearCookies()">
+    <!-- Script to Clear Cookies -->
+    <script>
+    function clearCookies() {
+        localStorage.clear();
+        var cookies = document.cookie.split(";");
+        console.log("Clearing Cookies" + cookies)
+        for (var i = 0; i < cookies.length; i++) {
+            eraseCookie(cookies[i].split("=")[0]);
+        }
+    }
+
+    function eraseCookie(name) {
+        document.cookie = name + '=; Max-Age=-99999999;';
+    }
+    </script>
+    <script type="text/javascript">
+    function submitForm() {
+        console.log("Submit Form")
+    }
+    </script>
+    <hr>
+</body>
+
+</html>
