@@ -1,0 +1,48 @@
+<html>
+<head>
+<!-- ID5 API code -->
+<script src="https://cdn.id5-sync.com/api/1.0/id5-api.js"></script>
+<script>
+  (function() {
+    // TODO: modify with your own partnerId
+    // beware of scope of id5Status
+    var id5Status = ID5.init({partnerId: 173});
+
+    // ... do something ...
+
+    var myId5 = id5Status.getUserId();
+  })();
+</script>
+</head>
+<body>
+    <h1>ID5 Test</h1>
+    <form name="myForm" method="GET">
+        <label for="fname">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">E-mail:</label><br>
+        <input type="text" id="email" name="email"><br>
+    </form>
+    <input type="submit" value="Submit" onClick="submitForm()">
+    <!-- Launcher tag -->
+   
+    <!--Script to I5 Start API -->
+    <script type="text/javascript"></script>
+  <script>
+      function submitForm() {
+          //Print the e-mail value entered in the form
+          console.log("Form submit with e-mail:" + email.value);
+          //Print all cookies stored on browser
+          console.log("Cookies on site: " + document.cookie)
+          //Prints PubCID stored in local storage - change getItem value it pubcid is named something different
+          console.log("PubCID Local Storage:" + localStorage.getItem('_pubcid'));
+          var id5Status = ID5.init({
+          partnerId: 173, // modify with your own partnerId
+          pd: "MT1iNTBjYTA4MjcxNzk1YThlN2U0MDEyODEzZjIzZDUwNTE5M2Q3NWMwZjJlMmJiOTliYWE2M2FhODIyZjY2ZWQzJjU9QUJDMTIz"
+          })
+              
+          
+      }
+      </script>
+<hr>
+</body>
+</html>
