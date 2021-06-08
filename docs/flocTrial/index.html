@@ -8,68 +8,35 @@
         };
         window.adPlacements = {
             sid: 119041,
-            placements: [{
-                    id: "fd59745",
+            adPlacements: [{
                     location: "container-1",
-                    width: 300,
-                    height: 250
+                    format: [{w:728, h:90}]
                 },
                 {
-                    id: "fd59745",
                     location: "container-2",
-                    width: 300,
-                    height: 250
+                    format: [{w:300, h:250}]
                 },
                 {
-                    id: "9c635fc",
                     location: "container-3",
-                    width: 468,
-                    height: 60
+                    format: [{w:320, h:50}]
                 }
             ]
         };
+    </script>
+    <script>
+        var cnvr_pubcode_options = {debug: true};
     </script>
     <script type="text/javascript" src="pubcode.min.js"></script>
 </head>
 
 <body >
-    <table > <tr>
-        <td> <div id="container-1"> Medium Rectangle 1</div> </td>
-        <td> <div id="container-2"> Medium Rectangle 2</div> </td>
-        <td> <div id="container-3"> Medium Rectangle 3</div> </td>
-    </tr>
+    <table >
+        <tr> <td> <div id="container-1">LeaderBoard<p/></div> </td></tr>
+        <tr><td> <div id="container-2">Medium Rectangle<p/></div> </td></tr>
+        <tr><td> <div id="container-3">Small Banner<p/></div> </td></tr>
     </table>
-
-    <div class="cnvr_ad_container">
-        <script type="text/javascript" class="cnvr_pub_code">
-            conversant.pubcode.loadOneAd({
-                sid: 119041,
-                placement: "fd59745",
-                width: 300,
-                height: 250
-            });
-        </script>
-    </div>
-
-    <div class="cnvr_ad_container">
-        <script type="text/javascript" class="cnvr_pub_code">
-            conversant.pubcode.loadOneAd({
-                sid: 119041,
-                placement: "fd59745",
-                width: 300,
-                height: 250
-            });
-            conversant.pubcode.loadOneAd({
-                sid: 119041,
-                placement: "fd59745",
-                width: 300,
-                height: 250
-            });
-        </script>
-    </div>
-
     <script>
-        window.conversant.pubcode.loadAds();
+        window.conversant.pubcode.loadAds(window.adPlacements);
     </script>
 </body>
 
