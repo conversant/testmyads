@@ -30,13 +30,27 @@
 </head>
 
 <body >
-    <table >
+<table>
+    <tr>
+        <td>Floc Results:</td>
+        <td id="floc"> Testing for FLOC support</td>
+    </tr>
+</table>
+<table >
         <tr> <td> <div id="container-1">LeaderBoard<p/></div> </td></tr>
         <tr><td> <div id="container-2">Medium Rectangle<p/></div> </td></tr>
         <tr><td> <div id="container-3">Small Banner<p/></div> </td></tr>
     </table>
     <script>
         window.conversant.pubcode.loadAds(window.adPlacements);
+        if(document.interestCohort === undefined){
+           document.getElementById("floc").innerHTML = 'Floc not enabled on this browser';
+        }
+        else{
+            document.interestCohort().then((result)=>{
+                document.getElementById("floc").innerHTML = JSON.stringify(result);
+            });
+        }
     </script>
 </body>
 
