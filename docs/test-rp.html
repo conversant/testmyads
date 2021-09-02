@@ -1,0 +1,89 @@
+<html>
+<head>
+    <link rel="icon" href="/images/epsilon_fav_icon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Publisher Reverse Proxy Test Page Menu</title>
+    <style>
+        @media print {
+            #ghostery-purple-box {
+                display: none !important
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M3SVNMD');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body link="black">
+<a href="http://www.conversantmedia.com/">
+    <img src="/images/EPS_Logo_cropped.jpg" alt="logo" height="72" border="0">
+</a>
+<br>
+<br>
+<div>
+    <label for="site-select">Select a Reverse Proxy site: </label>
+    <select id="site-select" name="site-select">
+        <option value="site_8">Prebid - SID:108060 - Deal:170</option>
+    </select>
+</div>
+<div class="hidden" id="site_8">
+    <h3>Prebid - SID:108060 - Deal:N/A</h3>
+    <ul>
+        <li><a style="text-decoration:none" data-path="prebid/register_rp.html" href="prebid/register_rp.html">Publink Reverse Proxy</a></li>
+    </ul>
+</div>
+<br>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var history = {
+        previous: '',
+        current: '',
+        paths: []
+    }
+    var selectedSite;
+
+    var updateHistory = function (value) {
+        history.previous = history.current;
+        history.current = value;
+
+        $(`#${history.current}`).show()
+        $(`#${history.previous}`).hide()
+    }
+
+    $(document).ready(function () {
+        // hide all elements
+
+        $('div.hidden').hide();
+        // TODO ADD ON CHANGE TO CHECKOBOX
+        // TODO ADD 'NON SECURE' message to header (h3)
+        // get drop down value;
+        selectedSite = $('#site-select').val();
+        // secure = $('#secureFlag')[0].checked
+        if (selectedSite) {
+            var $selecteEl = $('#' + selectedSite + ' > ul > li > a')
+
+            // updateLinks($selecteEl, secure);
+            updateHistory(selectedSite)
+        }
+
+        $('#site-select').on('change', function (evt) {
+            // check if secure flag is checked
+            selectedSite = $('#site-select').val();
+            //secure = $('#secureFlag')[0].checked;
+            // get all anchor tags for selected site
+            var $anchors = $('#' + evt.target.value + ' > ul > li > a')
+
+            // udpate links for the current selected site
+            //updateLinks($anchors, secure)
+            // show selected site && hide previous site
+            updateHistory(evt.target.value)
+        })
+    })
+</script>
+</body>
+</html>
