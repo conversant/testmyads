@@ -1,0 +1,9 @@
+[
+  "conversantBidAdapter",
+  "appnexusBidAdapter",
+  "openxBidAdapter",
+  "publinkIdSystem",
+  "sharedIdSystem",
+  "identityLinkIdSystem",
+  "dfpAdServerVideo"
+]
