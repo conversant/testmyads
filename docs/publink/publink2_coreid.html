@@ -5,7 +5,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
     <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-    <script async src="../js/prebid-5.14.0.js"></script>
+    <script async src="../js/prebid-5.19.0-pre.js"></script>
 
     <script src="../js/coreid-1.2.6.min.js"></script>
 
@@ -178,23 +178,7 @@
 
         if (email) {
             pbjs.que.push(function() {
-                window.coreid.start({email: email});
-                // Pass the hash to the id module then call refreshUserIds to force a
-                // the id to be updated
-                pbjs.setConfig({
-                    userSync: {
-                        userIds: [{
-                            name: "publinkId",
-                            storage: {
-                                type: "cookie",
-                                name: "pbjs_publink",
-                                expires: 30
-                            }
-                        }]
-                    }
-                });
-
-                pbjs.refreshUserIds({submoduleNames: ['publinkId']}, () => console.log('id refreshed'));
+                window.coreid.start({email: email, siteId: 108060});
             });
         }
     }
