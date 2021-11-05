@@ -58,7 +58,7 @@
         function playvideo() {
             document.removeEventListener('DOMContentLoaded', playvideo);
             jwplayer.key = "***REMOVED***";
-            jwplayer("player").setup({
+            const playerInstance = jwplayer("player").setup({
                 primary: "html5",
                 advertising: {
                     client: 'vast',
@@ -72,12 +72,16 @@
                 autostart: true,
                 mute: true,
                 file: "https://vstatic.fastclick.net/static/archiver/video/f03/bfb/1bb/f03bfb1bb39d9f04761852cbe10a3447f2ebd52c1028d39eb85de7ca7586a3e2.mp4"
-            })
+            });
+            playerInstance.on('adComplete', () => {
+                setTimeout(() => { console.log("waiting 1 sec")}, 1000);
+            });
         };
 
         function stageVideo() {
             //console.log(document.readyState)
-            if (document.readyState === 'complete') {
+            console.log("stage video document ready state: ", document.readyState);
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
                 playvideo()
             } else {
                 document.addEventListener('DOMContentLoaded', playvideo)
