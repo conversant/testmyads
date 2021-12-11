@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IP Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/joeymalvinni/webrtc-ip/dist/production.min.js"></script>
+
+</head>
+<body>
+<p>Reload until a non-psa ad is served</p>
+<!-- Conversant Media 300x250 Medium Rectangle CODE for testMyads_1 -->
+<div id="container-3">
+    <script>var cnvr_launcher_options={lid:16};</script>
+    <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
+    <script>
+        conversant.launch('pubcode', 'loadOneAd',
+            {
+                sid: 108060,
+                location: "container-3",
+                format: [{w: 300, h:250}]
+            }
+        );
+    </script>
+</div>
+<script type="application/javascript">
+    let container = document.getElementById('container-3');
+    let options = {
+        childList: true,
+        subtree: true
+    };
+    let observer = new MutationObserver(records => {
+        for (let record of records) {
+            for (let node of record.addedNodes) {
+                // Pubcode overwrite the content of the iframe by setting srcdoc.
+                // Wait for the iframe to load then look for the pubpixel and extract ip.
+                if (node.nodeName === 'IFRAME') {
+                    node.onload = ()=>{
+                        let images = node.contentDocument.getElementsByTagName('img');
+                        for (let image of images) {
+                            if (image.src.indexOf('event.ad.cpe.dotomi.com') !== -1) {
+                                // Get the encoded portion
+                                let url = new URL(image.src);
+                                let enc = url.searchParams.get('enc');
+
+                                // Base64 web safe decode
+                                let decoded = atob(enc.replace(/_/g, '/').replace(/-/g, '+'));
+                                // Convert binary string to an array of character numbers
+                                let charData = decoded.split('').map(x=>{return x.charCodeAt(0);});
+                                // Convert to a byte-array
+                                let binData = new Uint8Array(charData);
+                                // Use pako to do zlib inflate
+                                let data = window.pako.inflate(binData);
+                                // Convert byte array to ascii string
+                                let str = String.fromCharCode.apply(null, new Uint16Array(data));
+                                // Convert json to an object to get ip address from ipString
+                                let pixelData = JSON.parse(str);
+                                let elem = document.getElementById('dotomi_ip');
+                                elem.innerText = pixelData.ipString;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    observer.observe(container, options);
+</script>
+<table class="table table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>source</th>
+        <th>ip</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Dotomi</td>
+        <td><span id="dotomi_ip">waiting...</span></td>
+    </tr>
+    <tr>
+        <td>Cloudflare</td>
+        <td><span id="cloudflare_ip">waiting...</span></td>
+    </tr>
+    <tr>
+        <td>ipify</td>
+        <td><span id="ipify_ip">waiting...</span></td>
+    </tr>
+    <tr>
+        <td>WebRTC</td>
+        <td><span id="webrtc_ip">waiting...</span></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<script type="application/javascript">
+    // Cloudflare
+    $.get('https://www.cloudflare.com/cdn-cgi/trace', data => {
+       data = data.trim().split('\n').reduce((obj, pair) => {
+           pair = pair.split('=');
+           obj[pair[0]] = pair[1]
+           return obj;
+       }, {}) ;
+       $('#cloudflare_ip').text(data.ip);
+    });
+
+    // ipify
+    $.getJSON('https://api.ipify.org?format=jsonp&callback=?', data => {
+        $('#ipify_ip').text(data.ip);
+    });
+
+    // webrtc
+    getIPs().then(data => {
+        if (data.length > 0) {
+            $('#webrtc_ip').text(data[0]);
+        }
+    });
+</script>
+
+</body>
+</html>
