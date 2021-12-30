@@ -5,7 +5,7 @@ function newT(){
     decodedUri = decodedUri.slice(0, decodedUri.lastIndexOf('&'));
     uri = decodedUri.replace(/.*dtm_id=\d+&/, "https://s-usweb.dotomi.com/assets/js/ace/current/ace-preview.html?");
     uri = encodeURIComponent(uri);
-    var winReplace = window.location.replace("https://demo.testmyads.com/testmyads/docs/client_preview/cp_300_250.html?url=" + uri);
+    var winReplace = window.location.replace("https://demo.testmyads.com/testmyads/client_preview/cp_300_250.html?url=" + uri);
     return winReplace;
     }
     
