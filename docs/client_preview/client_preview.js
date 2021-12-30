@@ -21,7 +21,7 @@ function newT(){
     }
     const {company_id, message_campaign_id, template_id, media_size_id, dtm_user_ip} = query;
     qParams = 'comId=' + company_id + '&msgCampId=' + message_campaign_id + '&tid=' + template_id + '&ms=' + media_size_id + '&dtm_user_ip=' + dtm_user_ip;
-    var scriptSrc = 'http://iad-usadmm.dotomi.com/fetch/preview/jsonp?';
+    var scriptSrc = 'https://iad-usadmm.dotomi.com/fetch/preview/jsonp?';
     
     var combine = scriptSrc + qParams;
     console.log(combine);
