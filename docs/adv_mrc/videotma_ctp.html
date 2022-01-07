@@ -19,7 +19,7 @@
     </style>
     <script src="/js/jwplayer-8.9.3/jwplayer.js"></script>
     <script>
-        var bidRequest = {"id":"","site":{"id":"125684","name":"http://testmyads.com","domain":"http://testmyads.com","publisher":{"id":"21347"}},"imp":[{"id":"8aed19bd8125ae","video":{"playbackmethod": [3],"mimes":["application/javascript"],"api":[1,2],"w":640,"h":360},"displaymanager":"35001","displaymanagerver":"3.0.6","bidfloor":0.0000,"bidfloorcur":"USD","secure":1,"pmp":{"deals":[{"id":"213","bidfloor":0.00,"bidfloorcur":"USD","at":3}],"private_auction":1}}],"device":{"dnt":0,"ua":""},"user":{}}
+        var bidRequest = {"id":"","site":{"id":"125684","name":"http://testmyads.com","domain":"http://testmyads.com","publisher":{"id":"21347"}},"imp":[{"id":"8aed19bd8125ae","video":{"playbackmethod": [2],"mimes":["application/javascript"],"api":[],"w":640,"h":360},"displaymanager":"35001","displaymanagerver":"3.0.6","bidfloor":0.0000,"bidfloorcur":"USD","secure":1,"pmp":{"deals":[{"id":"213","bidfloor":0.00,"bidfloorcur":"USD","at":3}],"private_auction":1}}],"device":{"dnt":0,"ua":""},"user":{}}
         var vastUrl = "";
 
         bidRequest.id = Math.floor(1e6 * Math.random());
@@ -58,7 +58,7 @@
         function playvideo() {
             document.removeEventListener('DOMContentLoaded', playvideo);
             jwplayer.key = "***REMOVED***";
-            jwplayer("player").setup({
+            const playerInstance = jwplayer("player").setup({
                 primary: "html5",
                 advertising: {
                     client: 'vast',
@@ -71,11 +71,16 @@
                 image: "",
                 autostart: false,
                 file: "https://vstatic.fastclick.net/static/archiver/video/f03/bfb/1bb/f03bfb1bb39d9f04761852cbe10a3447f2ebd52c1028d39eb85de7ca7586a3e2.mp4"
-            })
+            });
+            playerInstance.on('adComplete', () => {
+                setTimeout(() => { console.log("waiting 1 sec")}, 1000);
+            });
         };
 
         function stageVideo() {
-            if (document.readyState === 'complete') {
+            //console.log(document.readyState)
+            console.log("stage video document ready state: ", document.readyState);
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
                 playvideo()
             } else {
                 document.addEventListener('DOMContentLoaded', playvideo)
