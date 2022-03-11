@@ -73,8 +73,8 @@
                 mute: true,
                 file: "https://vstatic.fastclick.net/static/archiver/video/f03/bfb/1bb/f03bfb1bb39d9f04761852cbe10a3447f2ebd52c1028d39eb85de7ca7586a3e2.mp4"
             });
-            playerInstance.on('adComplete', () => {
-                setTimeout(() => { console.log("waiting 1 sec")}, 1000);
+            playerInstance.on('adComplete', function() {
+                setTimeout(function(){ console.log("waiting 1 sec")}, 1000);
             });
         };
 
