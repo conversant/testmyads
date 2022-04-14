@@ -5,13 +5,66 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Test Page - All Units</title>
     <link rel="stylesheet" type="text/css" href="/testMyAds.css" />
+    <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/3/gdpr-cmp-stub.js"></script>
+    <script> var cnvr_launcher_options={lid:203} </script>
+    <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
+
+    <script type="text/javascript">
+        function setCookie(cname, cvalue, exdays) {
+          const d = new Date();
+          d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+          let expires = "expires="+d.toUTCString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+          let name = cname + "=";
+          let ca = document.cookie.split(';');
+          for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
+    </script>
+
+    <script>
+
+        var cvalue = getCookie('tc_string');
+
+        const callback = (tcData, success) => {
+
+          if(tcData.eventStatus === 'useractioncomplete') {
+            var consentString = tcData.tcString;
+
+            if(consentString){
+
+                setCookie('tc_string', consentString, 400);
+                window.location.reload();
+
+            }
+
+
+          } else {
+
+            // do something else
+
+          }
+
+        }
+
+        __tcfapi('addEventListener', 2, callback);
+    </script>
+
+
 </head>
 
-<body><script> window.cmpConfig = JSON.parse("{\"countryCode\":\"AA\",\"id\":10213,\"version\":\"0\",\"legalBases\":{\"purpose\":{\"consent\":[1]}},\"vendors\":[],\"legalName\":\"epsilon\",\"policyUrl\":\"https://www.conversantmedia.com/legal/privacy\",\"isServiceSpecific\":true}");</script>
-    <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/3/gdpr-cmp-stub.js"> </script>
-    <a href="http://www.conversantmedia.com"><img src="/images/EPS_Logo_cropped.jpg" alt="" height="72" border="0"></a>
-    <br />
-    <!--<img src="images/fakeheader.gif" width="730" height="125" />-->
+<body>
     <center>
         <div id="main2">
             <center>
@@ -19,8 +72,8 @@
                     <tr>
                         <td colspan="3">
                             <!-- Conversant Media 728x90 LEADERBOARD CODE for testMyads_1 -->
-                            <script type="text/javascript">
-                            var vclk_options = { sid: 123889, deal_id: "211", media_type: 5, version: "1.4", secure: "on", gdpr_consent:"CPBB0glPBB0hAAXADBENBLCMAP_AAH_AAAAAHTNd_X_fb39j-_59_9t0eY1f9_7_v-0zjgeds-8Nyf_X_L8X42M7vF36pq4KuR4Eu3LBIQFlHOHUTUmw6okVrTPsak2Mr7NKJ7PEinMbe2dYGHtfn9VTuZKYr97s___z__-__v__79f_r-3_3_vp9X---_e_V3A6QAkw1L4CLMSxwJJo0qhRAhCuJDoBQAUUIwtE1hASuCnZXAR6ggYAIDUBGBECDEFGLAIAAAAAkoiAkAPBAIgCIBAACAFSAhAARoAgsALAwCAAUA0LACKAIQJCDI4KjlMCAiRaKCeSsASi72MMIQyiwAoFH9FRgAAA.IHTNd_X_fb39j-_59__t0eY1f9_7_v-0zjheds-8Nyf_X_L8X_2M7vF36pq4KuR4ku3bBIQFtHOnUTUmx6olVrTPsak2Mr7NKJ7PEmnsbe2dYGHtfn9VT-ZKZr97v___7________79______3_v_____-_____A" };
+                            <script class="vclk_opt_script" id="1" type="text/javascript">
+                            var vclk_options = { sid: 123889, deal_id: "211", media_type: 5, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
                             </script>
                             <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_type=5&version=1.4&exc=1"></script>
 
@@ -43,8 +96,8 @@
                             <input type="text" name="Search" />
                             <div id="nudge">
                                 <!-- Conversant Media 160x600 WIDE SKYSCRAPER CODE for testMyads_1 -->
-                                <script type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_type: 7, version: "1.4", secure: "on", gdpr_consent:"CPBB0glPBB0hAAXADBENBLCMAP_AAH_AAAAAHTNd_X_fb39j-_59_9t0eY1f9_7_v-0zjgeds-8Nyf_X_L8X42M7vF36pq4KuR4Eu3LBIQFlHOHUTUmw6okVrTPsak2Mr7NKJ7PEinMbe2dYGHtfn9VTuZKYr97s___z__-__v__79f_r-3_3_vp9X---_e_V3A6QAkw1L4CLMSxwJJo0qhRAhCuJDoBQAUUIwtE1hASuCnZXAR6ggYAIDUBGBECDEFGLAIAAAAAkoiAkAPBAIgCIBAACAFSAhAARoAgsALAwCAAUA0LACKAIQJCDI4KjlMCAiRaKCeSsASi72MMIQyiwAoFH9FRgAAA.IHTNd_X_fb39j-_59__t0eY1f9_7_v-0zjheds-8Nyf_X_L8X_2M7vF36pq4KuR4ku3bBIQFtHOnUTUmx6olVrTPsak2Mr7NKJ7PEmnsbe2dYGHtfn9VT-ZKZr97v___7________79______3_v_____-_____A"};
+                                <script class="vclk_opt_script" id="2" type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_type: 7, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_type=7&version=1.4&exc=1"></script>
 
@@ -57,8 +110,8 @@
                             </p>
                             <center>
                                 <!-- Conversant Media 300x250 Medium Rectangle CODE for testMyads_1 -->
-                                <script type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 6, media_type: 8, version: "1.4", secure: "on", gdpr_consent:"CPBB0glPBB0hAAXADBENBLCMAP_AAH_AAAAAHTNd_X_fb39j-_59_9t0eY1f9_7_v-0zjgeds-8Nyf_X_L8X42M7vF36pq4KuR4Eu3LBIQFlHOHUTUmw6okVrTPsak2Mr7NKJ7PEinMbe2dYGHtfn9VTuZKYr97s___z__-__v__79f_r-3_3_vp9X---_e_V3A6QAkw1L4CLMSxwJJo0qhRAhCuJDoBQAUUIwtE1hASuCnZXAR6ggYAIDUBGBECDEFGLAIAAAAAkoiAkAPBAIgCIBAACAFSAhAARoAgsALAwCAAUA0LACKAIQJCDI4KjlMCAiRaKCeSsASi72MMIQyiwAoFH9FRgAAA.IHTNd_X_fb39j-_59__t0eY1f9_7_v-0zjheds-8Nyf_X_L8X_2M7vF36pq4KuR4ku3bBIQFtHOnUTUmx6olVrTPsak2Mr7NKJ7PEmnsbe2dYGHtfn9VT-ZKZr97v___7________79______3_v_____-_____A"};
+                                <script class="vclk_opt_script" id="3" type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 6, media_type: 8, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_id=6&media_type=8&version=1.4&exc=1"></script>
 
@@ -69,8 +122,8 @@
                             </p>
                             <center>
                                 <!-- Conversant Media 300x600 Half Page CODE for testMyads_1 -->
-                                <script type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 8, media_type: 10, version: "1.4", secure: "on", gdpr_consent:"CPBB0glPBB0hAAXADBENBLCMAP_AAH_AAAAAHTNd_X_fb39j-_59_9t0eY1f9_7_v-0zjgeds-8Nyf_X_L8X42M7vF36pq4KuR4Eu3LBIQFlHOHUTUmw6okVrTPsak2Mr7NKJ7PEinMbe2dYGHtfn9VTuZKYr97s___z__-__v__79f_r-3_3_vp9X---_e_V3A6QAkw1L4CLMSxwJJo0qhRAhCuJDoBQAUUIwtE1hASuCnZXAR6ggYAIDUBGBECDEFGLAIAAAAAkoiAkAPBAIgCIBAACAFSAhAARoAgsALAwCAAUA0LACKAIQJCDI4KjlMCAiRaKCeSsASi72MMIQyiwAoFH9FRgAAA.IHTNd_X_fb39j-_59__t0eY1f9_7_v-0zjheds-8Nyf_X_L8X_2M7vF36pq4KuR4ku3bBIQFtHOnUTUmx6olVrTPsak2Mr7NKJ7PEmnsbe2dYGHtfn9VT-ZKZr97v___7________79______3_v_____-_____A"};
+                                <script class="vclk_opt_script" id="4" type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 8, media_type: 10, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_id=8&media_type=10&version=1.4&exc=1"></script>
 
@@ -97,10 +150,10 @@
                     </tr>
                     <tr>
                         <td colspan="3" style="background-color: #BEE3F3;">
-                            <div class="floatright">
+                            <div id="5" class="floatright">
                                 <!-- Conversant Media 320x50 Small Banner CODE for testMyads_1 -->
-                                <script type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 15, media_type: 17, version: "1.4", secure: "on", gdpr_consent:"CPBB0glPBB0hAAXADBENBLCMAP_AAH_AAAAAHTNd_X_fb39j-_59_9t0eY1f9_7_v-0zjgeds-8Nyf_X_L8X42M7vF36pq4KuR4Eu3LBIQFlHOHUTUmw6okVrTPsak2Mr7NKJ7PEinMbe2dYGHtfn9VTuZKYr97s___z__-__v__79f_r-3_3_vp9X---_e_V3A6QAkw1L4CLMSxwJJo0qhRAhCuJDoBQAUUIwtE1hASuCnZXAR6ggYAIDUBGBECDEFGLAIAAAAAkoiAkAPBAIgCIBAACAFSAhAARoAgsALAwCAAUA0LACKAIQJCDI4KjlMCAiRaKCeSsASi72MMIQyiwAoFH9FRgAAA.IHTNd_X_fb39j-_59__t0eY1f9_7_v-0zjheds-8Nyf_X_L8X_2M7vF36pq4KuR4ku3bBIQFtHOnUTUmx6olVrTPsak2Mr7NKJ7PEmnsbe2dYGHtfn9VT-ZKZr97v___7________79______3_v_____-_____A"};
+                                <script class="vclk_opt_script" id="5" type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 15, media_type: 17, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_id=15&media_type=17&version=1.4&exc=1"></script>
 
