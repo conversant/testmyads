@@ -9,59 +9,7 @@
     <script> var cnvr_launcher_options={lid:203} </script>
     <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
 
-    <script type="text/javascript">
-        function setCookie(cname, cvalue, exdays) {
-          const d = new Date();
-          d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-          let expires = "expires="+d.toUTCString();
-          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-        }
-
-        function getCookie(cname) {
-          let name = cname + "=";
-          let ca = document.cookie.split(';');
-          for(let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == ' ') {
-              c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-              return c.substring(name.length, c.length);
-            }
-          }
-          return "";
-        }
-    </script>
-
-    <script>
-
-        var cvalue = getCookie('tc_string');
-
-        const callback = (tcData, success) => {
-
-          if(tcData.eventStatus === 'useractioncomplete') {
-            var consentString = tcData.tcString;
-
-            if(consentString){
-
-                setCookie('tc_string', consentString, 400);
-                window.location.reload();
-
-            }
-
-
-          } else {
-
-            // do something else
-
-          }
-
-        }
-
-        __tcfapi('addEventListener', 2, callback);
-    </script>
-
-
+    <script type="text/javascript" src="/js/consent_cookie_functions.js"></script>
 </head>
 
 <body>
@@ -72,8 +20,8 @@
                     <tr>
                         <td colspan="3">
                             <!-- Conversant Media 728x90 LEADERBOARD CODE for testMyads_1 -->
-                            <script class="vclk_opt_script" id="1" type="text/javascript">
-                            var vclk_options = { sid: 123889, deal_id: "211", media_type: 5, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
+                            <script type="text/javascript">
+                            var vclk_options = { sid: 123889, deal_id: "211", media_type: 5, version: "1.4", secure: "on", gdpr_consent: getCookie("dtm_tcdata")};
                             </script>
                             <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_type=5&version=1.4&exc=1"></script>
 
@@ -96,8 +44,8 @@
                             <input type="text" name="Search" />
                             <div id="nudge">
                                 <!-- Conversant Media 160x600 WIDE SKYSCRAPER CODE for testMyads_1 -->
-                                <script class="vclk_opt_script" id="2" type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_type: 7, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
+                                <script type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_type: 7, version: "1.4", secure: "on", gdpr_consent: getCookie("dtm_tcdata")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_type=7&version=1.4&exc=1"></script>
 
@@ -110,8 +58,8 @@
                             </p>
                             <center>
                                 <!-- Conversant Media 300x250 Medium Rectangle CODE for testMyads_1 -->
-                                <script class="vclk_opt_script" id="3" type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 6, media_type: 8, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
+                                <script type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 6, media_type: 8, version: "1.4", secure: "on", gdpr_consent: getCookie("dtm_tcdata")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_id=6&media_type=8&version=1.4&exc=1"></script>
 
@@ -122,8 +70,8 @@
                             </p>
                             <center>
                                 <!-- Conversant Media 300x600 Half Page CODE for testMyads_1 -->
-                                <script class="vclk_opt_script" id="4" type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 8, media_type: 10, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
+                                <script type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 8, media_type: 10, version: "1.4", secure: "on", gdpr_consent: getCookie("dtm_tcdata")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_id=8&media_type=10&version=1.4&exc=1"></script>
 
@@ -150,10 +98,10 @@
                     </tr>
                     <tr>
                         <td colspan="3" style="background-color: #BEE3F3;">
-                            <div id="5" class="floatright">
+                            <div class="floatright">
                                 <!-- Conversant Media 320x50 Small Banner CODE for testMyads_1 -->
-                                <script class="vclk_opt_script" id="5" type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 15, media_type: 17, version: "1.4", secure: "on", gdpr_consent: getCookie("tc_string")};
+                                <script  type="text/javascript">
+                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 15, media_type: 17, version: "1.4", secure: "on", gdpr_consent: getCookie("dtm_tcdata")};
                                 </script>
                                 <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_id=15&media_type=17&version=1.4&exc=1"></script>
 
