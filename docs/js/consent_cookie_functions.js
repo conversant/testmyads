@@ -21,7 +21,7 @@ function getCookie(cname) {
 }
 var cvalue = getCookie('dtm_tcdata');
 
-const callback = (tcData, success) => {
+const callback = function(tcData, success) {
   if(tcData.eventStatus === 'useractioncomplete') {
     var consentString = tcData.tcString;
 
