@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="https://localhost/_pubcode/pubcode.min.js"/>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Test Page - LEADERBOARD Only</title>
     <link rel="stylesheet" type="text/css" href="../testMyAds.css" />
@@ -19,12 +20,12 @@
                     <tr>
                         <td colspan="3">
                             <!-- Conversant Media 728x90 LEADERBOARD CODE for testMyads_1 -->
-                            <script type="text/javascript">
-                            var vclk_options = { sid: 38799, deal_id: "120", media_type: 5, version: "1.4" };
-                            </script>
-                            <script class="vclk_pub_code" type="text/javascript" src="http://cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=38799&media_type=5&version=1.4&exc=1"></script>
-                            <noscript><a href="http://media.fastclick.net/w/click.here?sid=38799&m=1&c=1" target="_blank"><img src="http://media.fastclick.net/w/get.media?sid=38799&tp=5&d=s&c=1&vcm_acv=1.4" width="728" height="90" border="1"></a></noscript>
-                            <!-- Conversant Media 728x90 LEADERBOARD CODE for testMyads_> -->
+                            <div id="leaderboard">
+                                <script type="text/javascript">
+                                    var config = { sid: 38799, location: "leaderboard", deals: ["120"], format: [{w: 728, h: 90}]};
+                                    window.conversant.pubcode.loadOneAd(config);
+                                </script>
+                            </div>
                         </td>
                     </tr>
                     <tr>

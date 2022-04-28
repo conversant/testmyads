@@ -1,13 +1,16 @@
 <html>
 <head>
+    <script>
+        var cnvr_launcher_options={lid:203};
+    </script>
+    <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/3/gdpr-cmp-stub.js"> </script>
+    <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
+    <script type="text/javascript" src="https://localhost/_pubcode/pubcode.min.js"/>
     <link rel="icon" href="/images/epsilon_fav_icon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Test Page - 300x600</title>
     <link rel="stylesheet" type="text/css" href="/testMyAds.css" />
     <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/3/gdpr-cmp-stub.js"></script>
-    <script> var cnvr_launcher_options={lid:203} </script>
-    <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
-    <script type="text/javascript" src="/js/consent_cookie_functions.js"></script>
 </head>
 <body>
     <a href="http://www.conversantmedia.com"><img src="/images/EPS_Logo_cropped.jpg" alt="" height="72" border="0"></a>
@@ -46,12 +49,11 @@
                             </p>
                             <center>
                                 <!-- Conversant Media 300x600 Half Page CODE for testMyads_1 -->
-                                <script type="text/javascript">
-                                var vclk_options = { sid: 123889, deal_id: "211", media_id: 8, media_type: 10, version: "1.4", secure: "on" , gdpr_consent: getCookie("dtm_tcdata")};
-                                </script>
-                                <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=123889&media_id=8&media_type=10&version=1.4&exc=1"></script>
-
-                                <!-- Conversant Media 300x600 Half Page CODE for testMyads_1 -->
+                                <div id="halfpage">
+                                    <script type="text/javascript">
+                                        var config = { sid: 123889, location: "halfpage", deals: ["211"], format: [{w: 300, h: 600}]};
+                                        window.conversant.pubcode.loadOneAd(config); </script>
+                                </div>
                             </center>
                         </td>
                         <td style="background-color: #BEE3F3; width:130px; vertical-align:top; text-align: center;">

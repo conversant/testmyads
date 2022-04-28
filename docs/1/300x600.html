@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Test Page - 300x600</title>
     <link rel="stylesheet" type="text/css" href="/testMyAds.css" />
+    <script type="text/javascript" src="https://secure.cdn.fastclick.net/js/cnvr-pubcode/latest/pubcode.min.js"/>
 </head>
 
 <body>
@@ -45,15 +46,13 @@
                             <p>
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque posuere arcu eu lorem. Quisque laoreet velit nec dui. Donec risus erat, eleifend non, ornare mattis, rutrum nec, ante. Sed nec est et felis posuere rutrum.
                             </p>
-                            <center>
-                                <!-- Conversant Media 300x600 Half Page CODE for testMyads_1 -->
+                            <!-- Conversant Media 300x600 Half Page CODE for testMyads_1 -->
+                            <div class="center" id="halfpage">
                                 <script type="text/javascript">
-                                var vclk_options = { sid: 119041, deal_id: "170", media_id: 8, media_type: 10, version: "1.4", secure: "on" };
+                                    var config = { sid: 119041, location: "halfpage", deals: ["170"], format: [{w: 300, h: 600}]};
+                                    window.conversant.pubcode.loadOneAd(config);
                                 </script>
-                                <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=119041&media_id=8&media_type=10&version=1.4&exc=1"></script>
-
-                                <!-- Conversant Media 300x600 Half Page CODE for testMyads_1 -->
-                            </center>
+                            </div>
                         </td>
                         <td style="background-color: #BEE3F3; width:130px; vertical-align:top; text-align: center;">
                             <!-- ValueClick Media 120x600 SkyScraper CODE v1.0c for ashleylennonthomas.comvc -->
