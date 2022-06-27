@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="https://secure.cdn.fastclick.net/js/cnvr-pubcode/latest/pubcode.min.js"/>
     <link rel="icon" href="/images/epsilon_fav_icon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Test Page - LEADERBOARD Only</title>
@@ -22,12 +23,12 @@
                     <tr>
                         <td colspan="3">
                             <!-- Conversant Media 728x90 LEADERBOARD CODE for testMyads_1 -->
-                            <script type="text/javascript">
-                            var vclk_options = { sid: 203417, deal_id: "294b7104-e", media_type: 5, version: "1.4", secure: "on" };
-                            </script>
-                            <script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=203417&media_type=5&version=1.4&exc=1"></script>
-
-                            <!-- Conversant Media 728x90 LEADERBOARD CODE for testMyads_1 -->
+                            <div id="leaderboard">
+                                <script type="text/javascript">
+                                    var config = { sid: 203417, location: "leaderboard", deals: ["294b7104-e"], format: [{w: 728, h: 90}]};
+                                    window.conversant.pubcode.loadOneAd(config);
+                                </script>
+                            </div>
                         </td>
                     </tr>
                     <tr>
