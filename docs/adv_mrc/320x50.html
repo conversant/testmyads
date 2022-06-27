@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="https://secure.cdn.fastclick.net/js/cnvr-pubcode/latest/pubcode.min.js"/>
     <link rel="icon" href="/images/epsilon_fav_icon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Test Page - 320x50 Only</title>
@@ -21,14 +22,12 @@
                     <tr>
                         <td colspan="3">
                             <!-- Conversant Media CODE for Test Acct MRC 320x50 (Placement 522ecbb) -->
-                            <script type="text/javascript">
-                                var vclk_options = { sid: 125684, deal_id: "213", placement_id: '522ecbb', version: '1.4' };
-                            </script>
-                            <script class="vclk_pub_code" type="text/javascript"
-                                src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=125684&placement_id=522ecbb&version=1.4&exc=1">
-                            </script>
-
-                                <!-- Conversant Media CODE for Test Acct MRC 320x50 (Placement 522ecbb) -->
+                            <div id="smallbanner">
+                                <script type="text/javascript">
+                                    var config = { sid: 125684, location: "smallbanner", deals: ["213"], id: "522ecbb", format: [{w: 320, h: 50}]};
+                                    window.conversant.pubcode.loadOneAd(config);
+                                </script>
+                            </div>
                         </td>
                     </tr>
                     <tr>
