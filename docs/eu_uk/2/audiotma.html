@@ -29,7 +29,7 @@
             // Pre-roll video.
             var fileUrl = 'https://vstatic.fastclick.net/static/archiver/audio/61a/be7/4a8/61abe74a84c71a39e612e0587e5cf6bb501c5b17aeda1ca62d9ac68a47a36dd7.mp3';
             // Vast tag call.
-            var tagUrl = 'https://direct.ad.cpe.dotomi.com/cvx/client/direct/media?sid=123890&placement_id=92e9e88e&m=18&deal_id=212&gdpr=1&gdpr_consent=__gdpr_consent__';
+            var tagUrl = 'https://direct.ad.cpe.dotomi.com/cvx/client/direct/media?sid=123890&placement_id=92e9e88e&m=18&deal_id=212';
 
 
             jwplayer('player')
@@ -38,7 +38,23 @@
                     advertising: {
                         client: 'vast',
                         tag: tagUrl,
-                        vpaidcontrols: true
+                        vpaidcontrols: true,
+                        "bids": {
+                            "settings": {
+                                "consentManagement": {
+                                    "gdpr": {
+                                        "cmpApi": "iab",
+                                        "rules": {
+                                            "purpose": "basicAds",
+                                            "enforcePurpose": true,
+                                            "enforceVendor": true
+                                        },
+                                        "defaultGdprScope": true,
+                                        "timeout": 0 // GDPR timeout 0ms
+                                    }
+                                }
+                            }
+                        }
                     },
                     controls: true,
                     width: 640,
@@ -49,6 +65,7 @@
                 })
 
         };
+        
     </script>
 </head>
 
