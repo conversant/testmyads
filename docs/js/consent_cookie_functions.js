@@ -25,12 +25,43 @@ const callback = function(tcData, success) {
   if(tcData.eventStatus === 'useractioncomplete') {
     var consentString = tcData.tcString;
 
+
     if(consentString){
         setCookie('dtm_tcdata', consentString, 400);
-        window.location.reload();
+        console.log(getCookie('dtm_tcdata'));
+        window.onload = getJwplayer();
     }
   } else {
     // do something else
   }
 }
 __tcfapi('addEventListener', 2, callback);
+
+function getJwplayer() {
+  jwplayer.key = '***REMOVED***';
+
+  var randomNum = Math.floor(Math.random() * 1000000);
+
+  // Pre-roll video.
+  var fileUrl = 'https://vstatic.fastclick.net/static/archiver/audio/61a/be7/4a8/61abe74a84c71a39e612e0587e5cf6bb501c5b17aeda1ca62d9ac68a47a36dd7.mp3';
+  // Vast tag call.
+  var tagUrl = `https://direct.ad.cpe.dotomi.com/cvx/client/direct/media?sid=123890&placement_id=92e9e88e&m=18&deal_id=212&gdpr_consent=`+getCookie('dtm_tcdata');
+
+
+  jwplayer('player')
+      .setup({
+          primary: 'html5',
+          advertising: {
+              client: 'vast',
+              tag: tagUrl,
+              vpaidcontrols: true,
+          },
+          controls: true,
+          width: 640,
+          height: 40,
+          autostart: true,
+          mute: true,
+          file: fileUrl
+      })
+
+};
