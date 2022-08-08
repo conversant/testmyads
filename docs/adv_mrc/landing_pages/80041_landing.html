@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test Landing - 80041</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <h1>Landing - 80041</h1> <br>
+
+
+<script>
+ var qs = window.location.search;
+ var ran = Math.floor(Math.random() * (100000000000 - 1 + 1)) + 1;
+ var ua = navigator.userAgent.toLowerCase();
+
+  if(ua.indexOf('trident') > 0  && ua.indexOf('.net4.0') > 0 ){
+      var b = document.createElement('img');
+      var tagType = 'px';
+
+  }else{
+     var b = document.createElement('script');
+    var tagType = 'js';
+  }
+
+  if(qs !== ''){
+      b.src = "https://dtm.mojotest.com/profile/visit/" + tagType + "/1_0" + qs + "&dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=101&dtm_promo_id=1&dtm_reg_debug=true";
+	}else{
+      b.src = "https://dtm.mojotest.com/profile/visit/" + tagType + "/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=101&&dtm_reg_debug=true&dtm_promo_id=1&cachebuster=" + ran;
+  }
+
+document.body.appendChild(b);
+
+ var a = document.createElement('a');
+ var linkText = document.createTextNode("To Conversion Page");
+      a.appendChild(linkText);
+      a.title = "Conversion_Page";
+      a.id = "Conversion_Link";
+      a.href = "80041_Conversion.html" + qs;
+      document.body.appendChild(a);
+</script>
+
+
+</body>
+
+</html>
