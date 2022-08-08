@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test Conversion - 80041</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>Conversion - 80041</h1>
+
+    <p>Promo ID: 100</p>
+    <p>Form ID: 102</p>
+    <p>Below is an example Tag. dtmc_transaction_id is randomly generated per load.</p>
+    <div><code>https://login.dotomi.com/profile/visit/js/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=102&dtm_promo_id=100&cachebuster=</code></div>
+    
+
+<!-- Start Epsilon Tag -->
+
+<script>
+ var a = document.createElement('script');
+ var qs = window.location.search;
+ var ran = Math.floor(Math.random() * (100000000000 - 1 + 1)) + 1;
+ var ua = navigator.userAgent.toLowerCase();
+
+
+  if(ua.indexOf('trident') > 0  && ua.indexOf('.net4.0') > 0 ){
+      var a = document.createElement('img');
+      var tagType = 'px';
+
+  }else{
+      var a = document.createElement('script');
+      var tagType = 'js';
+   }
+
+
+    if(qs !== ''){
+     a.src = "https://dtm.mojotest.com/profile/visit/" + tagType + "/1_0" + qs + "&dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=102&dtm_promo_id=100&dtm_user_id=1234abc&dtmc_transaction_id=abc" + ran + "&dtm_conv_val=0.01&dtm_conv_curr=USD&dtmc_conv_store_location=Chicago&dtm_reg_debug=true";
+	}else{
+     a.src = "https://dtm.mojotest.com/profile/visit/" + tagType + "/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=102&dtm_promo_id=100&cachebuster=" + ran + "&dtm_conv_val=0.01&dtm_conv_curr=USD&dtmc_conv_store_location=Chicago&dtm_reg_debug=true";
+	}
+     document.body.appendChild(a);
+</script>
+
+
+</body>
+
+</html>
