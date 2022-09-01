@@ -84,6 +84,21 @@
             padding: 0 0 0 10px;
         }
     </style>
+    <script type="application/javascript">
+        var userIP = "192.168.0.1"; //pre-init in case callback doesn't get called soon enough.
+        var emailAddr = "test@test.com";
+        function getIP(json) {
+            console.log("My public IP address is: ", json.ip);
+            userIP = json.ip;
+        }
+
+        function getEmailDomain(){
+            const emailParts = emailAddr.split("@");
+            return emailParts[1];
+        }
+    </script>
+
+    <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
 
     <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
     <script async src="../js/prebid.js"></script>
@@ -136,15 +151,28 @@
         };
 
         pbjs.que.push(function() {
+            pbjs.setBidderConfig({
+                bidders: ['conversant'],
+                config: {
+                    ortb2: {
+                        user: {
+                            ext: {
+                                emaildomain: getEmailDomain(),
+                                ip: userIP,
+                            }
+                        }
+                    }
+                }
+            }, true);
+
             pbjs.onEvent('auctionEnd', function() {pbjs.initAdserverSet = false;updateBidTable();});
             pbjs.addAdUnits(adUnits);
 
             pbjs.que.push(function(){
-                pbjs.enableAnalytics(
-                    {
+                pbjs.enableAnalytics({
                         provider: 'conversant',
-                        options: {site_id: 108060}}
-                    );
+                        options: {site_id: 108060}
+                });
             });
             pbjs.requestBids({
                 bidsBackHandler: initAdserver,
