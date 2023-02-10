@@ -36,8 +36,8 @@
                 qrDiv = document.getElementById('qrcode'),
                 dropdown = document.getElementById("ad-select"),
                 selectedAd = dropdown.selectedIndex,
-                adType = (selectedAd < 3) ? "banner" : "video",
-                size = dropdown.options[dropdown.selectedIndex].value,
+                adType = (selectedAd < 3 && selectedAd !=5) ? "banner" : (selectedAd < 5) ? "video" : "audio",
+                size = dropdown.options[dropdown.selectedIndex].value,//review
                 videoDomain = 'mobilevideo.html',
                 userAgent = encodeURIComponent(document.getElementById('raw_user_agent').value),
                 main = document.getElementById('main');
@@ -55,10 +55,35 @@
                     uri+= '/platform/'
                     console.log("checked");
                 }
-                uri += videoDomain;
+                uri = videoDomain;
 
                 return uri
                     + '?sid=125684&deal_id=213&bundle_id=com.conversant.test&limit_tracking=0&partner_version=3.0.6&partner_id=35001&gdpr=0&mimes=video/mp4'
+                    + '&w=' + width
+                    + '&h=' + height
+                    + '&ad_type=' + adType
+                    + '&device_id=' + dvcid
+                    + '&device_id_type=' + type
+                    + '&ip=' + ip
+                    + '&ua=' + userAgent;
+            };
+
+            function generateAudioRequest() {
+                let location = window.location.href;
+                let locationParts = location.split('/');
+                let uri = "";
+                for (i = 0; i < locationParts.length - 1; i++) {
+                    uri += locationParts[i] + "/";
+                }
+
+                if (document.getElementById('dtype_i').checked){
+                    uri+= '/platform/'
+                    console.log("checked");
+                }
+                uri = 'mobileaudio.html';
+
+                return uri
+                    + '?sid=125684&deal_id=213&bundle_id=com.conversant.test&limit_tracking=0&partner_version=3.0.6&partner_id=35001&gdpr=0&mimes=audio/mp3'
                     + '&w=' + width
                     + '&h=' + height
                     + '&ad_type=' + adType
@@ -104,6 +129,10 @@
                     height = 480;
                     videoDomain = 'mobilevideo_ctp.html';
                     break;
+                case "Audio":
+                    width = 600;
+                    height = 40;
+                    break;
             }
 
             if (document.getElementById('dtype_g').checked) {
@@ -119,6 +148,10 @@
 
             if (adType === 'video') {
                 requestURL = generateVideoRequest();
+            } else if (adType === 'audio') {
+                requestURL = generateAudioRequest();
+                console.log('tree')
+                console.log(requestURL)
             } else {
                 requestURL = generateBannerRequest();
             }
@@ -198,6 +231,7 @@
                 <option value="Interstitial">Interstitial - 300x600</option>
                 <option value="Video AutoPlay"> Mobile Video - Auto Play</option>
                 <option value="Video Click-to-Play"> Mobile Video - Click-to-Play</option>
+                <option value="Audio"> Mobile Audio</option>
             </select>
         </div>
 
@@ -223,6 +257,7 @@
                 <div>
                     <button style="margin-top: 20px" onclick="generateQR()">Generate QR</button>
                 </div>
+                <div id="device_idsync"></div>
                 <div id="qrcode"></div>
             </div>
 </body>
