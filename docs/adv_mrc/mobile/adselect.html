@@ -37,7 +37,7 @@
                 dropdown = document.getElementById("ad-select"),
                 selectedAd = dropdown.selectedIndex,
                 adType = (selectedAd < 3 && selectedAd !=5) ? "banner" : (selectedAd < 5) ? "video" : "audio",
-                size = dropdown.options[dropdown.selectedIndex].value,//review
+                size = dropdown.options[dropdown.selectedIndex].value,
                 videoDomain = 'mobilevideo.html',
                 userAgent = encodeURIComponent(document.getElementById('raw_user_agent').value),
                 main = document.getElementById('main');
@@ -55,7 +55,7 @@
                     uri+= '/platform/'
                     console.log("checked");
                 }
-                uri = videoDomain;
+                uri += videoDomain;
 
                 return uri
                     + '?sid=125684&deal_id=213&bundle_id=com.conversant.test&limit_tracking=0&partner_version=3.0.6&partner_id=35001&gdpr=0&mimes=video/mp4'
@@ -80,7 +80,7 @@
                     uri+= '/platform/'
                     console.log("checked");
                 }
-                uri = 'mobileaudio.html';
+                uri += 'mobileaudio.html';
 
                 return uri
                     + '?sid=125684&deal_id=213&bundle_id=com.conversant.test&limit_tracking=0&partner_version=3.0.6&partner_id=35001&gdpr=0&mimes=audio/mp3'
@@ -150,8 +150,6 @@
                 requestURL = generateVideoRequest();
             } else if (adType === 'audio') {
                 requestURL = generateAudioRequest();
-                console.log('tree')
-                console.log(requestURL)
             } else {
                 requestURL = generateBannerRequest();
             }
