@@ -41,7 +41,7 @@
                 videoDomain = 'mobilevideo.html',
                 userAgent = encodeURIComponent(document.getElementById('raw_user_agent').value),
                 main = document.getElementById('main');
-            qrDiv.style.marginTop = "30px";
+                qrDiv.style.marginTop = "30px";
 
             function generateVideoRequest() {
                 let location = window.location.href;
@@ -80,7 +80,7 @@
                     uri+= '/platform/'
                     console.log("checked");
                 }
-                uri += 'mobileaudio.html';
+                uri = 'mobileaudio.html';
 
                 return uri
                     + '?sid=125684&deal_id=213&bundle_id=com.conversant.test&limit_tracking=0&partner_version=3.0.6&partner_id=35001&gdpr=0&mimes=audio/mp3'
@@ -177,6 +177,26 @@
                 qr.addData(requestURL);
                 qr.make();
                 qrDiv.innerHTML = qr.createImgTag(4);
+                
+                device_type = (type == 'gaid' ) ? "google_play_id" : "idfa";
+            
+                var requestOptions = {
+                method: 'GET'
+                };
+
+                fetch(`https://m.mplxtms.com/syncEvent/?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=105&dtm_reg_debug=true&dtm_user_ip=${ip}&${device_type}=${dvcid}&dtm_user_agent=${userAgent}`, requestOptions)
+                .then(function(response) {
+                    if (response.ok) {
+                        return response.text();
+                        } else {
+                        throw new Error("Could not reach the API: " + response.statusText);
+                    }
+                }).then(function(result) {
+                    syncMessageDiv = document.getElementById('syncmessage');
+                    syncMessageDiv.innerHTML = "<h3>If using a new device ID, please allow ~15 minutes to for this to sync to a user profile.</h3>"
+                
+                }).catch(error => console.log('error', error));
+
 
             } else {
                 qrDiv.innerHTML = "Please enter all required information";
@@ -255,7 +275,7 @@
                 <div>
                     <button style="margin-top: 20px" onclick="generateQR()">Generate QR</button>
                 </div>
-                <div id="device_idsync"></div>
+                <div id="syncmessage"></div>
                 <div id="qrcode"></div>
             </div>
 </body>
