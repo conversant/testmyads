@@ -1,6 +1,15 @@
 <html>
 
 <head>
+    <script>
+        var jw_player_options = {
+            vastTagUrl : "https://direct.ad.cpe.dotomi.com/w/get.media?vpaid=2&m=11&sid=203417&deal_id=294b7104-e",
+            content_type : "video"
+        }
+    </script>
+    <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/gdpr-cmp-stub.js"></script>
+    <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
+    <script>conversant.launch('launcher', 'loadConfig', 178)</script>
     <link rel="icon" href="/images/epsilon_fav_icon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
@@ -18,42 +27,13 @@
         }
     </style>
     <script src="/js/jwplayer-8.9.3/jwplayer.js"></script>
-    <script>
-        window.onload = function() {
-            jwplayer.key = '***REMOVED***';
-
-            var randomNum = Math.floor(Math.random() * 1000000);
-
-            // Pre-roll video.
-            var fileUrl = 'https://vstatic.fastclick.net/static/archiver/video/f03/bfb/1bb/f03bfb1bb39d9f04761852cbe10a3447f2ebd52c1028d39eb85de7ca7586a3e2.mp4';
-            // Vast tag call.
-            var tagUrl = 'https://direct.ad.cpe.dotomi.com/w/get.media?vpaid=2&m=11&sid=203417&deal_id=294b7104-e';
-
-            jwplayer('player')
-                .setup({
-                    primary: 'html5',
-                    advertising: {
-                        client: 'vast',
-                        tag: tagUrl,
-                        vpaidcontrols: true
-                    },
-                    controls: true,
-                    width: 640,
-                    height: 360,
-                    autostart: true,
-                    mute: true,
-                    image: '',
-                    file: fileUrl
-                })
-
-        };
-    </script>
 </head>
 
 <body>
-
+    <script> window.cmpConfig = JSON.parse("{\"countryCode\":\"AA\",\"id\":10213,\"version\":\"0\",\"legalBases\":{\"purpose\":{\"consent\":[1]}},\"vendors\":[],\"legalName\":\"epsilon\",\"policyUrl\":\"https://www.conversantmedia.com/legal/privacy\",\"isServiceSpecific\":true}");</script>
+    <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/3/gdpr-cmp-stub.js"> </script>
+    <script src="/js/consent_functions.js"></script>
     <a href="http://www.conversantmedia.com"><img src="/images/EPS_Logo_cropped.jpg" alt="" height="72" border="0"></a>
-
     <br />
     <center>
         <div id="main">
@@ -89,6 +69,9 @@
             </center>
         </div>
     </center>
+    <script>
+        window.onload = getJwplayer();
+    </script>
 </body>
 
 </html>

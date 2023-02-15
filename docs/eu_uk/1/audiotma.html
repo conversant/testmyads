@@ -1,6 +1,15 @@
 <html>
 
 <head>
+    <script>
+        var jw_player_options = {
+            vastTagUrl : "https://direct.ad.cpe.dotomi.com/cvx/client/direct/media?sid=123889&placement_id=8da6acfe&m=18&deal_id=211",
+            content_type : "audio"
+        }
+    </script>
+    <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/gdpr-cmp-stub.js"></script>
+    <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
+    <script>conversant.launch('launcher', 'loadConfig', 178)</script>
     <link rel="icon" href="/images/epsilon_fav_icon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
@@ -15,38 +24,12 @@
         }
     </style>
     <script src="/js/jwplayer-8.9.3/jwplayer.js"></script>
-    <script>
-        window.onload = function() {
-            jwplayer.key = '***REMOVED***';
-
-            var randomNum = Math.floor(Math.random() * 1000000);
-
-            // Pre-roll video.
-            var fileUrl = 'https://vstatic.fastclick.net/static/archiver/audio/61a/be7/4a8/61abe74a84c71a39e612e0587e5cf6bb501c5b17aeda1ca62d9ac68a47a36dd7.mp3';
-            // Vast tag call.
-            var tagUrl = 'https://direct.ad.cpe.dotomi.com/cvx/client/direct/media?sid=123889&placement_id=8da6acfe&m=18&deal_id=211&gdpr_consent=CPBB0glPBB0hAAXADBENBLCMAP_AAH_AAAAAHTNd_X_fb39j-_59_9t0eY1f9_7_v-0zjgeds-8Nyf_X_L8X42M7vF36pq4KuR4Eu3LBIQFlHOHUTUmw6okVrTPsak2Mr7NKJ7PEinMbe2dYGHtfn9VTuZKYr97s___z__-__v__79f_r-3_3_vp9X---_e_V3A6QAkw1L4CLMSxwJJo0qhRAhCuJDoBQAUUIwtE1hASuCnZXAR6ggYAIDUBGBECDEFGLAIAAAAAkoiAkAPBAIgCIBAACAFSAhAARoAgsALAwCAAUA0LACKAIQJCDI4KjlMCAiRaKCeSsASi72MMIQyiwAoFH9FRgAAA.IHTNd_X_fb39j-_59__t0eY1f9_7_v-0zjheds-8Nyf_X_L8X_2M7vF36pq4KuR4ku3bBIQFtHOnUTUmx6olVrTPsak2Mr7NKJ7PEmnsbe2dYGHtfn9VT-ZKZr97v___7________79______3_v_____-_____A';
-
-            jwplayer('player')
-                .setup({
-                    primary: 'html5',
-                    advertising: {
-                        client: 'vast',
-                        tag: tagUrl,
-                        vpaidcontrols: true
-                    },
-                    controls: true,
-                    width: 640,
-                    height: 40,
-                    autostart: true,
-                    mute: true,
-                    file: fileUrl
-                })
-
-        };
-    </script>
 </head>
 
 <body>
+    <script> window.cmpConfig = JSON.parse("{\"countryCode\":\"AA\",\"id\":10213,\"version\":\"0\",\"legalBases\":{\"purpose\":{\"consent\":[1]}},\"vendors\":[],\"legalName\":\"epsilon\",\"policyUrl\":\"https://www.conversantmedia.com/legal/privacy\",\"isServiceSpecific\":true}");</script>
+    <script src="https://cdn.conversant.mgr.consensu.org/gdpr/cmp/3/gdpr-cmp-stub.js"> </script>
+    <script src="/js/consent_functions.js"></script>
     <a href="http://www.conversantmedia.com"><img src="/images/EPS_Logo_cropped.jpg" alt="" height="72" border="0"></a>
     <br />
     <center>
@@ -83,6 +66,9 @@
             </center>
         </div>
     </center>
+    <script>
+        window.onload = getJwplayer();
+    </script>
 </body>
 
 </html>
