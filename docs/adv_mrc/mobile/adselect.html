@@ -184,7 +184,7 @@
                 method: 'GET'
                 };
 
-                fetch(`https://login.dotomi.com/ /?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=105&dtm_reg_debug=true&dtm_user_ip=${ip}&${device_type}=${dvcid}&dtm_user_agent=${userAgent}`, requestOptions)
+                fetch(`https://login.dotomi.com/syncEvent/?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=105&dtm_reg_debug=true&dtm_user_ip=${ip}&${device_type}=${dvcid}&dtm_user_agent=${userAgent}`, requestOptions)
                 .then(function(response) {
                     if (response.ok) {
                         return response.text();
