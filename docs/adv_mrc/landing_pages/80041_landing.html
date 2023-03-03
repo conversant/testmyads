@@ -28,9 +28,9 @@
   }
 
   if(qs !== ''){
-      b.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0" + qs + "&dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=101&dtm_promo_id=1&dtm_reg_debug=true";
+      b.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0" + qs + "&dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=101&dtm_promo_id=1&dtm_reg_debug=true&cachebuster=" + ran;
 	}else{
-      b.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=101&&dtm_reg_debug=true&dtm_promo_id=1&cachebuster=" + ran;
+      b.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=101&dtm_promo_id=1&dtm_reg_debug=true&cachebuster=" + ran;
   }
 
 document.body.appendChild(b);
