@@ -1,4 +1,6 @@
 [
+  "adpod",
+  "userId",
   "conversantBidAdapter",
   "conversantAnalyticsAdapter",
   "appnexusBidAdapter",
@@ -6,5 +8,12 @@
   "publinkIdSystem",
   "sharedIdSystem",
   "identityLinkIdSystem",
-  "dfpAdServerVideo"
+  "dfpAdServerVideo",
+  "consentManagement",
+  "consentManagementGpp",
+  "consentManagementUsp",
+  "gdprEnforcement",
+  "enrichmentFpdModule",
+  "gptPreAuction",
+  "topicsFpdModule"
 ]
