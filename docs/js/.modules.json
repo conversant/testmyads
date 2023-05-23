@@ -15,5 +15,6 @@
   "gdprEnforcement",
   "enrichmentFpdModule",
   "gptPreAuction",
-  "topicsFpdModule"
+  "topicsFpdModule",
+  "prebidServerBidAdapter"
 ]
