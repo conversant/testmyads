@@ -1,6 +1,6 @@
-/* prebid.js v7.48.0-pre
-Updated: 2023-05-09
-Modules: fpdModule, prebidServerBidAdapter, adpod, userId, conversantBidAdapter, conversantAnalyticsAdapter, prebidServerBidAdapter, appnexusBidAdapter, openxBidAdapter, publinkIdSystem, sharedIdSystem, identityLinkIdSystem, dfpAdServerVideo, consentManagement, consentManagementGpp, consentManagementUsp, gdprEnforcement, enrichmentFpdModule, gptPreAuction, topicsFpdModule */
+/* prebid.js v7.50.0-pre
+Updated: 2023-05-22
+Modules: fpdModule, adpod, userId, conversantBidAdapter, conversantAnalyticsAdapter, appnexusBidAdapter, openxBidAdapter, publinkIdSystem, sharedIdSystem, identityLinkIdSystem, dfpAdServerVideo, consentManagement, consentManagementGpp, consentManagementUsp, gdprEnforcement, enrichmentFpdModule, gptPreAuction, topicsFpdModule, prebidServerBidAdapter */
 
 if (!window.pbjs || !window.pbjs.libLoaded) {
  (function(){
@@ -1060,6 +1060,9 @@ adapterManager.callBidWonBidder = function (bidder, bid, adUnits) {
   bid.params = (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.getUserConfiguredParams)(adUnits, bid.adUnitCode, bid.bidder);
   _adUnits_js__WEBPACK_IMPORTED_MODULE_4__.adunitCounter.incrementBidderWinsCounter(bid.adUnitCode, bid.bidder);
   tryCallBidderMethod(bidder, 'onBidWon', bid);
+};
+adapterManager.callBidBillableBidder = function (bid) {
+  tryCallBidderMethod(bid.bidder, 'onBidBillable', bid);
 };
 adapterManager.callSetTargetingBidder = function (bidder, bid) {
   tryCallBidderMethod(bidder, 'onSetTargeting', bid);
@@ -2397,8 +2400,12 @@ function newAuction(_ref) {
     }
   }
   function addWinningBid(winningBid) {
+    var winningAd = adUnits.find(function (adUnit) {
+      return adUnit.transactionId === winningBid.transactionId;
+    });
     _winningBids = _winningBids.concat(winningBid);
     _adapterManager_js__WEBPACK_IMPORTED_MODULE_6__["default"].callBidWonBidder(winningBid.adapterCode || winningBid.bidder, winningBid, adUnits);
+    if (winningAd && !winningAd.deferBilling) _adapterManager_js__WEBPACK_IMPORTED_MODULE_6__["default"].callBidBillableBidder(winningBid);
   }
   function setBidTargeting(bid) {
     _adapterManager_js__WEBPACK_IMPORTED_MODULE_6__["default"].callSetTargetingBidder(bid.adapterCode || bid.bidder, bid);
@@ -6343,8 +6350,8 @@ pbjsInstance.bidderSettings = pbjsInstance.bidderSettings || {};
 pbjsInstance.libLoaded = true;
 
 // version auto generated from build
-pbjsInstance.version = "v7.48.0-pre";
-(0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logInfo)("Prebid.js v7.48.0-pre loaded");
+pbjsInstance.version = "v7.50.0-pre";
+(0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logInfo)("Prebid.js v7.50.0-pre loaded");
 pbjsInstance.installedModules = pbjsInstance.installedModules || [];
 
 // create adUnit array
@@ -7353,25 +7360,29 @@ if (true) {
    * @alias module:pbjs.markWinningBidAsUsed
    */
   pbjsInstance.markWinningBidAsUsed = function (markBidRequest) {
-    var bids = [];
-    if (markBidRequest.adUnitCode && markBidRequest.adId) {
-      bids = _auctionManager_js__WEBPACK_IMPORTED_MODULE_5__.auctionManager.getBidsReceived().filter(function (bid) {
-        return bid.adId === markBidRequest.adId && bid.adUnitCode === markBidRequest.adUnitCode;
-      });
-    } else if (markBidRequest.adUnitCode) {
-      bids = _targeting_js__WEBPACK_IMPORTED_MODULE_9__.targeting.getWinningBids(markBidRequest.adUnitCode);
-    } else if (markBidRequest.adId) {
-      bids = _auctionManager_js__WEBPACK_IMPORTED_MODULE_5__.auctionManager.getBidsReceived().filter(function (bid) {
-        return bid.adId === markBidRequest.adId;
-      });
-    } else {
-      (0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logWarn)('Improper use of markWinningBidAsUsed. It needs an adUnitCode or an adId to function.');
-    }
+    var bids = fetchReceivedBids(markBidRequest, 'Improper use of markWinningBidAsUsed. It needs an adUnitCode or an adId to function.');
     if (bids.length > 0) {
       bids[0].status = _constants_json__WEBPACK_IMPORTED_MODULE_2__.BID_STATUS.RENDERED;
     }
   };
 }
+var fetchReceivedBids = function fetchReceivedBids(bidRequest, warningMessage) {
+  var bids = [];
+  if (bidRequest.adUnitCode && bidRequest.adId) {
+    bids = _auctionManager_js__WEBPACK_IMPORTED_MODULE_5__.auctionManager.getBidsReceived().filter(function (bid) {
+      return bid.adId === bidRequest.adId && bid.adUnitCode === bidRequest.adUnitCode;
+    });
+  } else if (bidRequest.adUnitCode) {
+    bids = _targeting_js__WEBPACK_IMPORTED_MODULE_9__.targeting.getWinningBids(bidRequest.adUnitCode);
+  } else if (bidRequest.adId) {
+    bids = _auctionManager_js__WEBPACK_IMPORTED_MODULE_5__.auctionManager.getBidsReceived().filter(function (bid) {
+      return bid.adId === bidRequest.adId;
+    });
+  } else {
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logWarn)(warningMessage);
+  }
+  return bids;
+};
 
 /**
  * Get Prebid config options
@@ -7447,6 +7458,25 @@ pbjsInstance.processQueue = function () {
   _hook_js__WEBPACK_IMPORTED_MODULE_8__.hook.ready();
   processQueue(pbjsInstance.que);
   processQueue(pbjsInstance.cmd);
+};
+
+/**
+ * @alias module:pbjs.triggerBilling
+ */
+pbjsInstance.triggerBilling = function (winningBid) {
+  var bids = fetchReceivedBids(winningBid, 'Improper use of triggerBilling. It requires a bid with at least an adUnitCode or an adId to function.');
+  var triggerBillingBid = bids.find(function (bid) {
+    return bid.requestId === winningBid.requestId;
+  }) || bids[0];
+  if (bids.length > 0 && triggerBillingBid) {
+    try {
+      _adapterManager_js__WEBPACK_IMPORTED_MODULE_10__["default"].callBidBillableBidder(triggerBillingBid);
+    } catch (e) {
+      (0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logError)('Error when triggering billing :', e);
+    }
+  } else {
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logWarn)('The bid provided to triggerBilling did not match any bids received.');
+  }
 };
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = (pbjsInstance);
 
@@ -11120,7 +11150,10 @@ function adjustCpm(cpm, bidResponse, bidRequest) {
     _ref$bs = _ref.bs,
     bs = _ref$bs === void 0 ? _bidderSettings_js__WEBPACK_IMPORTED_MODULE_1__.bidderSettings : _ref$bs;
   bidRequest = bidRequest || index.getBidRequest(bidResponse);
-  var bidCpmAdjustment = bs.get((bidResponse === null || bidResponse === void 0 ? void 0 : bidResponse.bidderCode) || ((_bidRequest = bidRequest) === null || _bidRequest === void 0 ? void 0 : _bidRequest.bidder), 'bidCpmAdjustment');
+  var adapterCode = bidResponse === null || bidResponse === void 0 ? void 0 : bidResponse.adapterCode;
+  var bidderCode = (bidResponse === null || bidResponse === void 0 ? void 0 : bidResponse.bidderCode) || ((_bidRequest = bidRequest) === null || _bidRequest === void 0 ? void 0 : _bidRequest.bidder);
+  var adjustAlternateBids = bs.get(bidResponse === null || bidResponse === void 0 ? void 0 : bidResponse.adapterCode, 'adjustAlternateBids');
+  var bidCpmAdjustment = bs.getOwn(bidderCode, 'bidCpmAdjustment') || bs.get(adjustAlternateBids ? adapterCode : bidderCode, 'bidCpmAdjustment');
   if (bidCpmAdjustment && typeof bidCpmAdjustment === 'function') {
     try {
       return bidCpmAdjustment(cpm, Object.assign({}, bidResponse), bidRequest);
@@ -15517,14 +15550,14 @@ var spec = {
       user: userObj,
       sdk: {
         source: SOURCE,
-        version: "7.48.0-pre"
+        version: "7.50.0-pre"
       },
       schain: schain
     };
     if (omidSupport) {
       payload['iab_support'] = {
         omidpn: 'Appnexus',
-        omidpv: "7.48.0-pre"
+        omidpv: "7.50.0-pre"
       };
     }
     if (member > 0) {
@@ -17913,6 +17946,9 @@ _src_fpd_enrichment_js__WEBPACK_IMPORTED_MODULE_7__.enrichFPD.before(enrichFPDHo
 
 
 
+
+// Maintainer: mediapsr@epsilon.com
+
 var _CONSTANTS$EVENTS = _src_constants_json__WEBPACK_IMPORTED_MODULE_0__.EVENTS,
   AUCTION_END = _CONSTANTS$EVENTS.AUCTION_END,
   AD_RENDER_FAILED = _CONSTANTS$EVENTS.AD_RENDER_FAILED,
@@ -18504,7 +18540,7 @@ cnvrHelper.sendErrorData = function (eventType, exception) {
     siteId: initOptions.site_id,
     message: exception.message,
     stack: exception.stack,
-    prebidVersion: "prebid_prebid_7.48.0-pre",
+    prebidVersion: "prebid_prebid_7.50.0-pre",
     // testing val sample: prebid_prebid_7.27.0-pre'
     userAgent: navigator.userAgent,
     url: cnvrHelper.getPageUrl()
@@ -18619,6 +18655,9 @@ _src_adapterManager_js__WEBPACK_IMPORTED_MODULE_9__["default"].registerAnalytics
 
 
 
+
+// Maintainer: mediapsr@epsilon.com
+
 var GVLID = 24;
 var BIDDER_CODE = 'conversant';
 var storage = (0,_src_storageManager_js__WEBPACK_IMPORTED_MODULE_0__.getStorageManager)({
@@ -18685,7 +18724,7 @@ var spec = {
         secure: 1,
         bidfloor: bidfloor || 0,
         displaymanager: 'Prebid.js',
-        displaymanagerver: "7.48.0-pre"
+        displaymanagerver: "7.50.0-pre"
       };
       if (bid.ortb2Imp) {
         (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_2__.mergeDeep)(imp, bid.ortb2Imp);
@@ -18759,10 +18798,6 @@ var spec = {
       }
       if (bidderRequest.uspConsent) {
         (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.dset)(payload, 'regs.ext.us_privacy', bidderRequest.uspConsent);
-      }
-      if (bidderRequest.gppConsent) {
-        (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.dset)(payload, 'regs.ext.gpp', bidderRequest.gppConsent.gppString);
-        (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.dset)(payload, 'regs.ext.gpp_sid', bidderRequest.gppConsent.applicableSections);
       }
     }
     if (!pubcid) {
@@ -18867,7 +18902,7 @@ var spec = {
   /**
    * Register User Sync.
    */
-  getUserSyncs: function getUserSyncs(syncOptions, responses, gdprConsent, uspConsent, gppConsent) {
+  getUserSyncs: function getUserSyncs(syncOptions, responses, gdprConsent, uspConsent) {
     var params = {};
     var syncs = [];
 
@@ -18880,9 +18915,6 @@ var spec = {
     // CCPA
     if (uspConsent) {
       params.us_privacy = encodeURIComponent(uspConsent);
-    }
-    if (gppConsent) {
-      params.gpp = encodeURIComponent(gppConsent);
     }
     if (responses && responses.ext) {
       var pixels = [{
@@ -21133,9 +21165,7 @@ function queueSync(bidderCodes, gdprConsent, uspConsent, gppConsent, s2sConfig) 
     payload.us_privacy = uspConsent;
   }
   if (gppConsent) {
-    // proposing the following formatting, can adjust if needed...
-    // update - leaving this param as an array, since it's part of a POST payload where the [] characters shouldn't matter too much
-    payload.gpp_sid = gppConsent.applicableSections;
+    payload.gpp_sid = gppConsent.applicableSections.join();
     // should we add check if applicableSections was not equal to -1 (where user was out of scope)?
     //   this would be similar to what was done above for TCF
     payload.gpp = gppConsent.gppString;
@@ -21692,10 +21722,16 @@ var PBS_CONVERTER = (0,_libraries_ortbConverter_converter_js__WEBPACK_IMPORTED_M
         var _ortbRequest$ext;
         (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_3__.dset)(ortbRequest, 'ext.prebid', (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_5__.mergeDeep)(((_ortbRequest$ext = ortbRequest.ext) === null || _ortbRequest$ext === void 0 ? void 0 : _ortbRequest$ext.prebid) || {}, context.s2sBidRequest.s2sConfig.extPrebid));
       }
-      var fpdConfigs = Object.entries(((_context$s2sBidReques2 = context.s2sBidRequest.ortb2Fragments) === null || _context$s2sBidReques2 === void 0 ? void 0 : _context$s2sBidReques2.bidder) || {}).map(function (_ref) {
-        var _ref2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_12__["default"])(_ref, 2),
-          bidder = _ref2[0],
-          ortb2 = _ref2[1];
+      var fpdConfigs = Object.entries(((_context$s2sBidReques2 = context.s2sBidRequest.ortb2Fragments) === null || _context$s2sBidReques2 === void 0 ? void 0 : _context$s2sBidReques2.bidder) || {}).filter(function (_ref) {
+        var _ref2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_12__["default"])(_ref, 1),
+          bidder = _ref2[0];
+        var bidders = context.s2sBidRequest.s2sConfig.bidders;
+        var allowUnknownBidderCodes = context.s2sBidRequest.s2sConfig.allowUnknownBidderCodes;
+        return allowUnknownBidderCodes || bidders && bidders.includes(bidder);
+      }).map(function (_ref3) {
+        var _ref4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_12__["default"])(_ref3, 2),
+          bidder = _ref4[0],
+          ortb2 = _ref4[1];
         return {
           bidders: [bidder],
           config: {
@@ -21728,13 +21764,13 @@ var PBS_CONVERTER = (0,_libraries_ortbConverter_converter_js__WEBPACK_IMPORTED_M
           bidders: [req.bidderCode],
           schain: (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_13__["default"])(req, 'bids.0.schain')
         };
-      })).filter(function (_ref3) {
-        var bidders = _ref3.bidders,
-          schain = _ref3.schain;
+      })).filter(function (_ref5) {
+        var bidders = _ref5.bidders,
+          schain = _ref5.schain;
         return (bidders === null || bidders === void 0 ? void 0 : bidders.length) > 0 && schain;
-      }).reduce(function (chains, _ref4) {
-        var bidders = _ref4.bidders,
-          schain = _ref4.schain;
+      }).reduce(function (chains, _ref6) {
+        var bidders = _ref6.bidders,
+          schain = _ref6.schain;
         var key = JSON.stringify(schain);
         if (!chains.hasOwnProperty(key)) {
           chains[key] = {
@@ -21749,9 +21785,9 @@ var PBS_CONVERTER = (0,_libraries_ortbConverter_converter_js__WEBPACK_IMPORTED_M
           mainChain = chains[key];
         }
         return chains;
-      }, {})).map(function (_ref5) {
-        var bidders = _ref5.bidders,
-          schain = _ref5.schain;
+      }, {})).map(function (_ref7) {
+        var bidders = _ref7.bidders,
+          schain = _ref7.schain;
         return {
           bidders: Array.from(bidders),
           schain: schain
@@ -21820,9 +21856,9 @@ function buildPBSRequest(s2sBidRequest, bidderRequests, adUnits, requestedBidder
       }
     }));
   });
-  var proxyBidderRequest = _objectSpread(_objectSpread({}, Object.fromEntries(Object.entries(bidderRequests[0]).filter(function (_ref6) {
-    var _ref7 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_12__["default"])(_ref6, 1),
-      k = _ref7[0];
+  var proxyBidderRequest = _objectSpread(_objectSpread({}, Object.fromEntries(Object.entries(bidderRequests[0]).filter(function (_ref8) {
+    var _ref9 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_12__["default"])(_ref8, 1),
+      k = _ref9[0];
     return !BIDDER_SPECIFIC_REQUEST_PROPS.has(k);
   }))), {}, {
     fledgeEnabled: bidderRequests.some(function (req) {
@@ -22031,7 +22067,7 @@ function publinkIdUrl(params, consentData) {
   url.search = {
     deh: params.e,
     mpn: 'Prebid.js',
-    mpv: "7.48.0-pre"
+    mpv: "7.50.0-pre"
   };
   if (consentData) {
     url.search.gdpr = consentData.gdprApplies ? 1 : 0;
