@@ -14,6 +14,7 @@
   "consentManagementUsp",
   "gdprEnforcement",
   "enrichmentFpdModule",
+  "fpdModule",
   "gptPreAuction",
   "topicsFpdModule",
   "prebidServerBidAdapter"
