@@ -42,6 +42,16 @@
 
             pbjs.que.push(function() {
                 pbjs.setConfig({
+                    userSync: {
+                        userIds: [{
+                            name: 'sharedId', //"pubCommonId" as a name is supported for backwards compatibility,
+                            storage: {
+                                name: '_sharedID', // name of the 1st party cookie, _pubcid is supported for backwards compatibility
+                                type: 'cookie',
+                                expires: 30
+                            }
+                        }]
+                    },
                     consentManagement: {
                         gpp: {
                             cmpApi: 'iab',
