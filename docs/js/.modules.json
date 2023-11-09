@@ -11,6 +11,8 @@
   "dfpAdServerVideo",
   "consentManagement",
   "consentManagementGpp",
+  "gppControl_usnat",
+  "gppControl_usstates",
   "consentManagementUsp",
   "gdprEnforcement",
   "enrichmentFpdModule",
