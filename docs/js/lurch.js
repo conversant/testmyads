@@ -44,7 +44,7 @@
 
     function removeStorageItem(key) {
         try {
-            localStorage.remoeItem(key);
+            localStorage.removeItem(key);
         }
         catch(e) {
             console.error('Failed to remove ' + key, e);
@@ -78,7 +78,7 @@
         win.location.reload();
     }
 
-    lurch.makeInfoSection = function(id, allowSid = true) {
+    lurch.makeInfoSection = function(id, allowSid = true, includeLauncher = true) {
         var parent = doc.getElementById(id);
         if (id) {
             if (allowSid) {
@@ -97,19 +97,21 @@
                 parent.appendChild(sidBox);
             }
 
-            label = doc.createElement('label');
-            label.innerHTML= (allowSid ? ' ' : '') + 'Launcher:';
-            parent.appendChild(label);
+            if (includeLauncher) {
+                label = doc.createElement('label');
+                label.innerHTML = (allowSid ? ' ' : '') + 'Launcher:';
+                parent.appendChild(label);
 
-            lidBox = doc.createElement('input');
-            lidBox.type = 'text';
-            if (lid != undefined)
-                lidBox.value = lid;
+                lidBox = doc.createElement('input');
+                lidBox.type = 'text';
+                if (lid != undefined)
+                    lidBox.value = lid;
 
-            lidBox.placeholder = defaultLid;
-            lidBox.size = 10;
-            lidBox.id = lidTag;
-            parent.appendChild(lidBox);
+                lidBox.placeholder = defaultLid;
+                lidBox.size = 10;
+                lidBox.id = lidTag;
+                parent.appendChild(lidBox);
+            }
 
             label = doc.createElement('label');
             label.innerHTML=' ';
