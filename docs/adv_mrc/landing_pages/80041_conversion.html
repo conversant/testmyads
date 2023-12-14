@@ -23,6 +23,8 @@
  var a = document.createElement('script');
  var qs = window.location.search;
  var ran = Math.floor(Math.random() * (100000000000 - 1 + 1)) + 1;
+ var cb = Math.floor(Math.random() * (100000000000 - 1 + 1)) + 1;
+ var user_id = Math.floor(Math.random() * (10000 - 1 + 1)) + 1;
  var ua = navigator.userAgent.toLowerCase();
 
 
@@ -37,9 +39,9 @@
 
 
     if(qs !== ''){
-     a.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0" + qs + "&dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=102&dtm_promo_id=100&dtm_user_id=1234abc&dtmc_transaction_id=abc" + ran + "&dtm_conv_val=0.01&dtm_conv_curr=USD&dtmc_conv_store_location=Chicago&dtm_reg_debug=true";
+     a.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0" + qs + "&dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=102&dtm_promo_id=100&dtm_user_id=" + user_id + "abc&dtmc_transaction_id=abc" + ran + "&cachebuster=" + cb + "&dtm_conv_val=0.01&dtm_conv_curr=USD&dtmc_conv_store_location=Chicago&dtm_reg_debug=true";
 	}else{
-     a.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=102&dtm_promo_id=100&cachebuster=" + ran + "&dtm_conv_val=0.01&dtm_conv_curr=USD&dtmc_conv_store_location=Chicago&dtm_reg_debug=true";
+     a.src = "https://dtm.testmyads.com/profile/visit/" + tagType + "/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=102&dtm_promo_id=100&dtm_user_id=" + user_id + "abc&dtmc_transaction_id=abc" + ran + "&cachebuster=" + cb + "&dtm_conv_val=0.01&dtm_conv_curr=USD&dtmc_conv_store_location=Chicago&dtm_reg_debug=true";
 	}
      document.body.appendChild(a);
 </script>
