@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popup Sign-in Window</title>
+    <style>
+        /* Styling for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Popup Sign-in Window Demo</h1>
+Don't send the publink request until the submit button in the pop box is clicked
+<br>
+<button onclick="createPopup()">Sign In</button>
+<script>
+    var publinkScript = document.createElement('script');
+    publinkScript.type = 'text/javascript';
+    publinkScript.async = true;
+    publinkScript.src = 'https://secure.cdn.fastclick.net/js/cnvr-coreid/latest/coreid.min.js';
+    publinkScript.onload = function(e){
+        coreid.start({
+            apiKey: 'd0f459a3-e963-424e-aca6-c9255e04e301',
+            cssSelectors: ['input[id=loginFormUser_email]']
+        });
+    };
+    document.head.appendChild(publinkScript);
+</script>
+
+<script>
+    function createPopup() {
+        // Create the popup container element
+        var popupContainer = document.createElement("div");
+        popupContainer.className = "popup";
+
+        // Create the popup content element
+        var popupContent = document.createElement("div");
+        popupContent.className = "popup-content";
+
+        // Create the sign-in form elements
+        var signInHeader = document.createElement("h2");
+        signInHeader.textContent = "Sign In";
+
+        var signInForm = document.createElement("form");
+        signInForm.onsubmit = function(e) {
+            e.preventDefault();
+            // Perform sign-in logic here
+            // ...
+            // Close the popup
+            document.body.removeChild(popupContainer);
+        };
+
+        var emailInput = document.createElement("input");
+        emailInput.type = "email";
+        emailInput.id = "loginFormUser_email";
+        emailInput.placeholder = "Email";
+        signInForm.appendChild(emailInput);
+
+        var submitButton = document.createElement("button");
+        submitButton.type = "submit";
+        submitButton.textContent = "Sign In";
+        submitButton.onclick = function() {
+        }
+        signInForm.appendChild(submitButton);
+
+        // Create the close button
+        var closeButton = document.createElement("button");
+        closeButton.textContent = "Close";
+        closeButton.onclick = function () {
+            document.body.removeChild(popupContainer);
+        };
+
+        // Append the elements to the popup content
+        popupContent.appendChild(signInHeader);
+        popupContent.appendChild(signInForm);
+        popupContent.appendChild(closeButton);
+
+        // Append the popup content to the popup container
+        popupContainer.appendChild(popupContent);
+
+        // Append the popup container to the body
+        document.body.appendChild(popupContainer);
+
+        // Show the popup by updating the display property
+        popupContainer.style.display = "block";
+    }
+</script>
+</body>
+</html>
