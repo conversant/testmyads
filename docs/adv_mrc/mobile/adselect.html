@@ -29,7 +29,7 @@
     <script>
         function generateQR() {
             let requestURL, width, height, type, dvcid, ip,
-                bannerURL = 'https://ssapi.ad.cpe.dotomi.com/s2s/lite',
+                bannerURL = 'https://ssapi.ad.cpe.dotomi.com/cvx/server/ssapi/lite',
                 typeNumber = 0,
                 errorCorrectionLevel = 'L',
                 qr = qrcode(typeNumber, errorCorrectionLevel),
@@ -208,7 +208,7 @@
             var ua = window.navigator.userAgent,
                 anchorLocation = document.getElementById('install_anchor'),
                 iOSUri = "itms-services://?action=download-manifest&url=https://demo.testmyads.com/adv_mrc/assets/beaker.plist",
-                androidUri = "ttps://demo.testmyads.com/adv_mrc/assets/beaker.apk";
+                androidUri = "https://demo.testmyads.com/adv_mrc/assets/beaker.apk";
 
             function addInstallAnchor(installUri, text) {
                 var anchor = document.createElement('a');
