@@ -9,15 +9,16 @@
   "sharedIdSystem",
   "identityLinkIdSystem",
   "dfpAdServerVideo",
-  "consentManagement",
+  "consentManagementTcf",
   "consentManagementGpp",
   "gppControl_usnat",
   "gppControl_usstates",
   "consentManagementUsp",
-  "gdprEnforcement",
-  "enrichmentFpdModule",
-  "fpdModule",
+  "tcfControl",
   "gptPreAuction",
-  "topicsFpdModule",
-  "prebidServerBidAdapter"
+  "prebidServerBidAdapter",
+  "debugging",
+  "paapi",
+  "topLevelPaapi",
+  "paapiForGpt"
 ]
