@@ -1,5 +1,5 @@
-/* prebid.js v9.1.0-pre
-Updated: 2024-06-24
+/* prebid.js v9.3.0-pre
+Updated: 2024-06-25
 Modules: adpod, userId, conversantBidAdapter, conversantAnalyticsAdapter, appnexusBidAdapter, openxBidAdapter, publinkIdSystem, sharedIdSystem, identityLinkIdSystem, dfpAdServerVideo, consentManagementTcf, consentManagementGpp, gppControl_usnat, gppControl_usstates, consentManagementUsp, tcfControl, gptPreAuction, prebidServerBidAdapter, debugging, paapi, topLevelPaapi, paapiForGpt */
 
 if (!window.pbjs || !window.pbjs.libLoaded) {
@@ -3595,7 +3595,7 @@ const fetch = fetcherFactory();
 /* harmony export */   getStandardBidderSettings: () => (/* binding */ getStandardBidderSettings),
 /* harmony export */   newAuction: () => (/* binding */ newAuction)
 /* harmony export */ });
-/* unused harmony exports AUCTION_STARTED, resetAuctionState, addBidResponse, responsesReady, addBidderRequests, bidsBackCallback, auctionCallbacks, batchingCache, callPrebidCache, getMediaTypeGranularity, getCreativeId, getAdvertiserDomain, getDSP, getPrimaryCatId, getKeyValueTargetingPairs, adjustBids */
+/* unused harmony exports AUCTION_STARTED, resetAuctionState, addBidResponse, responsesReady, addBidderRequests, bidsBackCallback, auctionCallbacks, callPrebidCache, getMediaTypeGranularity, getCreativeId, getAdvertiserDomain, getDSP, getPrimaryCatId, getKeyValueTargetingPairs, adjustBids */
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils.js */ "./src/utils.js");
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./utils.js */ "./node_modules/dlv/index.js");
 /* harmony import */ var _cpmBucketManager_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cpmBucketManager.js */ "./src/cpmBucketManager.js");
@@ -4160,66 +4160,10 @@ function tryAddVideoBid(auctionInstance, bidResponse, afterBidAdded) {
     afterBidAdded();
   }
 }
-const _storeInCache = batch => {
-  (0,_videoCache_js__WEBPACK_IMPORTED_MODULE_16__.store)(batch.map(entry => entry.bidResponse), function (error, cacheIds) {
-    cacheIds.forEach((cacheId, i) => {
-      const {
-        auctionInstance,
-        bidResponse,
-        afterBidAdded
-      } = batch[i];
-      if (error) {
-        (0,_utils_js__WEBPACK_IMPORTED_MODULE_5__.logWarn)(`Failed to save to the video cache: ${error}. Video bid must be discarded.`);
-      } else {
-        if (cacheId.uuid === '') {
-          (0,_utils_js__WEBPACK_IMPORTED_MODULE_5__.logWarn)(`Supplied video cache key was already in use by Prebid Cache; caching attempt was rejected. Video bid must be discarded.`);
-        } else {
-          bidResponse.videoCacheKey = cacheId.uuid;
-          if (!bidResponse.vastUrl) {
-            bidResponse.vastUrl = (0,_videoCache_js__WEBPACK_IMPORTED_MODULE_16__.getCacheUrl)(bidResponse.videoCacheKey);
-          }
-          addBidToAuction(auctionInstance, bidResponse);
-          afterBidAdded();
-        }
-      }
-    });
-  });
-};
-const storeInCache =  true ? _storeInCache : 0;
-let batchSize, batchTimeout;
-_config_js__WEBPACK_IMPORTED_MODULE_8__.config.getConfig('cache', cacheConfig => {
-  batchSize = typeof cacheConfig.cache.batchSize === 'number' && cacheConfig.cache.batchSize > 0 ? cacheConfig.cache.batchSize : 1;
-  batchTimeout = typeof cacheConfig.cache.batchTimeout === 'number' && cacheConfig.cache.batchTimeout > 0 ? cacheConfig.cache.batchTimeout : 0;
-});
-const batchingCache = function () {
-  let timeout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : setTimeout;
-  let cache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : storeInCache;
-  let batches = [[]];
-  let debouncing = false;
-  const noTimeout = cb => cb();
-  return function (auctionInstance, bidResponse, afterBidAdded) {
-    const batchFunc = batchTimeout > 0 ? timeout : noTimeout;
-    if (batches[batches.length - 1].length >= batchSize) {
-      batches.push([]);
-    }
-    batches[batches.length - 1].push({
-      auctionInstance,
-      bidResponse,
-      afterBidAdded
-    });
-    if (!debouncing) {
-      debouncing = true;
-      batchFunc(() => {
-        batches.forEach(cache);
-        batches = [[]];
-        debouncing = false;
-      }, batchTimeout);
-    }
-  };
-};
-const batchAndStore = batchingCache();
 const callPrebidCache = (0,_hook_js__WEBPACK_IMPORTED_MODULE_9__.hook)('async', function (auctionInstance, bidResponse, afterBidAdded, videoMediaType) {
-  batchAndStore(auctionInstance, bidResponse, afterBidAdded);
+  if (true) {
+    (0,_videoCache_js__WEBPACK_IMPORTED_MODULE_16__.batchAndStore)(auctionInstance, bidResponse, afterBidAdded);
+  }
 }, 'callPrebidCache');
 
 /**
@@ -8033,8 +7977,8 @@ pbjsInstance.bidderSettings = pbjsInstance.bidderSettings || {};
 pbjsInstance.libLoaded = true;
 
 // version auto generated from build
-pbjsInstance.version = "v9.1.0-pre";
-(0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logInfo)("Prebid.js v9.1.0-pre loaded");
+pbjsInstance.version = "v9.3.0-pre";
+(0,_utils_js__WEBPACK_IMPORTED_MODULE_4__.logInfo)("Prebid.js v9.3.0-pre loaded");
 pbjsInstance.installedModules = pbjsInstance.installedModules || [];
 
 // create adUnit array
@@ -10921,7 +10865,7 @@ const userSync = newUserSync(Object.defineProperties({
 /* harmony export */   uniques: () => (/* binding */ uniques),
 /* harmony export */   unsupportedBidderMessage: () => (/* binding */ unsupportedBidderMessage)
 /* harmony export */ });
-/* unused harmony exports internal, parseGPTSingleSizeArray, parseGPTSingleSizeArrayToRtbSize, getWindowLocation, canAccessWindowTop, hasConsoleLogger, debugTurnedOn, isA, contains, _map, waitForElementToLoad, createTrackPixelIframeHtml, isSafeFrameWindow, replaceAuctionPrice, replaceClickThrough, compareCodeAndSlot, cleanObj, parseQS, safeJSONParse, getUnixTimestampFromNow, convertObjectToArray */
+/* unused harmony exports internal, parseGPTSingleSizeArray, parseGPTSingleSizeArrayToRtbSize, getWindowLocation, canAccessWindowTop, hasConsoleLogger, debugTurnedOn, isA, contains, _map, waitForElementToLoad, createTrackPixelIframeHtml, isSafeFrameWindow, getSafeframeGeometry, replaceAuctionPrice, replaceClickThrough, getDomLoadingDuration, compareCodeAndSlot, cleanObj, parseQS, safeJSONParse, getUnixTimestampFromNow, convertObjectToArray */
 /* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config.js */ "./src/config.js");
 /* harmony import */ var klona_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! klona/json */ "./node_modules/klona/json/index.mjs");
 /* harmony import */ var _polyfill_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./polyfill.js */ "./src/polyfill.js");
@@ -11566,6 +11510,21 @@ function isSafeFrameWindow() {
   const ws = internal.getWindowSelf();
   return !!(ws.$sf && ws.$sf.ext);
 }
+
+/**
+ * Returns the result of calling the function $sf.ext.geom() if it exists
+ * @see https://iabtechlab.com/wp-content/uploads/2016/03/SafeFrames_v1.1_final.pdf — 5.4 Function $sf.ext.geom
+ * @returns {Object | undefined} geometric information about the container
+ */
+function getSafeframeGeometry() {
+  try {
+    const ws = getWindowSelf();
+    return typeof ws.$sf.ext.geom === 'function' ? ws.$sf.ext.geom() : undefined;
+  } catch (e) {
+    logError('Error getting SafeFrame geometry', e);
+    return undefined;
+  }
+}
 function isSafariBrowser() {
   return /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
 }
@@ -11595,6 +11554,29 @@ function timestamp() {
  */
 function getPerformanceNow() {
   return window.performance && window.performance.now && window.performance.now() || 0;
+}
+
+/**
+ * Retuns the difference between `timing.domLoading` and `timing.navigationStart`.
+ * This function uses the deprecated `Performance.timing` API and should be removed in future.
+ * It has not been updated yet because it is still used in some modules.
+ * @deprecated
+ * @param {Window} w The window object used to perform the api call. default to window.self
+ * @returns {number}
+ */
+function getDomLoadingDuration(w) {
+  let domLoadingDuration = -1;
+  w = w || getWindowSelf();
+  const performance = w.performance;
+  if (w.performance?.timing) {
+    if (w.performance.timing.navigationStart > 0) {
+      const val = performance.timing.domLoading - performance.timing.navigationStart;
+      if (val > 0) {
+        domLoadingDuration = val;
+      }
+    }
+  }
+  return domLoadingDuration;
 }
 
 /**
@@ -12110,6 +12092,65 @@ function adjustCpm(cpm, bidResponse, bidRequest) {
     }
   }
   return cpm;
+}
+
+/***/ }),
+
+/***/ "./src/utils/focusTimeout.js":
+/*!***********************************!*\
+  !*** ./src/utils/focusTimeout.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ setFocusTimeout)
+/* harmony export */ });
+let outOfFocusStart;
+let timeOutOfFocus = 0;
+let suspendedTimeouts = [];
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    outOfFocusStart = Date.now();
+  } else {
+    timeOutOfFocus += Date.now() - outOfFocusStart;
+    suspendedTimeouts.forEach(_ref => {
+      let {
+        callback,
+        startTime,
+        setTimerId
+      } = _ref;
+      return setTimerId(setFocusTimeout(callback, timeOutOfFocus - startTime)());
+    });
+    outOfFocusStart = null;
+  }
+});
+
+/**
+ * Wraps native setTimeout function in order to count time only when page is focused
+ *
+ * @param {function(*): ()} [callback] - A function that will be invoked after passed time
+ * @param {number} [milliseconds] - Minimum duration (in milliseconds) that the callback will be executed after
+ * @returns {function(*): (number)} - Getter function for current timer id
+ */
+function setFocusTimeout(callback, milliseconds) {
+  const startTime = timeOutOfFocus;
+  let timerId = setTimeout(() => {
+    if (timeOutOfFocus === startTime && outOfFocusStart == null) {
+      callback();
+    } else if (outOfFocusStart != null) {
+      // case when timeout ended during page is out of focus
+      suspendedTimeouts.push({
+        callback,
+        startTime,
+        setTimerId(newId) {
+          timerId = newId;
+        }
+      });
+    } else {
+      timerId = setFocusTimeout(callback, timeOutOfFocus - startTime)();
+    }
+  }, milliseconds);
+  return () => timerId;
 }
 
 /***/ }),
@@ -12809,8 +12850,10 @@ const getLatestHighestCpmBid = maximum(tiebreakCompare(cpmCompare, timestampComp
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ttlCollection: () => (/* binding */ ttlCollection)
 /* harmony export */ });
-/* harmony import */ var _promise_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./promise.js */ "./src/utils/promise.js");
+/* harmony import */ var _promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./promise.js */ "./src/utils/promise.js");
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./src/utils.js");
+/* harmony import */ var _focusTimeout_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./focusTimeout.js */ "./src/utils/focusTimeout.js");
+
 
 
 
@@ -12855,7 +12898,7 @@ function ttlCollection() {
     if (pendingPurge.length > 0) {
       const now = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.timestamp)();
       nextPurge = Math.max(now, pendingPurge[0].expiry + slack);
-      task = setTimeout(() => {
+      task = (0,_focusTimeout_js__WEBPACK_IMPORTED_MODULE_1__["default"])(() => {
         const now = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.timestamp)();
         let cnt = 0;
         for (const entry of pendingPurge) {
@@ -12899,7 +12942,7 @@ function ttlCollection() {
       let currentCall;
       return function () {
         const thisCall = currentCall = {};
-        _promise_js__WEBPACK_IMPORTED_MODULE_1__.GreedyPromise.resolve(getter(item)).then(val => {
+        _promise_js__WEBPACK_IMPORTED_MODULE_2__.GreedyPromise.resolve(getter(item)).then(val => {
           if (thisCall === currentCall) {
             values[field] = val;
             update();
@@ -13062,12 +13105,15 @@ const checkVideoBidSetup = (0,_hook_js__WEBPACK_IMPORTED_MODULE_2__.hook)('sync'
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getCacheUrl: () => (/* binding */ getCacheUrl),
+/* harmony export */   batchAndStore: () => (/* binding */ batchAndStore),
 /* harmony export */   store: () => (/* binding */ store)
 /* harmony export */ });
+/* unused harmony exports getCacheUrl, _internal, storeBatch, batchingCache */
 /* harmony import */ var _ajax_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ajax.js */ "./src/ajax.js");
 /* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config.js */ "./src/config.js");
 /* harmony import */ var _auctionManager_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auctionManager.js */ "./src/auctionManager.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils.js */ "./src/utils.js");
+/* harmony import */ var _auction_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auction.js */ "./src/auction.js");
 /**
  * This module interacts with the server used to cache video ad content to be restored later.
  * At a high level, the expected workflow goes like this:
@@ -13078,6 +13124,8 @@ const checkVideoBidSetup = (0,_hook_js__WEBPACK_IMPORTED_MODULE_2__.hook)('sync'
  *
  * This trickery helps integrate with ad servers, which set character limits on request params.
  */
+
+
 
 
 
@@ -13227,6 +13275,75 @@ function store(bids, done) {
 function getCacheUrl(id) {
   return `${_config_js__WEBPACK_IMPORTED_MODULE_1__.config.getConfig('cache.url')}?uuid=${id}`;
 }
+const _internal = {
+  store
+};
+function storeBatch(batch) {
+  const bids = batch.map(entry => entry.bidResponse);
+  function err(msg) {
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_3__.logError)(`Failed to save to the video cache: ${msg}. Video bids will be discarded:`, bids);
+  }
+  _internal.store(bids, function (error, cacheIds) {
+    if (error) {
+      err(error);
+    } else if (batch.length !== cacheIds.length) {
+      (0,_utils_js__WEBPACK_IMPORTED_MODULE_3__.logError)(`expected ${batch.length} cache IDs, got ${cacheIds.length} instead`);
+    } else {
+      cacheIds.forEach((cacheId, i) => {
+        const {
+          auctionInstance,
+          bidResponse,
+          afterBidAdded
+        } = batch[i];
+        if (cacheId.uuid === '') {
+          (0,_utils_js__WEBPACK_IMPORTED_MODULE_3__.logWarn)(`Supplied video cache key was already in use by Prebid Cache; caching attempt was rejected. Video bid must be discarded.`);
+        } else {
+          bidResponse.videoCacheKey = cacheId.uuid;
+          if (!bidResponse.vastUrl) {
+            bidResponse.vastUrl = getCacheUrl(bidResponse.videoCacheKey);
+          }
+          (0,_auction_js__WEBPACK_IMPORTED_MODULE_4__.addBidToAuction)(auctionInstance, bidResponse);
+          afterBidAdded();
+        }
+      });
+    }
+  });
+}
+;
+let batchSize, batchTimeout;
+if (true) {
+  _config_js__WEBPACK_IMPORTED_MODULE_1__.config.getConfig('cache', cacheConfig => {
+    batchSize = typeof cacheConfig.cache.batchSize === 'number' && cacheConfig.cache.batchSize > 0 ? cacheConfig.cache.batchSize : 1;
+    batchTimeout = typeof cacheConfig.cache.batchTimeout === 'number' && cacheConfig.cache.batchTimeout > 0 ? cacheConfig.cache.batchTimeout : 0;
+  });
+}
+const batchingCache = function () {
+  let timeout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : setTimeout;
+  let cache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : storeBatch;
+  let batches = [[]];
+  let debouncing = false;
+  const noTimeout = cb => cb();
+  return function (auctionInstance, bidResponse, afterBidAdded) {
+    const batchFunc = batchTimeout > 0 ? timeout : noTimeout;
+    if (batches[batches.length - 1].length >= batchSize) {
+      batches.push([]);
+    }
+    batches[batches.length - 1].push({
+      auctionInstance,
+      bidResponse,
+      afterBidAdded
+    });
+    if (!debouncing) {
+      debouncing = true;
+      batchFunc(() => {
+        batches.forEach(cache);
+        batches = [[]];
+        debouncing = false;
+      }, batchTimeout);
+    }
+  };
+};
+const batchAndStore = batchingCache();
 
 /***/ })
 
@@ -13475,6 +13592,9 @@ const appnexusAliases = [{
 }, {
   code: 'projectagora',
   gvlid: 1032
+}, {
+  code: 'stailamedia',
+  gvlid: 32
 }, {
   code: 'uol',
   gvlid: 32
@@ -13931,6 +14051,63 @@ function cmpClient(_ref) {
 }]);
 
 "use strict";
+(self["pbjsChunk"] = self["pbjsChunk"] || []).push([["consentManagement"],{
+
+/***/ "./libraries/consentManagement/cmUtils.js":
+/*!************************************************!*\
+  !*** ./libraries/consentManagement/cmUtils.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   consentManagementHook: () => (/* binding */ consentManagementHook)
+/* harmony export */ });
+/* harmony import */ var _src_utils_perfMetrics_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../src/utils/perfMetrics.js */ "./src/utils/perfMetrics.js");
+/* harmony import */ var _src_utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/utils.js */ "./src/utils.js");
+
+
+function consentManagementHook(name, getConsent, loadConsentData) {
+  function loadIfMissing(cb) {
+    if (getConsent()) {
+      (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logInfo)('User consent information already known.  Pulling internally stored information...');
+      // eslint-disable-next-line standard/no-callback-literal
+      cb(false);
+    } else {
+      loadConsentData(cb);
+    }
+  }
+  return (0,_src_utils_perfMetrics_js__WEBPACK_IMPORTED_MODULE_1__.timedAuctionHook)(name, function requestBidsHook(fn, reqBidsConfigObj) {
+    loadIfMissing(function (shouldCancelAuction, errMsg) {
+      if (errMsg) {
+        let log = _src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logWarn;
+        if (shouldCancelAuction) {
+          log = _src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logError;
+          errMsg = `${errMsg} Canceling auction as per consentManagement config.`;
+        }
+        for (var _len = arguments.length, extraArgs = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+          extraArgs[_key - 2] = arguments[_key];
+        }
+        log(errMsg, ...extraArgs);
+      }
+      if (shouldCancelAuction) {
+        fn.stopTiming();
+        if (typeof reqBidsConfigObj.bidsBackHandler === 'function') {
+          reqBidsConfigObj.bidsBackHandler();
+        } else {
+          (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logError)('Error executing bidsBackHandler');
+        }
+      } else {
+        fn.call(this, reqBidsConfigObj);
+      }
+    });
+  });
+}
+
+/***/ })
+
+}]);
+
+"use strict";
 (self["pbjsChunk"] = self["pbjsChunk"] || []).push([["analyticsAdapter"],{
 
 /***/ "./libraries/analyticsAdapter/AnalyticsAdapter.js":
@@ -14287,7 +14464,7 @@ function ortbConverter() {
         let extraParams = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
         return Object.assign(ctx, {
           ortbRequest: request
-        }, extraParams, ctx);
+        }, extraParams);
       }
       const impsById = Object.fromEntries((request.imp || []).map(imp => [imp.id, imp]));
       const bidResponses = (response.seatbid || []).flatMap(seatbid => (seatbid.bid || []).map(bid => {
@@ -16252,14 +16429,14 @@ const spec = {
       user: userObj,
       sdk: {
         source: SOURCE,
-        version: "9.1.0-pre"
+        version: "9.3.0-pre"
       },
       schain: schain
     };
     if (omidSupport) {
       payload['iab_support'] = {
         omidpn: 'Appnexus',
-        omidpv: "9.1.0-pre"
+        omidpv: "9.3.0-pre"
       };
     }
     if (member > 0) {
@@ -17179,11 +17356,11 @@ function getBidFloor(bid) {
 /* harmony import */ var _src_utils_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../src/utils.js */ "./node_modules/dset/dist/index.mjs");
 /* harmony import */ var _src_config_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../src/config.js */ "./src/config.js");
 /* harmony import */ var _src_adapterManager_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/adapterManager.js */ "./src/consentHandler.js");
-/* harmony import */ var _src_utils_perfMetrics_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/utils/perfMetrics.js */ "./src/utils/perfMetrics.js");
 /* harmony import */ var _src_fpd_enrichment_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../src/fpd/enrichment.js */ "./src/fpd/enrichment.js");
 /* harmony import */ var _libraries_cmp_cmpClient_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../libraries/cmp/cmpClient.js */ "./libraries/cmp/cmpClient.js");
 /* harmony import */ var _src_utils_promise_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/utils/promise.js */ "./src/utils/promise.js");
 /* harmony import */ var _src_activities_params_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../src/activities/params.js */ "./src/activities/params.js");
+/* harmony import */ var _libraries_consentManagement_cmUtils_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../libraries/consentManagement/cmUtils.js */ "./libraries/consentManagement/cmUtils.js");
 
 /**
  * This module adds GPP consentManagement support to prebid.js.  It interacts with
@@ -17421,20 +17598,6 @@ function loadConsentData(cb) {
 }
 
 /**
- * Like `loadConsentData`, but cache and re-use previously loaded data.
- * @param cb
- */
-function loadIfMissing(cb) {
-  if (consentData) {
-    (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_2__.logInfo)('User consent information already known.  Pulling internally stored information...');
-    // eslint-disable-next-line standard/no-callback-literal
-    cb(false);
-  } else {
-    loadConsentData(cb);
-  }
-}
-
-/**
  * If consentManagement module is enabled (ie included in setConfig), this hook function will attempt to fetch the
  * user's encoded consent string from the supported CMP.  Once obtained, the module will store this
  * data as part of a gppConsent object which gets transferred to adapterManager's gppDataHandler object.
@@ -17442,31 +17605,7 @@ function loadIfMissing(cb) {
  * @param {object} reqBidsConfigObj required; This is the same param that's used in pbjs.requestBids.
  * @param {function} fn required; The next function in the chain, used by hook.js
  */
-const requestBidsHook = (0,_src_utils_perfMetrics_js__WEBPACK_IMPORTED_MODULE_4__.timedAuctionHook)('gpp', function requestBidsHook(fn, reqBidsConfigObj) {
-  loadIfMissing(function (shouldCancelAuction, errMsg) {
-    if (errMsg) {
-      let log = _src_utils_js__WEBPACK_IMPORTED_MODULE_2__.logWarn;
-      if (shouldCancelAuction) {
-        log = _src_utils_js__WEBPACK_IMPORTED_MODULE_2__.logError;
-        errMsg = `${errMsg} Canceling auction as per consentManagement config.`;
-      }
-      for (var _len3 = arguments.length, extraArgs = new Array(_len3 > 2 ? _len3 - 2 : 0), _key3 = 2; _key3 < _len3; _key3++) {
-        extraArgs[_key3 - 2] = arguments[_key3];
-      }
-      log(errMsg, ...extraArgs);
-    }
-    if (shouldCancelAuction) {
-      fn.stopTiming();
-      if (typeof reqBidsConfigObj.bidsBackHandler === 'function') {
-        reqBidsConfigObj.bidsBackHandler();
-      } else {
-        (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_2__.logError)('Error executing bidsBackHandler');
-      }
-    } else {
-      fn.call(this, reqBidsConfigObj);
-    }
-  });
-});
+const requestBidsHook = (0,_libraries_consentManagement_cmUtils_js__WEBPACK_IMPORTED_MODULE_4__.consentManagementHook)('gpp', () => consentData, loadConsentData);
 function processCmpData(consentData) {
   if (consentData?.applicableSections != null && !Array.isArray(consentData.applicableSections) || consentData?.gppString != null && !(0,_src_utils_js__WEBPACK_IMPORTED_MODULE_2__.isStr)(consentData.gppString) || consentData?.parsedSections != null && !(0,_src_utils_js__WEBPACK_IMPORTED_MODULE_2__.isPlainObject)(consentData.parsedSections)) {
     throw new GPPError('CMP returned unexpected value during lookup process.', consentData);
@@ -17570,7 +17709,7 @@ _src_fpd_enrichment_js__WEBPACK_IMPORTED_MODULE_9__.enrichFPD.before(enrichFPDHo
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["cmp","chunk-core","creative-renderer-display"], () => (__webpack_exec__("./modules/consentManagementGpp.js")));
+/******/ __webpack_require__.O(0, ["cmp","consentManagement","chunk-core","creative-renderer-display"], () => (__webpack_exec__("./modules/consentManagementGpp.js")));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
@@ -17591,10 +17730,10 @@ _src_fpd_enrichment_js__WEBPACK_IMPORTED_MODULE_9__.enrichFPD.before(enrichFPDHo
 /* harmony import */ var _src_config_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../src/config.js */ "./src/config.js");
 /* harmony import */ var _src_adapterManager_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../src/adapterManager.js */ "./src/consentHandler.js");
 /* harmony import */ var _src_polyfill_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/polyfill.js */ "./src/polyfill.js");
-/* harmony import */ var _src_utils_perfMetrics_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/utils/perfMetrics.js */ "./src/utils/perfMetrics.js");
 /* harmony import */ var _src_pbjsORTB_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../src/pbjsORTB.js */ "./src/pbjsORTB.js");
 /* harmony import */ var _src_fpd_enrichment_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../src/fpd/enrichment.js */ "./src/fpd/enrichment.js");
 /* harmony import */ var _libraries_cmp_cmpClient_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../libraries/cmp/cmpClient.js */ "./libraries/cmp/cmpClient.js");
+/* harmony import */ var _libraries_consentManagement_cmUtils_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../libraries/consentManagement/cmUtils.js */ "./libraries/consentManagement/cmUtils.js");
 
 /**
  * This module adds GDPR consentManagement support to prebid.js.  It interacts with
@@ -17618,6 +17757,7 @@ let userCMP;
 let consentTimeout;
 let gdprScope;
 let staticConsentData;
+let dsaPlatform = false;
 let actionTimeout;
 let consentData;
 let addedConsentHook = false;
@@ -17764,20 +17904,6 @@ function loadConsentData(cb) {
 }
 
 /**
- * Like `loadConsentData`, but cache and re-use previously loaded data.
- * @param cb
- */
-function loadIfMissing(cb) {
-  if (consentData) {
-    (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logInfo)('User consent information already known.  Pulling internally stored information...');
-    // eslint-disable-next-line standard/no-callback-literal
-    cb(false);
-  } else {
-    loadConsentData(cb);
-  }
-}
-
-/**
  * If consentManagement module is enabled (ie included in setConfig), this hook function will attempt to fetch the
  * user's encoded consent string from the supported CMP.  Once obtained, the module will store this
  * data as part of a gdprConsent object which gets transferred to adapterManager's gdprDataHandler object.
@@ -17785,31 +17911,7 @@ function loadIfMissing(cb) {
  * @param {object} reqBidsConfigObj required; This is the same param that's used in pbjs.requestBids.
  * @param {function} fn required; The next function in the chain, used by hook.js
  */
-const requestBidsHook = (0,_src_utils_perfMetrics_js__WEBPACK_IMPORTED_MODULE_4__.timedAuctionHook)('gdpr', function requestBidsHook(fn, reqBidsConfigObj) {
-  loadIfMissing(function (shouldCancelAuction, errMsg) {
-    if (errMsg) {
-      let log = _src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logWarn;
-      if (shouldCancelAuction) {
-        log = _src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logError;
-        errMsg = `${errMsg} Canceling auction as per consentManagement config.`;
-      }
-      for (var _len3 = arguments.length, extraArgs = new Array(_len3 > 2 ? _len3 - 2 : 0), _key3 = 2; _key3 < _len3; _key3++) {
-        extraArgs[_key3 - 2] = arguments[_key3];
-      }
-      log(errMsg, ...extraArgs);
-    }
-    if (shouldCancelAuction) {
-      fn.stopTiming();
-      if (typeof reqBidsConfigObj.bidsBackHandler === 'function') {
-        reqBidsConfigObj.bidsBackHandler();
-      } else {
-        (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logError)('Error executing bidsBackHandler');
-      }
-    } else {
-      fn.call(this, reqBidsConfigObj);
-    }
-  });
-});
+const requestBidsHook = (0,_libraries_consentManagement_cmUtils_js__WEBPACK_IMPORTED_MODULE_4__.consentManagementHook)('gdpr', () => consentData, loadConsentData);
 
 /**
  * This function checks the consent data provided by CMP to ensure it's in an expected state.
@@ -17889,6 +17991,7 @@ function setConsentConfig(config) {
 
   // if true, then gdprApplies should be set to true
   gdprScope = config.defaultGdprScope === true;
+  dsaPlatform = !!config.dsaPlatform;
   (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_0__.logInfo)('consentManagement module has been activated...');
   if (userCMP === 'static') {
     if ((0,_src_utils_js__WEBPACK_IMPORTED_MODULE_0__.isPlainObject)(config.consentData)) {
@@ -17919,6 +18022,9 @@ function enrichFPDHook(next, fpd) {
       }
       (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_7__.dset)(ortb2, 'user.ext.consent', consent.consentString);
     }
+    if (dsaPlatform) {
+      (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_7__.dset)(ortb2, 'regs.ext.dsa.dsarequired', 3);
+    }
     return ortb2;
   }));
 }
@@ -17942,7 +18048,7 @@ function setOrtbAdditionalConsent(ortbRequest, bidderRequest) {
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["chunk-core","cmp","creative-renderer-display"], () => (__webpack_exec__("./modules/consentManagementTcf.js")));
+/******/ __webpack_require__.O(0, ["chunk-core","cmp","consentManagement","creative-renderer-display"], () => (__webpack_exec__("./modules/consentManagementTcf.js")));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
@@ -18257,15 +18363,14 @@ _src_fpd_enrichment_js__WEBPACK_IMPORTED_MODULE_8__.enrichFPD.before(enrichFPDHo
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* unused harmony exports CNVR_CONSTANTS, cnvrHelper */
-/* harmony import */ var _src_prebidGlobal_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/prebidGlobal.js */ "./src/prebidGlobal.js");
-/* harmony import */ var _src_ajax_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../src/ajax.js */ "./src/ajax.js");
+/* harmony import */ var _src_prebidGlobal_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../src/prebidGlobal.js */ "./src/prebidGlobal.js");
+/* harmony import */ var _src_ajax_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../src/ajax.js */ "./src/ajax.js");
 /* harmony import */ var _libraries_analyticsAdapter_AnalyticsAdapter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../libraries/analyticsAdapter/AnalyticsAdapter.js */ "./libraries/analyticsAdapter/AnalyticsAdapter.js");
 /* harmony import */ var _src_constants_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/constants.js */ "./src/constants.js");
-/* harmony import */ var _src_adapterManager_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../src/adapterManager.js */ "./src/adapterManager.js");
+/* harmony import */ var _src_adapterManager_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../src/adapterManager.js */ "./src/adapterManager.js");
 /* harmony import */ var _src_utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../src/utils.js */ "./src/utils.js");
 /* harmony import */ var _src_utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/utils.js */ "./node_modules/dlv/index.js");
-/* harmony import */ var _src_refererDetection_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../src/refererDetection.js */ "./src/refererDetection.js");
-
+/* harmony import */ var _src_refererDetection_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/refererDetection.js */ "./src/refererDetection.js");
 
 
 
@@ -18770,7 +18875,7 @@ cnvrHelper.createPayload = function (payloadType, auctionId, timestamp) {
     cnvrSampleRate: initOptions.cnvr_sample_rate,
     auction: {
       auctionId: auctionId,
-      preBidVersion: (0,_src_prebidGlobal_js__WEBPACK_IMPORTED_MODULE_4__.getGlobal)().version,
+      preBidVersion: "9.3.0-pre",
       sid: initOptions.site_id,
       auctionTimestamp: timestamp
     },
@@ -18848,7 +18953,7 @@ cnvrHelper.getSampleRate = function (parentObj, propNm, defaultSampleRate) {
  * @returns {*} Best guess at top URL based on logic from RefererInfo.
  */
 cnvrHelper.getPageUrl = function () {
-  return (0,_src_refererDetection_js__WEBPACK_IMPORTED_MODULE_5__.getRefererInfo)().page;
+  return (0,_src_refererDetection_js__WEBPACK_IMPORTED_MODULE_4__.getRefererInfo)().page;
 };
 
 /**
@@ -18866,14 +18971,14 @@ cnvrHelper.sendErrorData = function (eventType, exception) {
     siteId: initOptions.site_id,
     message: exception.message,
     stack: exception.stack,
-    prebidVersion: "prebid_prebid_9.1.0-pre",
+    prebidVersion: "prebid_prebid_9.3.0-pre",
     // testing val sample: prebid_prebid_7.27.0-pre'
     userAgent: navigator.userAgent,
     url: cnvrHelper.getPageUrl()
   };
 
   // eslint-disable-next-line no-undef
-  (0,_src_ajax_js__WEBPACK_IMPORTED_MODULE_6__.ajax)(ERROR_URL, function () {}, JSON.stringify(error), {
+  (0,_src_ajax_js__WEBPACK_IMPORTED_MODULE_5__.ajax)(ERROR_URL, function () {}, JSON.stringify(error), {
     contentType: 'text/plain'
   });
 };
@@ -18884,7 +18989,7 @@ cnvrHelper.sendErrorData = function (eventType, exception) {
  * @param payload our JSON payload from either AUCTION END, BID WIN, RENDER FAILED
  */
 function sendData(payload) {
-  (0,_src_ajax_js__WEBPACK_IMPORTED_MODULE_6__.ajax)(ANALYTICS_URL, function () {}, JSON.stringify(payload), {
+  (0,_src_ajax_js__WEBPACK_IMPORTED_MODULE_5__.ajax)(ANALYTICS_URL, function () {}, JSON.stringify(payload), {
     contentType: 'text/plain'
   });
 }
@@ -18939,14 +19044,14 @@ conversantAnalytics.disableAnalytics = function () {
   conversantAnalytics.originDisableAnalytics();
 };
 ANALYTICS_ALIASES.forEach(alias => {
-  _src_adapterManager_js__WEBPACK_IMPORTED_MODULE_7__["default"].registerAnalyticsAdapter({
+  _src_adapterManager_js__WEBPACK_IMPORTED_MODULE_6__["default"].registerAnalyticsAdapter({
     adapter: conversantAnalytics,
     code: alias,
     gvlid: GVLID
   });
 });
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = (conversantAnalytics);
-(0,_src_prebidGlobal_js__WEBPACK_IMPORTED_MODULE_4__.registerModule)('conversantAnalyticsAdapter');
+(0,_src_prebidGlobal_js__WEBPACK_IMPORTED_MODULE_7__.registerModule)('conversantAnalyticsAdapter');
 
 /***/ })
 
@@ -19026,6 +19131,7 @@ const converter = (0,_libraries_ortbConverter_converter_js__WEBPACK_IMPORTED_MOD
   request: function (buildRequest, imps, bidderRequest, context) {
     const request = buildRequest(imps, bidderRequest, context);
     request.at = 1;
+    request.cur = ['USD'];
     if (context.bidRequests) {
       const bidRequest = context.bidRequests[0];
       setSiteId(bidRequest, request);
@@ -19039,7 +19145,7 @@ const converter = (0,_libraries_ortbConverter_converter_js__WEBPACK_IMPORTED_MOD
       secure: 1,
       bidfloor: getBidFloor(bidRequest) || 0,
       displaymanager: 'Prebid.js',
-      displaymanagerver: "9.1.0-pre"
+      displaymanagerver: "9.3.0-pre"
     };
     copyOptProperty(bidRequest.params.tag_id, data, 'tagid');
     (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_3__.mergeDeep)(imp, data, imp);
@@ -21065,7 +21171,7 @@ const converter = (0,_libraries_ortbConverter_converter_js__WEBPACK_IMPORTED_MOD
       at: 1,
       ext: {
         bc: `${bidderConfig}_${bidderVersion}`,
-        pv: "9.1.0-pre"
+        pv: "9.3.0-pre"
       }
     });
     const bid = context.bidRequests[0];
@@ -21457,8 +21563,9 @@ function addPaapiConfigHook(next, request, paapiConfig) {
     } = paapiConfig;
     if (config) {
       config.auctionSignals = setFPD(config.auctionSignals || {}, request);
+      const pbs = config.perBuyerSignals = config.perBuyerSignals ?? {};
       (config.interestGroupBuyers || []).forEach(buyer => {
-        (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_8__.dset)(config, `perBuyerSignals.${buyer}`, setFPD(config.perBuyerSignals?.[buyer] || {}, request));
+        pbs[buyer] = setFPD(pbs[buyer] ?? {}, request);
       });
       storePendingData(pendingConfigsForAuction, config);
     }
@@ -22480,7 +22587,15 @@ function PrebidServer() {
           doClientSideSyncs(requestedBidders, gdprConsent, uspConsent, gppConsent);
         },
         onError(msg, error) {
-          (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.logError)(`Prebid server call failed: '${msg}'`, error);
+          const {
+            p1Consent = '',
+            noP1Consent = ''
+          } = s2sBidRequest?.s2sConfig?.endpoint || {};
+          if (p1Consent === noP1Consent) {
+            (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.logError)(`Prebid server call failed: '${msg}'. Endpoint: "${p1Consent}"}`, error);
+          } else {
+            (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.logError)(`Prebid server call failed: '${msg}'. Endpoints: p1Consent "${p1Consent}", noP1Consent "${noP1Consent}"}`, error);
+          }
           bidRequests.forEach(bidderRequest => _src_events_js__WEBPACK_IMPORTED_MODULE_11__.emit(_src_constants_js__WEBPACK_IMPORTED_MODULE_1__.EVENTS.BIDDER_ERROR, {
             error,
             bidderRequest
@@ -22557,6 +22672,7 @@ const processPBSRequest = (0,_src_hook_js__WEBPACK_IMPORTED_MODULE_13__.hook)('s
   const requestJson = request && JSON.stringify(request);
   (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.logInfo)('BidRequest: ' + requestJson);
   const endpointUrl = getMatchingConsentUrl(s2sBidRequest.s2sConfig.endpoint, gdprConsent);
+  const customHeaders = (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_10__["default"])(s2sBidRequest, 's2sConfig.customHeaders', {});
   if (request && requestJson && endpointUrl) {
     const networkDone = s2sBidRequest.metrics.startTiming('net');
     ajax(endpointUrl, {
@@ -22590,7 +22706,8 @@ const processPBSRequest = (0,_src_hook_js__WEBPACK_IMPORTED_MODULE_13__.hook)('s
     }, requestJson, {
       contentType: 'text/plain',
       withCredentials: true,
-      browsingTopics: (0,_src_activities_rules_js__WEBPACK_IMPORTED_MODULE_15__.isActivityAllowed)(_src_activities_activities_js__WEBPACK_IMPORTED_MODULE_16__.ACTIVITY_TRANSMIT_UFPD, (0,_src_adapterManager_js__WEBPACK_IMPORTED_MODULE_6__.s2sActivityParams)(s2sBidRequest.s2sConfig))
+      browsingTopics: (0,_src_activities_rules_js__WEBPACK_IMPORTED_MODULE_15__.isActivityAllowed)(_src_activities_activities_js__WEBPACK_IMPORTED_MODULE_16__.ACTIVITY_TRANSMIT_UFPD, (0,_src_adapterManager_js__WEBPACK_IMPORTED_MODULE_6__.s2sActivityParams)(s2sBidRequest.s2sConfig)),
+      customHeaders
     });
   } else {
     (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_4__.logError)('PBS request not made.  Check endpoints.');
@@ -23047,7 +23164,7 @@ function publinkIdUrl(params, consentData, storedId) {
   let url = (0,_src_utils_js__WEBPACK_IMPORTED_MODULE_2__.parseUrl)('https://proc.ad.cpe.dotomi.com' + PUBLINK_REFRESH_PATH);
   url.search = {
     mpn: 'Prebid.js',
-    mpv: "9.1.0-pre"
+    mpv: "9.3.0-pre"
   };
   if (consentData) {
     url.search.gdpr = consentData.gdprApplies ? 1 : 0;
