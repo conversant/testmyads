@@ -4,3 +4,4 @@ _site/
 .jekyll-metadata
 .idea
 /testmyads.iml
+**/.DS_Store
