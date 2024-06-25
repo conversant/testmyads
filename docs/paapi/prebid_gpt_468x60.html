@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="../css/pico.min.css"/>
+    <title>Prebid PAAPI GPT Banner Test</title>
+
+    <script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script async src="../js/prebid.js"></script>
+
+    <script>
+        const nativeRunAdAuction = navigator.runAdAuction;
+        navigator.runAdAuction = async (config) => {
+            console.log('[runAdAuction] input:', config);
+            try {
+                return nativeRunAdAuction.call(navigator, config);
+            } catch (e) {
+                console.error('[runAdAuction] error:', e)
+            }
+        }
+    </script>
+
+    <script>
+        var PREBID_TIMEOUT = 10000;
+        var FAILSAFE_TIMEOUT = 10000;
+
+        var adUnits = [{
+            code: "paapi-ad-div",
+            mediaTypes: { banner: { sizes: [ [468, 60] ] } },
+            bids: [
+                { bidder: "conversant", params: { site_id: '108060'} }
+            ],
+            ortb2Imp: {
+                ext: {
+                    ae: 1
+                }
+            }
+        }];
+
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        googletag.cmd.push(function() {
+            googletag.pubads().disableInitialLoad();
+        });
+
+        var pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+        pbjs.que.push(function() {
+
+            pbjs.setConfig({
+                debug: true,
+                paapi: {
+                    enabled: true,
+                    defaultForSlots: 1,
+                    gpt: {
+                        //autoconfig: false,
+                        configWithTargeting: false
+                    }
+                },
+                ortb2: {
+                    site: {
+                        domain: 'testmyads.com'
+                    }
+                }
+            });
+
+            pbjs.addAdUnits(adUnits);
+
+        });
+
+        function initAdserver() {
+            googletag.cmd.push(function () {
+                pbjs.que.push(function () {
+                    pbjs.setTargetingForGPTAsync();
+                    pbjs.setPAAPIConfigForGPT();
+                    googletag.pubads().refresh();
+                });
+            });
+        }
+
+        function kickoffPrebid() {
+            const div = document.getElementById('paapi-ad-div');
+            div.innerHTML = '';
+
+            pbjs.que.push(()=> {
+                pbjs.requestBids({
+                    bidsBackHandler: initAdserver,
+                    timeout: PREBID_TIMEOUT
+                });
+            });
+        }
+
+        googletag.cmd.push(function() {
+            // This is googletag's demo ad unit.  It runs paapi and allows our buyer to win.  Ideally we should have our
+            // own adunit, but adsense is required in order for googletag to trigger PAAPI.
+            googletag.defineSlot('/22657645226/multiseller-demo',  [[468, 60]], 'paapi-ad-div').addService(googletag.pubads());
+
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+
+
+</head>
+<body>
+<main class="container">
+    <header>
+        <hgroup>
+            <h1>Prebid PAAPI GPT Test - Banner</h1>
+            Obtain auction configs thru Prebid.js and use Google Publisher Tag to trigger PAAPI auctions
+        </hgroup>
+    </header>
+    <section>
+
+    </section>
+    <section>
+    <div>
+        <article>
+            <header>Setup Chrome</header>
+            Follow the instruction on <a href="chrome_setup.html" target="_blank">Chrome Setup</a> to configure Chrome for PAAPI testing.
+        </article>
+
+            <article>
+                <header>Interest Groups</header>
+                <p>Join Dotomi interest groups by visiting <a href="https://www.epsilon.com/us/careers" target="_blank">Epsilon Career</a> at least once.</p>
+            </article>
+
+        <div style="min-width: 500px; min-height: 100px">
+            <article>
+                <header>Test Ad</header>
+                <p><button onclick="kickoffPrebid()">Run PAAPI Auction</button></p>
+                <div >
+                    <div id="paapi-ad-div" style="width: 468px; height: 60px; outline: dotted;">
+                        <script type='text/javascript'>
+                            googletag.cmd.push(function() {
+                                googletag.display('paapi-ad-div');
+                            });
+                        </script>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+
+    </div>
+    </section>
+</main>
+</body>
+</html>

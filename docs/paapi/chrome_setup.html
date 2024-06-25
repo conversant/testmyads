@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/pico.min.css"/>
+    <title>Chrome Setup for PAAPI</title>
+</head>
+<body>
+<header class="container">
+    <h1>
+        Setting up Chrome for PAAPI Tests
+    </h1>
+</header>
+<main class="container">
+    <section>
+        <h2>Enable Privacy Sandbox API</h2>
+        <p>Open a new Chrome window and enter <i>chrome://flags/#privacy-sandbox-ads-apis</i>.  Click on the dropdown box and select <i>Enabled</i></p>
+    </section>
+    <section>
+        <h2>Disable attestation and k-anonymity</h2>
+        <p>Start Chrome from the command line with the following options</p>
+        <p>
+        <code>
+            --disable-features=EnforcePrivacySandboxAttestations,FledgeEnforceKAnonymity
+        </code>
+        </p>
+        <p>For example, on Macs, here's the command to start a new instance of Chrome with the required options.</p>
+        <p>
+        <code>
+            open -na "Google Chrome" --args --disable-features=EnforcePrivacySandboxAttestations,FledgeEnforceKAnonymity
+        </code>
+        </p>
+    </section>
+    <section>
+        <h2>Force GAM to run PAAPI auctions</h2>
+        <p>Currently Google Ad Manager (GAM) runs PAAPI auction in about 10% of the time.  Install an extension such as <a href="https://chromewebstore.google.com/detail/custom-useragent-string/lejiafennghcpgmbpiodgofeklkpahoe?pli=1">Custom UserAgent String</a> that can modify the user agent string to uncap this limit.  Set the UA string to:
+        </p>
+        <code>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 FLEDGE_GAM_EXTERNAL_TESTER/1.0</code>
+    </section>
+</main>
+</body>
+</html>
