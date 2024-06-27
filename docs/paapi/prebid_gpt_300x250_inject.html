@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="../css/pico.min.css"/>
+    <title>Prebid PAAPI GPT Inject Test</title>
+
+    <script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script async src="../js/prebid.js"></script>
+
+    <style>
+        #mock_resp {
+            font-family: monospace;
+            font-size: small;
+        }
+    </style>
+
+    <script>
+        const nativeRunAdAuction = navigator.runAdAuction;
+        navigator.runAdAuction = async (config) => {
+            console.log('[runAdAuction] input:', config);
+            try {
+                return nativeRunAdAuction.call(navigator, config);
+            } catch (e) {
+                console.error('[runAdAuction] error:', e)
+            }
+        }
+    </script>
+
+    <script>
+        var PREBID_TIMEOUT = 10000;
+        var FAILSAFE_TIMEOUT = 10000;
+
+        const MOCK_PAAPI = [{
+                seller: "https://paapi.ad.cpe.dotomi.com",
+                decisionLogicURL: "https://paapi.ad.cpe.dotomi.com/paapi/js/decision-logic.js",
+                sellerTimeout: 500,
+                sellerSignals: {
+                    networkRequestId: "701841349805994496",
+                    transactionId: "701841349805994497",
+                    siteId: "108060",
+                    mediaType: 8,
+                    supplyType: 1,
+                    mediationPartnerName: "Prebid.js",
+                    mediationPartnerVersion: "9.3.0-pre",
+                    placementId: "123456"
+                },
+                interestGroupBuyers: [
+                    "https://cookieless-campaign.prd-00.retargetly.com",
+                    "https://usadmm.dotomi.com",
+                    "https://td.dabbs.net"
+                ],
+                perBuyerSignals: {
+                    "https://usadmm.dotomi.com": {
+                        seat: "1",
+                        sellerId: "35001",
+                        utoken: "AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        siteId: "108060",
+                        currency: "USD",
+                        trid: "7867076330663665597"
+                    },
+                    "https://cookieless-campaign.prd-00.retargetly.com": {
+                        tid: "7867076330663665597"
+                    }
+                },
+                requestedSize: {
+                    "width": 300,
+                    "height": 250
+                },
+                reportingTimeout: 5000,
+                perBuyerCumulativeTimeouts: {
+                    "*": 500
+                }
+        }];
+
+        var adUnits = [{
+            code: "paapi-ad-div",
+            mediaTypes: { banner: { sizes: [ [300, 250] ] } },
+            bids: [
+                { bidder: "conversant", params: { site_id: '108060' } }
+            ],
+            ortb2Imp: {
+                ext: {
+                    ae: 1
+                }
+            }
+        }];
+
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        googletag.cmd.push(function() {
+            googletag.pubads().disableInitialLoad();
+        });
+
+        var pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+        pbjs.que.push(function() {
+
+            pbjs.setConfig({
+                debug: true,
+                paapi: {
+                    enabled: true,
+                    defaultForSlots: 1,
+                    gpt: {
+                        configWithTargeting: false
+                    }
+                },
+                ortb2: {
+                    site: {
+                        domain: 'testmyads.com'
+                    }
+                }
+            });
+
+            pbjs.addAdUnits(adUnits);
+
+        });
+
+        function initAdserver() {
+            googletag.cmd.push(function () {
+                pbjs.que.push(function () {
+                    pbjs.setTargetingForGPTAsync();
+                    pbjs.setPAAPIConfigForGPT();
+                    googletag.pubads().refresh();
+                });
+            });
+        }
+
+        function kickoffPrebid() {
+            const div = document.getElementById('paapi-ad-div');
+            div.innerHTML = '';
+
+            const auctionConfig = JSON.parse(document.getElementById('mock_resp').value);
+            console.log('auctionConfig =', auctionConfig);
+
+            pbjs.que.push(()=> {
+                pbjs.setConfig({
+                    debugging: {
+                        enabled: true,
+                        intercept: [
+                            {
+                                when: {
+                                    bidder: 'conversant',
+                                },
+                                then: {
+                                    cpm: 0.1,
+                                    currency: 'USD'
+                                },
+                                paapi() {
+                                    return auctionConfig;
+                                }
+                            }
+                        ]
+                    }}
+                )
+                pbjs.requestBids({
+                    bidsBackHandler: initAdserver,
+                    timeout: PREBID_TIMEOUT
+                });
+            });
+        }
+
+        googletag.cmd.push(function() {
+            // googletag.defineSlot('/9119480/testmyads_hb_1',  [[300, 250]], 'paapi-ad-div').addService(googletag.pubads());
+            googletag.defineSlot('/22657645226/multiseller-demo',  [[300, 250]], 'paapi-ad-div').addService(googletag.pubads());
+
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+
+
+</head>
+<body>
+<main class="container">
+    <hgroup>
+        <h1>Prebid PAAPI Editable Config - Med Rect</h1>
+        Use Prebid.js debug module to inject auction config.  This test bypasses Conversant bid adapter.
+    </hgroup>
+
+    <div>
+        <article>
+            <header>Setup Chrome</header>
+            Follow the instruction on <a href="chrome_setup.html" target="_blank">Chrome Setup</a> to configure Chrome for PAAPI testing.
+        </article>
+
+        <article>
+            <header>Interest Groups</header>
+            <ul>
+                <li>Join Dotomi interest groups by visiting <a href="https://www.epsilon.com/us/careers" target="_blank">Epsilon Career</a>.</li>
+                <li>Join test interest groups from <a href="https://www.mojotest.com/~davidd/fledge/annotated_demo.html?interestGroupBuyers=td.dabbs.net" target="_blank">Annotated Demo</a> </li>
+            </ul>
+        </article>
+
+        <article>
+            <header>Test Ad</header>
+            <form onsubmit="kickoffPrebid(); return false;">
+                <fieldset>
+                    <label>Component Auction Configs
+                        <textarea id="mock_resp" rows="16"></textarea>
+                    </label>
+                    <input type="submit" value="Run PAAPI Auction" />
+                </fieldset>
+            </form>
+
+            <div style="min-width: 350px; min-height: 300px">
+                <div id="paapi-ad-div" style="width: 300px; height: 250px; outline: dotted">
+                    <script type='text/javascript'>
+                        googletag.cmd.push(function() {
+                            googletag.display('paapi-ad-div');
+                        });
+                    </script>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <script>
+        document.getElementById('mock_resp').innerHTML = JSON.stringify(MOCK_PAAPI, null, 2);
+    </script>
+</main>
+</body>
+</html>
