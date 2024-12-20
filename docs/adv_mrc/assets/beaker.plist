@@ -35,7 +35,7 @@
                 <key>bundle-identifier</key>
                 <string>com.conversant.beaker</string>
                 <key>bundle-version</key>
-                <string>6.8.7</string>
+                <string>6.8.8</string>
                 <key>kind</key>
                 <string>software</string>
                 <key>title</key>
