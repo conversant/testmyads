@@ -11,7 +11,7 @@
         var ran = Math.floor(Math.random() * (100000000000 - 1 + 1)) + 1;
         var img_px = document.createElement('img');
         img_px.src = "https://login-ds.dotomi.com/profile/visit/px/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=105&dtm_promo_id=1&dtm_reg_debug=true&cachebuster=" + ran;
-        document.body.appendChild(imp_px);
+        document.head.appendChild(img_px);
     </script>
     <script type="text/javascript" src="https://secure.cdn.fastclick.net/js/cnvr-pubcode/latest/pubcode.min.js"/>
     <link rel="icon" href="/images/Epsilon_Favicon_Color.png">
