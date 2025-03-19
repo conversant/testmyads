@@ -91,6 +91,15 @@
 </head>
 
 <body>
+    <script>
+    (function() {
+        var randomNum = Math.floor(1000000 + Math.random() * 9000000);
+        var img = document.createElement('img');
+        img.src = 'https://login-ds.dotomi.com/profile/visit/px/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=105&dtm_promo_id=1&cachebuster=' + randomNum;
+        img.style.display = 'none';
+        document.body.appendChild(img);
+    })();
+    </script>
     <a href="http://www.conversantmedia.com"><img src="/images/Epsilon_Primary Blue Navy Notch w-TM cropped.png" alt="" height="72" border="0"></a>
     <br />
     <center>
