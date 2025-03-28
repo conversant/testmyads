@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/small.pico.css"/>
+  <title>CitrusAd Banner Tester</title>
+</head>
+<body>
+<main>
+  <div class="container">
+    <h1>CitrusAd Banner Tester</h1>
+    <article>
+      <form id="bannerForm">
+        <div class="grid">
+          <fieldset>
+            <label for="requestUrl">request url*</label>
+            <input type="url" id="requestUrl" required value="http://direct.ad.cpe.dotomi.com/v1/ad/generate">
+          </fieldset>
+          <fieldset>
+            <label for="apiKey">api key</label>
+            <input type="text" id="apiKey" placeholder="string">
+          </fieldset>
+        </div>
+        <div class="grid">
+          <fieldset>
+            <label for="catalogId">catalogId*</label>
+            <input type="text" id="catalogId" required value="628dbe95-2ec9-4e07-881d-3e9f92ab2e0b">
+            <small>Your product catalog identifier for your website.</small>
+          </fieldset>
+          <fieldset>
+            <label for="placement">placement*</label>
+            <input type="text" id="placement" required value="category">
+            <small>Example: search, category, category-cross-sell, home, checkout ...</small>
+          </fieldset>
+        </div>
+        <div class="grid">
+          <fieldset>
+            <label for="contentStandardId">contentStandardId*</label>
+            <input type="text" id="contentStandardId" required value="fec2ab89-7a29-42b5-b58a-5675688b52d9">
+            <small>The content standard id for your website.  </small>
+          </fieldset>
+          <fieldset>
+            <label for="maxNumberOfAds">maxNumberOfAds*</label>
+            <input type="number" id="maxNumberOfAds"  min="0" value="2" required>
+            <small>The maximum number of product ads to receive.</small>
+          </fieldset>
+        </div>
+
+        <div>
+          <fieldset>
+            <label for="bannerSlots">bannerSlots*</label>
+            <textarea id="bannerSlots" name="bannerSlots" rows="4" required>[{"slotId": "123", "maxNumberOfAds": 2}]</textarea>
+            <small>An array of banner slots that you wish to receive ads for.</small>
+          </fieldset>
+        </div>
+        <hr>
+        <div>
+          <fieldset>
+            <label for="productFilters">productFilters</label>
+            <textarea id="productFilters" name="productFilters" rows="4">[["category:Cupboard/Snacks"]]</textarea>
+            <small>Any product filters relevant to your request. Primarily for category placement.</small>
+          </fieldset>
+        </div>
+
+        <div class="grid">
+          <fieldset>
+            <label for="searchTerm">searchTerm</label>
+            <input type="text" id="searchTerm" placeholder="string">
+            <small>Used for search placements. The exact search term entered by the customer on your site.</small>
+          </fieldset>
+          <fieldset>
+            <label for="targetedProductGtin">targetedProductGtin</label>
+            <input type="text" id="targetedProductGtin" placeholder="string">
+            <small>Used for cross-sell placements. The product code that is being advertised against</small>
+          </fieldset>
+        </div>
+
+        <hr>
+
+        <div class="grid">
+          <fieldset>
+            <label for="customerId">customerId</label>
+            <input type="text" id="customerId"  value="wertg5432a">
+            <small>The unique identifier for the customer being served ads.</small>
+          </fieldset>
+          <fieldset>
+            <label for="sessionId">sessionId</label>
+            <input type="text" id="sessionId" placeholder="string">
+            <small>Unique identifier for customer's session.  Used for attribution.</small>
+          </fieldset>
+          <fieldset>
+            <label for="dtmCookieId">dtmCookieId</label>
+            <input type="text" id="dtmCookieId" placeholder="string">
+            <small>Epsilon cookie</small>
+          </fieldset>
+        </div>
+
+        <hr>
+
+        <div class="grid">
+          <fieldset>
+            <label for="filterMode">filterMode</label>
+            <input type="text" id="filterMode"  value="AndOr">
+            <small>FilterMode for product filters.  Example: AndOr, OrAnd.</small>
+          </fieldset>
+          <fieldset>
+            <label for="cached">cached</label>
+            <select id="cached">
+              <option value="false">false</option>
+              <option value="true">true</option>
+            </select>
+            <small>Defines if the retailer expects to caches the adIds.</small>
+          </fieldset>
+          <fieldset>
+            <label for="includeAdvertiserInfo">includeAdvertiserInfo</label>
+            <select id="includeAdvertiserInfo">
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+            <small>Defines if the retailer requires advertiser information to comply with the EU's Digital Services Act.</small>
+          </fieldset>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </article>
+    <article>
+    <div id="response">
+      <h3>API Response</h3>
+      <p><strong>Status:</strong> <span id="status"></span></p>
+      <p><strong>Response Body:</strong></p>
+      <pre id="responseBody"></pre>
+    </div>
+    </article>
+  </div>
+</main>
+
+<script>
+  document.getElementById('bannerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get form values
+    const requestUrl = document.getElementById('requestUrl').value;
+    const apiKey = document.getElementById('apiKey').value;
+
+    const catalogId = document.getElementById('catalogId').value;
+    const placement = document.getElementById('placement').value;
+    const contentStandardId = document.getElementById('contentStandardId').value;
+    const maxNumberOfAds = document.getElementById('maxNumberOfAds').value;
+    const bannerSlots = document.getElementById('bannerSlots').value;
+
+    const productFilters = document.getElementById('productFilters').value;
+    const searchTerm = document.getElementById('searchTerm').value;
+    const targetedProductGtin = document.getElementById('targetedProductGtin').value;
+
+    const customerId = document.getElementById('customerId').value;
+    const sessionId = document.getElementById('sessionId').value;
+    const dtmCookieId = document.getElementById('dtmCookieId').value;
+
+    const filterMode = document.getElementById('filterMode').value;
+    const cached = Array.from(document.getElementById('cached').selectedOptions).map(opt => opt.value);
+    const includeAdvertiserInfo = Array.from(document.getElementById('includeAdvertiserInfo').selectedOptions).map(opt => opt.value);
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'accept': 'application/json',
+      'Authorization': 'Basic ' +  apiKey
+    };
+
+    const requestData = {
+      catalogId,
+      placement,
+      contentStandardId,
+      maxNumberOfAds,
+      bannerSlots,
+      productFilters,
+      searchTerm,
+      targetedProductGtin,
+      customerId,
+      sessionId,
+      dtmCookieId,
+      options: {
+        filterMode,
+        cached,
+        includeAdvertiserInfo
+      }
+    };
+
+    // clear results first
+    document.getElementById('status').textContent = "";
+    document.getElementById('responseBody').textContent = "";
+    document.getElementById('response').style.display = 'block';
+
+    fetch(requestUrl, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(requestData)
+    })
+            .then(response => {return response.json().then(body => ({status: response.status, body}))})
+            .then(data => {
+              document.getElementById('status').textContent = data.status;
+              document.getElementById('responseBody').textContent = JSON.stringify(data.body, null, 2);
+              document.getElementById('response').scrollIntoView({behavior: 'smooth'});
+            })
+            .catch(error => {
+              document.getElementById('responseBody').textContent = `Error: ${error.message}`;
+              document.getElementById('response').scrollIntoView({behavior: 'smooth'});
+            })
+  });
+</script>
+</body>
+</html>
