@@ -15,7 +15,7 @@
         <div class="grid">
           <fieldset>
             <label for="requestUrl">request url*</label>
-            <input type="url" id="requestUrl" required value="http://direct.ad.cpe.dotomi.com/v1/ad/generate">
+            <input type="url" id="requestUrl" required value="https://direct.ad.cpe.dotomi.com/v1/ad/generate">
           </fieldset>
           <fieldset>
             <label for="apiKey">api key</label>
@@ -122,7 +122,10 @@
           </fieldset>
         </div>
 
-        <button type="submit">Submit</button>
+        <div class="grid">
+          <button type="submit">Submit</button>
+          <input type="reset" value="Reset" onclick="window.location.reload()" class="secondary"/>
+        </div>
       </form>
     </article>
     <article>
@@ -140,6 +143,11 @@
   document.getElementById('bannerForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    // clear results first
+    document.getElementById('status').textContent = "";
+    document.getElementById('responseBody').textContent = "";
+    document.getElementById('response').style.display = 'block';
+
     // Get form values
     const requestUrl = document.getElementById('requestUrl').value;
     const apiKey = document.getElementById('apiKey').value;
@@ -148,9 +156,9 @@
     const placement = document.getElementById('placement').value;
     const contentStandardId = document.getElementById('contentStandardId').value;
     const maxNumberOfAds = document.getElementById('maxNumberOfAds').value;
-    const bannerSlots = document.getElementById('bannerSlots').value;
+    const bannerSlots = JSON.parse(document.getElementById('bannerSlots').value);
 
-    const productFilters = document.getElementById('productFilters').value;
+    const productFilters = JSON.parse(document.getElementById('productFilters').value);
     const searchTerm = document.getElementById('searchTerm').value;
     const targetedProductGtin = document.getElementById('targetedProductGtin').value;
 
@@ -159,8 +167,8 @@
     const dtmCookieId = document.getElementById('dtmCookieId').value;
 
     const filterMode = document.getElementById('filterMode').value;
-    const cached = Array.from(document.getElementById('cached').selectedOptions).map(opt => opt.value);
-    const includeAdvertiserInfo = Array.from(document.getElementById('includeAdvertiserInfo').selectedOptions).map(opt => opt.value);
+    const cached = document.getElementById('cached').value;
+    const includeAdvertiserInfo = document.getElementById('includeAdvertiserInfo').value;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -186,11 +194,6 @@
         includeAdvertiserInfo
       }
     };
-
-    // clear results first
-    document.getElementById('status').textContent = "";
-    document.getElementById('responseBody').textContent = "";
-    document.getElementById('response').style.display = 'block';
 
     fetch(requestUrl, {
       method: 'POST',
