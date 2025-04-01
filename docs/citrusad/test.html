@@ -5,44 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/small.pico.css"/>
   <title>CitrusAd Banner Tester</title>
+  <style>
+    .error {
+      border-color: red;
+      background-color: #fdd;
+    }
+  </style>
 </head>
 <body>
 <main>
   <div class="container">
     <h1>CitrusAd Banner Tester</h1>
     <article>
+      <div class="grid">
+        <fieldset>
+          <label for="requestUrl">request url*</label>
+          <input type="url" id="requestUrl" required value="https://direct.ad.cpe.dotomi.com/v1/ad/generate">
+        </fieldset>
+        <fieldset>
+          <label for="apiKey">api key</label>
+          <input type="text" id="apiKey">
+          <small>Example: 4ww25f70-b52s-40de-8f29-07b139b5cdc8</small>
+        </fieldset>
+      </div>
+      <div>
+        <label for="pickScenario">Scenario</label>
+        <select id="pickScenario"></select>
+      </div>
+    </article>
+    <article>
       <form id="bannerForm">
-        <div class="grid">
-          <fieldset>
-            <label for="requestUrl">request url*</label>
-            <input type="url" id="requestUrl" required value="https://direct.ad.cpe.dotomi.com/v1/ad/generate">
-          </fieldset>
-          <fieldset>
-            <label for="apiKey">api key</label>
-            <input type="text" id="apiKey" placeholder="string">
-          </fieldset>
-        </div>
+
         <div class="grid">
           <fieldset>
             <label for="catalogId">catalogId*</label>
-            <input type="text" id="catalogId" required value="628dbe95-2ec9-4e07-881d-3e9f92ab2e0b">
+            <input type="text" id="catalogId">
             <small>Your product catalog identifier for your website.</small>
           </fieldset>
           <fieldset>
             <label for="placement">placement*</label>
-            <input type="text" id="placement" required value="category">
-            <small>Example: search, category, category-cross-sell, home, checkout ...</small>
+            <input type="text" id="placement">
+            <small>Examples: search, category, category-cross-sell, home, checkout ...</small>
           </fieldset>
         </div>
         <div class="grid">
           <fieldset>
             <label for="contentStandardId">contentStandardId*</label>
-            <input type="text" id="contentStandardId" required value="fec2ab89-7a29-42b5-b58a-5675688b52d9">
+            <input type="text" id="contentStandardId">
             <small>The content standard id for your website.  </small>
           </fieldset>
           <fieldset>
             <label for="maxNumberOfAds">maxNumberOfAds*</label>
-            <input type="number" id="maxNumberOfAds"  min="0" value="2" required>
+            <input type="number" id="maxNumberOfAds"  min="0">
             <small>The maximum number of product ads to receive.</small>
           </fieldset>
         </div>
@@ -50,8 +64,8 @@
         <div>
           <fieldset>
             <label for="bannerSlots">bannerSlots*</label>
-            <textarea id="bannerSlots" name="bannerSlots" rows="4" required>[{"slotId": "123", "maxNumberOfAds": 2}]</textarea>
-            <small>An array of banner slots that you wish to receive ads for.</small>
+            <textarea id="bannerSlots" name="bannerSlots" rows="4">[{"slotId": "123", "maxNumberOfAds": 2}]</textarea>
+            <small>A JSON array of banner slots that you wish to receive ads for.</small>
           </fieldset>
         </div>
         <hr>
@@ -59,50 +73,46 @@
           <fieldset>
             <label for="productFilters">productFilters</label>
             <textarea id="productFilters" name="productFilters" rows="4">[["category:Cupboard/Snacks"]]</textarea>
-            <small>Any product filters relevant to your request. Primarily for category placement.</small>
+            <small>A JSON array of arrays that defines product filters relevant to your request. Primarily for category placement.</small>
           </fieldset>
         </div>
 
         <div class="grid">
           <fieldset>
             <label for="searchTerm">searchTerm</label>
-            <input type="text" id="searchTerm" placeholder="string">
+            <input type="text" id="searchTerm">
             <small>Used for search placements. The exact search term entered by the customer on your site.</small>
           </fieldset>
           <fieldset>
             <label for="targetedProductGtin">targetedProductGtin</label>
-            <input type="text" id="targetedProductGtin" placeholder="string">
+            <input type="text" id="targetedProductGtin">
             <small>Used for cross-sell placements. The product code that is being advertised against</small>
           </fieldset>
         </div>
-
         <hr>
-
         <div class="grid">
           <fieldset>
             <label for="customerId">customerId</label>
-            <input type="text" id="customerId"  value="wertg5432a">
+            <input type="text" id="customerId">
             <small>The unique identifier for the customer being served ads.</small>
           </fieldset>
           <fieldset>
             <label for="sessionId">sessionId</label>
-            <input type="text" id="sessionId" placeholder="string">
+            <input type="text" id="sessionId">
             <small>Unique identifier for customer's session.  Used for attribution.</small>
           </fieldset>
           <fieldset>
             <label for="dtmCookieId">dtmCookieId</label>
-            <input type="text" id="dtmCookieId" placeholder="string">
+            <input type="text" id="dtmCookieId">
             <small>Epsilon cookie</small>
           </fieldset>
         </div>
-
         <hr>
-
         <div class="grid">
           <fieldset>
             <label for="filterMode">filterMode</label>
-            <input type="text" id="filterMode"  value="AndOr">
-            <small>FilterMode for product filters.  Example: AndOr, OrAnd.</small>
+            <input type="text" id="filterMode">
+            <small>FilterMode for product filters.  Examples: AndOr, OrAnd.</small>
           </fieldset>
           <fieldset>
             <label for="cached">cached</label>
@@ -121,7 +131,6 @@
             <small>Defines if the retailer requires advertiser information to comply with the EU's Digital Services Act.</small>
           </fieldset>
         </div>
-
         <div class="grid">
           <button type="submit">Submit</button>
           <input type="reset" value="Reset" onclick="window.location.reload()" class="secondary"/>
@@ -139,7 +148,93 @@
   </div>
 </main>
 
+<script src="scenarios.js"></script>
 <script>
+  function getBannerForm() {
+    const requestUrl = document.getElementById('requestUrl');
+    const apiKey = document.getElementById('apiKey');
+
+    const catalogId = document.getElementById('catalogId');
+    const placement = document.getElementById('placement');
+    const contentStandardId = document.getElementById('contentStandardId');
+    const maxNumberOfAds = document.getElementById('maxNumberOfAds');
+    const bannerSlots = document.getElementById('bannerSlots');
+
+    const productFilters = document.getElementById('productFilters');
+    const searchTerm = document.getElementById('searchTerm');
+    const targetedProductGtin = document.getElementById('targetedProductGtin');
+
+    const customerId = document.getElementById('customerId');
+    const sessionId = document.getElementById('sessionId');
+    const dtmCookieId = document.getElementById('dtmCookieId');
+
+    const filterMode = document.getElementById('filterMode');
+    const cached = document.getElementById('cached');
+    const includeAdvertiserInfo = document.getElementById('includeAdvertiserInfo');
+
+    return {
+      requestUrl,
+      apiKey,
+      catalogId,
+      placement,
+      contentStandardId,
+      maxNumberOfAds,
+      bannerSlots,
+      productFilters,
+      searchTerm,
+      targetedProductGtin,
+      customerId,
+      sessionId,
+      dtmCookieId,
+      filterMode,
+      cached,
+      includeAdvertiserInfo
+    }
+  }
+
+  function loadScenarios() {
+    const picker = document.getElementById('pickScenario');
+    const scenarios = window.citrusAdScenarios;
+    let selectedIndex;
+
+    scenarios.forEach((s, index) => {
+      const opt = document.createElement('option')
+      opt.text = s.name;
+      opt.value = index.toString();
+      opt.defaultSelected = s.defaultSelected;
+      opt.selected = s.defaultSelected;
+      if (s.defaultSelected) selectedIndex = index;
+      picker.appendChild(opt);
+    });
+
+    changeScenario(selectedIndex);
+  }
+
+  function checkValue(value, defaultValue = "") {
+    return (typeof value !== 'undefined') ? value : defaultValue;
+  }
+
+  function changeScenario(index) {
+    // clearForm();
+    const bannerForm = getBannerForm();
+    let scenario = citrusAdScenarios[index]?.data || {};
+
+    bannerForm.catalogId.value = checkValue(scenario.catalogId)
+    bannerForm.placement.value = checkValue(scenario.placement);
+    bannerForm.contentStandardId.value = checkValue(scenario.contentStandardId);
+    bannerForm.maxNumberOfAds.value = checkValue(scenario.maxNumberOfAds);
+    bannerForm.bannerSlots.value = checkValue(JSON.stringify(scenario.bannerSlots));
+    bannerForm.productFilters.value = checkValue(JSON.stringify(scenario.productFilters));
+    bannerForm.searchTerm.value = checkValue(scenario.searchTerm);
+    bannerForm.targetedProductGtin.value = checkValue(scenario.targetedProductGtin);
+    bannerForm.customerId.value = checkValue(scenario.customerId);
+    bannerForm.sessionId.value = checkValue(scenario.sessionId);
+    bannerForm.dtmCookieId.value = checkValue(scenario.dtmCookieId);
+    bannerForm.filterMode.value = checkValue(scenario.options?.filterMode);
+    bannerForm.cached.value = checkValue(scenario.options?.cached, 'false');
+    bannerForm.includeAdvertiserInfo.value = checkValue(scenario.options?.includeAdvertiserInfo, 'true');
+  }
+
   document.getElementById('bannerForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -149,26 +244,49 @@
     document.getElementById('response').style.display = 'block';
 
     // Get form values
-    const requestUrl = document.getElementById('requestUrl').value;
-    const apiKey = document.getElementById('apiKey').value;
+    const bannerForm = getBannerForm();
 
-    const catalogId = document.getElementById('catalogId').value;
-    const placement = document.getElementById('placement').value;
-    const contentStandardId = document.getElementById('contentStandardId').value;
-    const maxNumberOfAds = document.getElementById('maxNumberOfAds').value;
-    const bannerSlots = JSON.parse(document.getElementById('bannerSlots').value);
+    const requestUrl = bannerForm.requestUrl.value;
+    const apiKey = bannerForm.apiKey.value;
 
-    const productFilters = JSON.parse(document.getElementById('productFilters').value);
-    const searchTerm = document.getElementById('searchTerm').value;
-    const targetedProductGtin = document.getElementById('targetedProductGtin').value;
+    const catalogId = bannerForm.catalogId.value;
+    const placement = bannerForm.placement.value;
+    const contentStandardId = bannerForm.contentStandardId.value;
+    const maxNumberOfAds = bannerForm.maxNumberOfAds.value;
 
-    const customerId = document.getElementById('customerId').value;
-    const sessionId = document.getElementById('sessionId').value;
-    const dtmCookieId = document.getElementById('dtmCookieId').value;
+    let errorCount = 0;
+    let bannerSlots;
+    try {
+      bannerSlots = bannerForm.bannerSlots.value ? JSON.parse(bannerForm.bannerSlots.value) : undefined;
+      bannerForm.bannerSlots.classList.remove('error');
+    } catch(error) {
+      bannerForm.bannerSlots.classList.add('error');
+      console.log('bannerSlots is not valid JSON');
+      ++errorCount;
+    }
 
-    const filterMode = document.getElementById('filterMode').value;
-    const cached = document.getElementById('cached').value;
-    const includeAdvertiserInfo = document.getElementById('includeAdvertiserInfo').value;
+    let productFilters;
+    try {
+      productFilters = bannerForm.productFilters.value ? JSON.parse(bannerForm.productFilters.value) : undefined;
+      bannerForm.productFilters.classList.remove('error');
+    } catch(error) {
+      bannerForm.productFilters.classList.add('error');
+      console.log('productfilters is not valid JSON');
+      ++errorCount;
+    }
+
+    if (errorCount > 0) return;
+
+    const searchTerm = bannerForm.searchTerm.value;
+    const targetedProductGtin = bannerForm.targetedProductGtin.value;
+
+    const customerId = bannerForm.customerId.value;
+    const sessionId = bannerForm.sessionId.value;
+    const dtmCookieId = bannerForm.dtmCookieId.value;
+
+    const filterMode = bannerForm.filterMode.value;
+    const cached = bannerForm.cached.value;
+    const includeAdvertiserInfo = bannerForm.includeAdvertiserInfo.value;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -211,6 +329,14 @@
               document.getElementById('response').scrollIntoView({behavior: 'smooth'});
             })
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('pickScenario').addEventListener('change', function(event){
+      changeScenario(event.target.value);
+    });
+    loadScenarios();
+  });
+
 </script>
 </body>
 </html>
