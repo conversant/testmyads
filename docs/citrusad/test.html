@@ -20,7 +20,7 @@
       <div class="grid">
         <fieldset>
           <label for="requestUrl">request url*</label>
-          <input type="url" id="requestUrl" required value="https://direct.ad.cpe.dotomi.com/v1/ad/generate">
+          <input type="url" id="requestUrl" required value="https://direct.ad.cpe.dotomi.com/v1/ads/generate">
         </fieldset>
         <fieldset>
           <label for="apiKey">api key</label>
@@ -66,6 +66,13 @@
             <label for="bannerSlots">bannerSlots*</label>
             <textarea id="bannerSlots" name="bannerSlots" rows="4">[{"slotId": "123", "maxNumberOfAds": 2}]</textarea>
             <small>A JSON array of banner slots that you wish to receive ads for.</small>
+          </fieldset>
+        </div>
+        <div>
+          <fieldset>
+            <label for="bannerSlotIds">bannerSlotIds*</label>
+            <input type="text" id="bannerSlotIds">
+            <small>Legacy form of bannerSlots.  Example: ["banner-top", "banner-side"]</small>
           </fieldset>
         </div>
         <hr>
@@ -159,6 +166,7 @@
     const contentStandardId = document.getElementById('contentStandardId');
     const maxNumberOfAds = document.getElementById('maxNumberOfAds');
     const bannerSlots = document.getElementById('bannerSlots');
+    const bannerSlotIds = document.getElementById('bannerSlotIds');
 
     const productFilters = document.getElementById('productFilters');
     const searchTerm = document.getElementById('searchTerm');
@@ -180,6 +188,7 @@
       contentStandardId,
       maxNumberOfAds,
       bannerSlots,
+      bannerSlotIds,
       productFilters,
       searchTerm,
       targetedProductGtin,
@@ -224,6 +233,7 @@
     bannerForm.contentStandardId.value = checkValue(scenario.contentStandardId);
     bannerForm.maxNumberOfAds.value = checkValue(scenario.maxNumberOfAds);
     bannerForm.bannerSlots.value = checkValue(JSON.stringify(scenario.bannerSlots));
+    bannerForm.bannerSlotIds.value = checkValue(JSON.stringify(scenario.bannerSlotIds));
     bannerForm.productFilters.value = checkValue(JSON.stringify(scenario.productFilters));
     bannerForm.searchTerm.value = checkValue(scenario.searchTerm);
     bannerForm.targetedProductGtin.value = checkValue(scenario.targetedProductGtin);
@@ -265,6 +275,16 @@
       ++errorCount;
     }
 
+    let bannerSlotIds;
+    try {
+      bannerSlotIds = bannerForm.bannerSlotIds.value ? JSON.parse(bannerForm.bannerSlotIds.value) : undefined;
+      bannerForm.bannerSlotIds.classList.remove('error');
+    } catch(error) {
+      bannerForm.bannerSlotIds.classList.add('error');
+      console.log('bannerSlotIds is not valid JSON');
+      ++errorCount;
+    }
+
     let productFilters;
     try {
       productFilters = bannerForm.productFilters.value ? JSON.parse(bannerForm.productFilters.value) : undefined;
@@ -300,6 +320,7 @@
       contentStandardId,
       maxNumberOfAds,
       bannerSlots,
+      bannerSlotIds,
       productFilters,
       searchTerm,
       targetedProductGtin,
@@ -316,8 +337,9 @@
     fetch(requestUrl, {
       method: 'POST',
       headers,
-      body: JSON.stringify(requestData)
-    })
+      credentials: 'include',
+      body: JSON.stringify(requestData)}
+    )
             .then(response => {return response.json().then(body => ({status: response.status, body}))})
             .then(data => {
               document.getElementById('status').textContent = data.status;
@@ -327,7 +349,7 @@
             .catch(error => {
               document.getElementById('responseBody').textContent = `Error: ${error.message}`;
               document.getElementById('response').scrollIntoView({behavior: 'smooth'});
-            })
+            });
   });
 
   document.addEventListener('DOMContentLoaded', function() {

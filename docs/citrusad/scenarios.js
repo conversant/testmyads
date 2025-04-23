@@ -1,5 +1,5 @@
 (function() {
-    const scenarios = [
+    window.citrusAdScenarios = [
         {
             name: "Search placement",
             data: {
@@ -15,11 +15,11 @@
                 contentStandardId: "fec2ab89-7a29-42b5-b58a-5675688b52d9",
                 bannerSlots: [
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-top",
                         maxNumberOfAds: 1
                     },
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-side",
                         maxNumberOfAds: 2
                     }
                 ],
@@ -46,11 +46,11 @@
                 contentStandardId: "fec2ab89-7a29-42b5-b58a-5675688b52d9",
                 bannerSlots: [
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-top",
                         maxNumberOfAds: 1
                     },
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-side",
                         maxNumberOfAds: 2
                     }
                 ],
@@ -76,11 +76,11 @@
                 contentStandardId: "fec2ab89-7a29-42b5-b58a-5675688b52d9",
                 bannerSlots: [
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-top",
                         maxNumberOfAds: 1
                     },
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-side",
                         maxNumberOfAds: 2
                     }
                 ],
@@ -104,11 +104,11 @@
                 contentStandardId: "fec2ab89-7a29-42b5-b58a-5675688b52d9",
                 bannerSlots: [
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-top",
                         maxNumberOfAds: 1
                     },
                     {
-                        slotId: "<SLOT_ID>",
+                        slotId: "banner-side",
                         maxNumberOfAds: 2
                     }
                 ],
@@ -116,5 +116,4 @@
             }
         }
     ];
-    window.citrusAdScenarios = scenarios;
 })();
