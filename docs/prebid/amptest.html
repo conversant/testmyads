@@ -1,0 +1,200 @@
+<!doctype html>
+<html amp lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>AMP Prebid Test Page - Direct to Prebid Server</title>
+    <link rel="canonical" href="amp_prebid_test.html">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+    <style amp-boilerplate>body {
+        -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        animation: -amp-start 8s steps(1, end) 0s 1 normal both
+    }
+
+    @-webkit-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+    @-moz-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+    @-ms-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+    @-o-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+    @keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+    </style>
+
+    <noscript>
+        <style amp-boilerplate>body {
+            -webkit-animation: none;
+            -moz-animation: none;
+            -ms-animation: none;
+            animation: none
+        }</style>
+    </noscript>
+    <style amp-custom>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #f5f5f5; padding: 10px; text-align: center; margin-bottom: 20px; }
+        .ad-container { margin: 20px 0; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; text-align: center; }
+        .content { padding: 15px; background-color: #fff; }
+        .sidebar { background-color: #BEE3F3; padding: 15px; margin-top: 20px; }
+        .footer { margin-top: 20px; padding: 10px; background-color: #BEE3F3; text-align: center; }
+        .url-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            margin: 10px auto;
+            display: block;
+            font-size: 14px;
+        }
+        .url-container {
+            background-color: #eee;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .url-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>AMP Prebid Test Page</h1>
+        <p>Testing AMP with Prebid Server integration (no GAM)</p>
+    </div>
+
+    <div class="url-container">
+        <label class="url-label" for="prebid-url">Prebid Server URL:</label>
+        <input class="url-input" id="prebid-url" type="text" value="https://prebid.conversan.net/pbs/v1/openrtb2/amp">
+        <p><small>Note: URL changes will only apply to new page loads</small></p>
+    </div>
+
+    <div class="ad-container">
+        <!-- 728x90 Banner Placement -->
+        <h3>728x90 Banner</h3>
+        <amp-ad width="728" height="90"
+                type="doubleclick"
+                rtc-config='{"vendors": {"prebidconversant": {"SITE_ID": "108060"}}, "urls": ["https://prebid.conversan.net/pbs/v1/openrtb2/amp?tag_id=test-amp-prebid&w=728&h=90"]}'
+                json='{"targeting":{"site_id":"108060"},"tagForChildDirectedTreatment":0}'
+                data-slot="/9119480/testmyads_hb_5"
+                data-multi-size="728x90">
+        </amp-ad>
+    </div>
+
+    <div class="content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim tortor in urna consequat, eget
+            pulvinar massa sagittis. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et
+            ultrices posuere cubilia curae; Nullam vel nisl vel velit pharetra consequat id vel nulla.</p>
+
+        <div class="ad-container">
+            <!-- 300x250 Medium Rectangle Placement -->
+            <h3>300x250 Medium Rectangle</h3>
+            <amp-ad width="300" height="250"
+                    type="doubleclick"
+                    rtc-config='{"vendors": {"prebidconversant": {"SITE_ID": "108060"}}, "urls": ["https://prebid.conversan.net/pbs/v1/openrtb2/amp?tag_id=test-amp-prebid&w=300&h=250"]}'
+                    json='{"targeting":{"site_id":"108060"},"tagForChildDirectedTreatment":0}'
+                    data-slot="/9119480/testmyads_hb_2"
+                    data-multi-size="300x250">
+            </amp-ad>
+        </div>
+
+        <p>Fusce vehicula, felis id interdum euismod, dui magna varius mauris, vel bibendum urna velit vel elit. Nullam
+            auctor ligula at massa fermentum, non fermentum mi varius. Proin egestas mauris et tellus eleifend, eu
+            aliquam mauris maximus.</p>
+    </div>
+
+    <div class="sidebar">
+        <h3>Sidebar</h3>
+        <p>Links and additional content</p>
+
+        <div class="ad-container">
+            <!-- 300x600 Half Page Placement -->
+            <h3>300x600 Half Page</h3>
+            <amp-ad width="300" height="600"
+                    type="doubleclick"
+                    rtc-config='{"vendors": {"prebidconversant": {"SITE_ID": "108060"}}, "urls": ["https://prebid.conversan.net/pbs/v1/openrtb2/amp?tag_id=test-amp-prebid&w=300&h=600"]}'
+                    json='{"targeting":{"site_id":"108060"},"tagForChildDirectedTreatment":0}'
+                    data-slot="/9119480/testmyads_hb_3"
+                    data-multi-size="300x600">
+            </amp-ad>
+        </div>
+
+        <div class="ad-container">
+            <!-- 160x600 Skyscraper Placement -->
+            <h3>160x600 Skyscraper</h3>
+            <amp-ad width="160" height="600"
+                    type="doubleclick"
+                    rtc-config='{"vendors": {"prebidconversant": {"SITE_ID": "108060"}}, "urls": ["https://prebid.conversan.net/pbs/v1/openrtb2/amp?tag_id=test-amp-prebid&w=160&h=600"]}'
+                    json='{"targeting":{"site_id":"108060"},"tagForChildDirectedTreatment":0}'
+                    data-slot="/9119480/testmyads_hb_1"
+                    data-multi-size="160x600">
+            </amp-ad>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>AMP Prebid Test Page - Footer</p>
+
+        <div class="ad-container">
+            <!-- 320x50 Mobile Banner Placement -->
+            <h3>320x50 Mobile Banner</h3>
+            <amp-ad width="320" height="50"
+                    type="doubleclick"
+                    rtc-config='{"vendors": {"prebidconversant": {"SITE_ID": "108060"}}, "urls": ["https://prebid.conversan.net/pbs/v1/openrtb2/amp?tag_id=test-amp-prebid&w=320&h=50"]}'
+                    json='{"targeting":{"site_id":"108060"},"tagForChildDirectedTreatment":0}'
+                    data-slot="/9119480/testmyads_hb_4"
+                    data-multi-size="320x50">
+            </amp-ad>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlInput = document.getElementById('prebid-url');
+
+    // Function to update all amp-ad elements with the new base URL
+    const updateAmpAdUrls = function(baseUrl) {
+        const ampAds = document.querySelectorAll('amp-ad');
+        ampAds.forEach(ad => {
+            // Get the current rtc-config attribute
+            const rtcConfig = JSON.parse(ad.getAttribute('rtc-config'));
+
+            // Extract the query parameters from the existing URL
+            const currentUrl = rtcConfig.urls[0];
+            const queryString = currentUrl.substring(currentUrl.indexOf('?'));
+
+            // Update the URL with the new base URL plus the original query parameters
+            rtcConfig.urls[0] = baseUrl + queryString;
+
+            // Set the updated rtc-config back to the ad
+            ad.setAttribute('rtc-config', JSON.stringify(rtcConfig));
+        });
+
+        // Store the URL in localStorage
+        localStorage.setItem('prebidServerUrl', baseUrl);
+    };
+
+    // Set initial URL or restore from localStorage
+    const storedUrl = localStorage.getItem('prebidServerUrl');
+    if (storedUrl) {
+        urlInput.value = storedUrl;
+    }
+
+    // Update URLs when input changes
+    urlInput.addEventListener('change', function() {
+        updateAmpAdUrls(urlInput.value);
+    });
+
+    // Initial update of URLs
+    updateAmpAdUrls(urlInput.value);
+});
+</script>
+</body>
+</html>
