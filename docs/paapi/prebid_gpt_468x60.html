@@ -52,6 +52,12 @@
 
             pbjs.setConfig({
                 debug: true,
+                userSync: {
+                    userIds: [{
+                        name: "pubCommonId",
+                        storage: {type: "cookie", name: "_pubcid", expires: 365}
+                    }]
+                },
                 paapi: {
                     enabled: true,
                     defaultForSlots: 1,

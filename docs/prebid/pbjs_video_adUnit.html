@@ -53,6 +53,14 @@ adapters.json.
   };
 
   pbjs.que.push(function(){
+    pbjs.setConfig({
+      userSync: {
+        userIds: [{
+          name: "pubCommonId",
+          storage: {type: "cookie", name: "_pubcid", expires: 365}
+        }]
+      }
+    });
     pbjs.addAdUnits(videoAdUnit);
     pbjs.requestBids({
       timeout : 3000,
