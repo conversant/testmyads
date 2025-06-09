@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="/testMyAds.css" />
 
     <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-    <script async src="../js/prebid.js"></script>
+<!--    <script async src="../js/prebid.js"></script>-->
+        <script async src="http://localhost:9999/build/dev/prebid.js"></script>
 
     <script>
         var PREBID_TIMEOUT = 10000;
@@ -18,48 +19,48 @@
             code: "container-0",
             mediaTypes: { banner: { sizes: [ [120, 600] ] } },
             bids: [
-                { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
-                { bidder: "appnexus", params: { placementId: 13144370 } },
+                // { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
+                // { bidder: "appnexus", params: { placementId: 13144370 } },
                 { bidder: "conversant", params: { site_id: '108060' } }
             ]
         }, {
             code: "container-1",
             mediaTypes: { banner: { sizes: [ [160, 600] ] } },
             bids: [
-                { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
-                { bidder: "appnexus", params: { placementId: 13144370 } },
+                // { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
+                // { bidder: "appnexus", params: { placementId: 13144370 } },
                 { bidder: "conversant", params: { site_id: '108060' } }
             ]
         }, {
             code: "container-2",
             mediaTypes: { banner: { sizes: [ [300, 250] ] } },
             bids: [
-                { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
-                { bidder: "appnexus", params: { placementId: 13144370 } },
+                // { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
+                // { bidder: "appnexus", params: { placementId: 13144370 } },
                 { bidder: "conversant", params: { site_id: '108060' } }
             ]
         }, {
             code: "container-3",
             mediaTypes: { banner: { sizes: [ [300, 600] ] } },
             bids: [
-                { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
-                { bidder: "appnexus", params: { placementId: 13144370 } },
+                // { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
+                // { bidder: "appnexus", params: { placementId: 13144370 } },
                 { bidder: "conversant", params: { site_id: '108060' } }
             ]
         }, {
             code: "container-4",
             mediaTypes: { banner: { sizes: [ [320, 50] ] } },
             bids: [
-                { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
-                { bidder: "appnexus", params: { placementId: 13144370 } },
+                // { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
+                // { bidder: "appnexus", params: { placementId: 13144370 } },
                 { bidder: "conversant", params: { site_id: '108060' } }
             ]
         }, {
             code: "container-5",
             mediaTypes: { banner: { sizes: [ [728, 90] ] } },
             bids: [
-                { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
-                { bidder: "appnexus", params: { placementId: 13144370 } },
+                // { bidder: "openx", params: { unit: "540096529", delDomain: "sademo-d.openx.net" } },
+                // { bidder: "appnexus", params: { placementId: 13144370 } },
                 { bidder: "conversant", params: { site_id: '108060' } }
             ]
         }];
@@ -81,7 +82,21 @@
             }
         };
 
+
         pbjs.que.push(function() {
+            pbjs.setConfig({
+                userSync: {
+                    userIds: [{
+                        name: "pubCommonId",
+                        storage: { type: "cookie", name: "_pubcid", expires: 365 }
+                    }]
+                },
+                activityControls: { enableTIDs:  true },
+                ortb2: { regs: { ext: { dsa: {
+                    dsarequired: 1,
+                    pubrender: 0
+                } } } }
+            });
             pbjs.addAdUnits(adUnits);
 
             pbjs.que.push(function(){

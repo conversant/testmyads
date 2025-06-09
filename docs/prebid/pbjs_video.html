@@ -36,12 +36,17 @@
     };
 
     pbjs.que.push(function() {
-    //put your adunits here
-
-        pbjs.addAdUnits(videoAdUnit); 
+        //put your adunits here
+        pbjs.addAdUnits(videoAdUnit);
 
         pbjs.setConfig({
             debug: true,
+            userSync: {
+                userIds: [{
+                    name: "pubCommonId",
+                    storage: {type: "cookie", name: "_pubcid", expires: 365}
+                }]
+            },
             cache: {
                 url: 'https://prebid.adnxs.com/pbc/v1/cache'
             }

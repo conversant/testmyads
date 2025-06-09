@@ -165,6 +165,14 @@
                     }
                 }
             }, true);
+            pbjs.setConfig({
+                userSync: {
+                    userIds: [{
+                        name: "pubCommonId",
+                        storage: {type: "cookie", name: "_pubcid", expires: 365}
+                    }]
+                }
+            });
 
             pbjs.onEvent('auctionEnd', function() {pbjs.initAdserverSet = false;updateBidTable();});
             pbjs.addAdUnits(adUnits);
