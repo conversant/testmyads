@@ -8,8 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/testMyAds.css" />
 
     <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-<!--    <script async src="../js/prebid.js"></script>-->
-        <script async src="http://localhost:9999/build/dev/prebid.js"></script>
+    <script async src="../js/prebid.js"></script>
 
     <script>
         var PREBID_TIMEOUT = 10000;
@@ -87,7 +86,7 @@
             pbjs.setConfig({
                 userSync: {
                     userIds: [{
-                        name: "pubCommonId",
+                        name: "sharedId",
                         storage: { type: "cookie", name: "_pubcid", expires: 365 }
                     }]
                 },
