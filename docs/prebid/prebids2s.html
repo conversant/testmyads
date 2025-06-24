@@ -141,6 +141,12 @@
 
             pbjs.setConfig(
                 {debug: true,
+                    userSync: {
+                        userIds: [{
+                            name: "sharedId",
+                            storage: {type: "cookie", name: "_pubcid", expires: 365}
+                        }]
+                    },
                     s2sConfig: {
                         accountId: 'd8273f1b-165d-41f8-9d97-c4aac6a673d5',
                         enabled: true,

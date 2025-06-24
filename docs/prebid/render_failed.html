@@ -55,6 +55,14 @@
                         provider: 'conversant',
                         options: {site_id: 108060}}
                 );
+                pbjs.setConfig({
+                    userSync: {
+                        userIds: [{
+                            name: "sharedId",
+                            storage: {type: "cookie", name: "_pubcid", expires: 365}
+                        }]
+                    }
+                });
             });
             pbjs.requestBids({
                 bidsBackHandler: initAdserver,
