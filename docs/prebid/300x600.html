@@ -52,13 +52,6 @@
             });
             pbjs.addAdUnits(adUnits);
 
-            pbjs.que.push(function(){
-                pbjs.enableAnalytics(
-                    {
-                        provider: 'conversant',
-                        options: {site_id: 108060}}
-                );
-            });
             pbjs.requestBids({
                 bidsBackHandler: initAdserver,
                 timeout: PREBID_TIMEOUT
