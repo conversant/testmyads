@@ -177,15 +177,6 @@
             pbjs.onEvent('auctionEnd', function() {pbjs.initAdserverSet = false;updateBidTable();});
             pbjs.addAdUnits(adUnits);
 
-            pbjs.que.push(function(){
-                pbjs.enableAnalytics({
-                        provider: 'epsilon',
-                        options: {
-                            site_id: 108060,
-                            send_error_data: true
-                        }
-                });
-            });
             pbjs.requestBids({
                 bidsBackHandler: initAdserver,
                 timeout: PREBID_TIMEOUT
