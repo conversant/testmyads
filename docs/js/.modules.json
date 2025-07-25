@@ -2,7 +2,6 @@
   "adpod",
   "userId",
   "conversantBidAdapter",
-  "conversantAnalyticsAdapter",
   "appnexusBidAdapter",
   "openxBidAdapter",
   "publinkIdSystem",
