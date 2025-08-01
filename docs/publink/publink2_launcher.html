@@ -8,11 +8,8 @@
     <script async src="../js/prebid-5.20.0.js"></script>
 
     <script src="https://secure.cdn.fastclick.net/js/cnvr-launcher/latest/launcher-stub.min.js"></script>
-    <script>conversant.launch('launcher', 'loadConfig', 684)</script>
 
-    <!-- crypto libraries for hashes -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.min.js"></script>
+    <script>conversant.launch('launcher', 'loadConfig', 684)</script>
 
     <script>
         var PREBID_TIMEOUT = 2000;
@@ -173,9 +170,7 @@
     }
 
     function processForm() {
-        const regForm = document.getElementById('reg_form');
-        const formData = new FormData(regForm);
-        const email = formData.get('email');
+        const email = document.getElementById('email').value;
 
         if (email) {
             pbjs.que.push(function() {
