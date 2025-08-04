@@ -8,8 +8,7 @@
     <script async src="../js/prebid-5.20.0.js"></script>
 
     <!-- crypto libraries for hashes -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
 
     <script>
         var PREBID_TIMEOUT = 2000;
@@ -215,13 +214,11 @@
     }
 
     function processForm() {
-        const regForm = document.getElementById('reg_form');
-        const formData = new FormData(regForm);
-        const email = formData.get('email');
+        const email = document.getElementById('email').value;
 
         if (email) {
             // Convert to md5 hash
-            const emailHash = CryptoJS.MD5(email);
+            const emailHash = md5(email);
 
             pbjs.que.push(function() {
                 // Pass the hash to the id module then call refreshUserIds to force a
@@ -244,7 +241,7 @@
                     }
                 });
 
-                pbjs.refreshUserIds({submoduleNames: ['publinkId']}, () => console.log('id refreshed'));
+                pbjs.refreshUserIds({submoduleNames: ['publinkId']}, function() { console.log('id refreshed') });
             });
         }
     }
