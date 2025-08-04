@@ -78,7 +78,10 @@
         win.location.reload();
     }
 
-    lurch.makeInfoSection = function(id, allowSid = true, includeLauncher = true) {
+    lurch.makeInfoSection = function(id, allowSid, includeLauncher) {
+        if (typeof allowSid === 'undefined') allowSid = true;
+        if (typeof includeLauncher === 'undefined') includeLauncher = true;
+
         var parent = doc.getElementById(id);
         if (id) {
             if (allowSid) {
@@ -128,7 +131,7 @@
     lurch.makeCheckboxes = function(id) {
         var parent = doc.getElementById(id);
         if (id) {
-            checkList.forEach((val)=>{
+            checkList.forEach(function(val){
                 var label = doc.createElement('label');
                 var desc = doc.createTextNode(val);
                 var cb = doc.createElement('input');
@@ -136,7 +139,7 @@
                 cb.type = 'checkbox';
                 cb.id = cbTagPrefix + val;
                 cb.value = val;
-                cb.onclick = ()=>{return false;};
+                cb.onclick = function(){return false;};
 
                 label.appendChild(cb);
                 label.appendChild(desc);
