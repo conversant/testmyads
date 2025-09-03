@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charSet="utf-8" />
+        <title>Kargo Ads Demo</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="shortcut icon" href="https://demo.kargo.com/img/favicon.ico" type="image/x-icon" />
+        <meta name="next-head-count" content="6" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" href="https://demo.kargo.com/_next/static/css/89900292f3255a8b.css" as="style" />
+        <link rel="stylesheet" href="https://demo.kargo.com/_next/static/css/89900292f3255a8b.css" data-n-g="" />
+        <link rel="preload" href="https://demo.kargo.com/_next/static/css/5d52c2ac335088b1.css" as="style" />
+        <link rel="stylesheet" href="https://demo.kargo.com/_next/static/css/5d52c2ac335088b1.css" data-n-p="" />
+        <link rel="preload" href="https://demo.kargo.com/_next/static/css/431d0b39b68ddde1.css" as="style" />
+        <link rel="stylesheet" href="https://demo.kargo.com/_next/static/css/431d0b39b68ddde1.css" data-n-p="" />
+        <link rel="preload" href="https://demo.kargo.com/_next/static/css/b91c4c07aac00708.css" as="style" />
+        <link rel="stylesheet" href="https://demo.kargo.com/_next/static/css/b91c4c07aac00708.css" data-n-p="" />
+        <noscript data-n-css=""></noscript>
+        
+        <style data-href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,500&display=swap">
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: italic;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiDyp8kv8JHgFVrJJLmg1hlEw.woff) format('woff')
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 200;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLFj_V1g.woff) format('woff')
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiEyp8kv8JHgFVrFJM.woff) format('woff')
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLGT9V1g.woff) format('woff')
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6V1g.woff) format('woff')
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7V1g.woff) format('woff')
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: italic;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiDyp8kv8JHgFVrJJLmg1hVFteOYktMqlap.woff2) format('woff2');
+                        unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: italic;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiDyp8kv8JHgFVrJJLmg1hVGdeOYktMqlap.woff2) format('woff2');
+                        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: italic;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiDyp8kv8JHgFVrJJLmg1hVF9eOYktMqg.woff2) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 200;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLFj_Z11lFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 200;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLFj_Z1JlFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 200;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLFj_Z1xlFd2JQEk.woff2) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiEyp8kv8JHgFVrJJbecnFHGPezSQ.woff2) format('woff2');
+                        unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format('woff2');
+                        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLGT9Z11lFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6Z11lFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6Z1JlFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6Z1xlFd2JQEk.woff2) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7Z11lFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7Z1JlFd2JQEl8qw.woff2) format('woff2');
+                        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+                }
+
+                @font-face {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLCz7Z1xlFd2JQEk.woff2) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+                }
+        </style>
+        <style>
+            .input-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px; /* space between input and button */
+                margin: 10px auto;
+            }
+
+            #messageUrlInput {
+                padding: 10px 15px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                font-size: 16px;
+                width: 600px;
+                outline: none;
+                transition: border 0.3s ease;
+            }
+
+            #urlInput:focus {
+                border-color: #007BFF;
+            }
+
+            #updateBtn {
+                padding: 10px 20px;
+                background-color: #007BFF;
+                color: white;
+                font-size: 16px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            #updateBtn:hover {
+                background-color: #0056b3;
+            }
+
+            label {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #333;
+            }
+
+            select {
+                padding: 10px 15px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+                color: #333;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                outline: none;
+                width: 250px;
+                appearance: none;
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 10l5 5 5-5z" fill="%23333"/></svg>');
+                background-repeat: no-repeat;
+                background-position: right 10px center;
+                background-size: 12px;
+            }
+
+            select:hover {
+                border-color: #888;
+            }
+
+            select:focus {
+                border-color: #5b9bd5;
+                box-shadow: 0 0 0 3px rgba(91, 155, 213, 0.3);
+            }
+
+            .PreviewComponents_header__q_uPo,.__404_ksl-header__KTiXT {
+                z-index: 20;
+                position: relative;
+                width: 100%;
+                text-align: center;
+                vertical-align: middle;
+                display: none
+            }
+
+            
+        </style>
+</head>
+
+<body>
+    <div id="__next">
+        <div>
+            <div class="Header_backgroundOverlay__sdHBY" id="background-overlay"></div>
+            <div class="Header_header__VR7FD" style="height: 60px;">
+                <div class="input-container">
+                    <button id="updateBtn">Load Ad</button>
+                    <label for="adFormat">Choose Ad Format:</label>
+                    <select id="adFormat">
+                        <option value="Breakaway">Breakaway</option>
+                        <option value="Breakout">Breakout</option>
+                        <option value="Hover">Hover</option>
+                        <option value="MiddleBanner">MiddleBanner</option>
+                        <option value="Leaderboard">Leaderboard</option>
+                        <option value="LargeLeaderboard">LargeLeaderboard</option>
+                        <option value="Billboard">Billboard</option>
+                        <option value="HalfPage">HalfPage</option>
+                        <option value="WideSkyscraper">WideSkyscraper</option>
+                        <option value="Anchor">Anchor</option>
+                        <option value="Sidekick">Sidekick</option>
+                        <option value="Runway">Runway</option>
+                        <option value="Triplex">Triplex</option>
+                        <option value="Wrapper">Wrapper</option>
+                        <option value="KeyArt">KeyArt</option>
+                        <option value="Venti">Venti</option>
+                        <option value="Lighthouse">Lighthouse</option>
+                        <option value="HighRise">HighRise</option>
+                    </select>
+                    <input type="text" id="messageUrlInput" placeholder="Enter new message URL">
+                </div>
+            </div>
+            <div class="Phone_phoneContainer__zUb45">
+                <div class="Phone_leftDiv__oLo2B "></div>
+                    <div class="Phone_phoneView__ANs9y">
+                        <div class="Phone_mobileText__1Jvro">This ad experience is best viewed on your mobile device.</div>
+                        <div class="Phone_wrapper__6wh9J" id="phone-wrapper">
+                            <div class="Phone_phone__bPdP5">
+                                <div class="Phone_dipCover__lF88q"></div>
+                                <div class="Phone_dip__1f0Bw"></div>
+                                <div class="Phone_offButton__fSU_8"></div>
+                                <div class="Phone_soundUpButton__qjhJ2"></div>
+                                <div class="Phone_soundDownButton__xti0Y"></div>
+                                <div class="Phone_main__iyMTi">
+                                    <div class="Phone_outer-container__OpVyF">
+                                        <div class="Phone_inner-container__dHhA3">
+                                            <div class="SafariTopBar_safariTopBar__z1X02">
+                                                <div class="SafariTopBar_statusBar__5n7J5">
+                                                    <div class="SafariTopBar_clock__c2YOQ"></div>
+                                                    <div class="SafariTopBar_barsBattery__P7Uck">
+                                                        <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M2.12886 11.6482C1.46344 11.6482 0.915436 11.2726 0.915436 10.8109V9.30066C0.915436 8.83897 1.46344 8.47119 2.12886 8.47119C2.79428 8.47119 3.34226 8.83897 3.34226 9.30066V10.7874C3.34226 11.2726 2.77862 11.6482 2.12886 11.6482Z" fill="#333333"></path>
+                                                            <path d="M5.91007 11.648C5.24464 11.648 4.69664 11.2724 4.69664 10.8107V6.72596C4.69664 6.26428 5.24464 5.88867 5.91007 5.88867C6.57551 5.88867 7.1235 6.26428 7.1235 6.72596V10.8107C7.15482 11.2724 6.60682 11.648 5.91007 11.648Z" fill="#333333"></path>
+                                                            <path d="M9.75379 11.6478C9.08836 11.6478 8.54819 11.2722 8.54819 10.8105V4.12782C8.54819 3.66613 9.08836 3.29053 9.75379 3.29053C10.4192 3.29053 10.9672 3.66613 10.9672 4.12782V10.8105C10.9672 11.2722 10.427 11.6478 9.75379 11.6478Z" fill="#333333"></path>
+                                                            <path d="M13.5662 11.6481C12.9008 11.6481 12.3606 11.2725 12.3606 10.8108V1.53016C12.3606 1.06848 12.9008 0.692871 13.5662 0.692871C14.2316 0.692871 14.7796 1.06848 14.7796 1.53016V10.8108C14.7796 11.2725 14.2395 11.6481 13.5662 11.6481Z" fill="#333333"></path>
+                                                        </svg>
+                                                        <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M18.5859 8.89509V7.41614H19.1809V3.30795H18.5859V1.82117C18.5697 1.44889 18.4065 1.09823 18.1321 0.845967C17.8577 0.593704 17.4945 0.460402 17.122 0.475249H2.39671C2.02343 0.46036 1.65938 0.593421 1.38375 0.845482C1.10813 1.09754 0.943236 1.4482 0.924957 1.82117V8.86379C0.943245 9.23743 1.10789 9.58887 1.38327 9.84218C1.65866 10.0955 2.02269 10.2303 2.39671 10.2175H17.0985C17.4701 10.2348 17.8337 10.1061 18.1116 9.85903C18.3895 9.61193 18.5598 9.26598 18.5859 8.89509ZM2.34974 9.56023C2.17246 9.5666 1.99981 9.50278 1.86935 9.38262C1.73889 9.26247 1.66113 9.09571 1.653 8.91857V1.78205C1.66113 1.60491 1.73889 1.43814 1.86935 1.31799C1.99981 1.19784 2.17246 1.13401 2.34974 1.14039H17.1377C17.3158 1.13396 17.4893 1.19754 17.621 1.31749C17.7527 1.43745 17.8321 1.60422 17.8423 1.78205V8.91857C17.8321 9.09639 17.7527 9.26317 17.621 9.38312C17.4893 9.50308 17.3158 9.56666 17.1377 9.56023H2.34974Z" fill="#333333"></path>
+                                                            <path d="M11.3525 7.85461V2.50221C11.3546 2.44299 11.3448 2.38394 11.3238 2.32852C11.3028 2.2731 11.271 2.22242 11.2302 2.17944C11.1894 2.13645 11.1404 2.10203 11.0861 2.07818C11.0318 2.05433 10.9734 2.04153 10.9141 2.04053H3.13258C3.07364 2.04149 3.01551 2.05433 2.96165 2.07828C2.90778 2.10222 2.85931 2.13677 2.81911 2.17987C2.77892 2.22297 2.74783 2.27373 2.72771 2.32912C2.70759 2.3845 2.69886 2.44337 2.70203 2.50221V7.83896C2.69886 7.89779 2.70759 7.95667 2.72771 8.01205C2.74783 8.06743 2.77892 8.11819 2.81911 8.16129C2.85931 8.20439 2.90778 8.23895 2.96165 8.26289C3.01551 8.28683 3.07364 8.29967 3.13258 8.30064H10.9219C10.9795 8.29962 11.0363 8.28727 11.0891 8.2643C11.1419 8.24134 11.1896 8.2082 11.2296 8.16678C11.2696 8.12536 11.301 8.07647 11.3221 8.02291C11.3432 7.96934 11.3535 7.91215 11.3525 7.85461Z" fill="#333333"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="SafariTopBar_urlBar__npePr">
+                                                    <a href="/"><p>testmyads.com</p></a>
+                                                </div>
+                                            </div>
+                                            <div class="SafariBottomBar_safariBottomBar__BLiaq">
+                                                <div>
+                                                    <svg class="SafariBottomBar_backButton__j5c3u" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                        <path d="M6.0459,12a.4976.4976,0,0,0,.16211.36816L16.74707,22.0293a.49971.49971,0,1,0,.67578-.73633L7.28613,12l10.1377-9.29395a.49971.49971,0,1,0-.67578-.73633L6.208,11.63184A.4976.4976,0,0,0,6.0459,12Z"></path>
+                                                    </svg>
+                                                </div>
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M17.9541,12a.4976.4976,0,0,1-.16211.36816L7.25293,22.0293a.49971.49971,0,0,1-.67578-.73633L16.71387,12,6.57617,2.70605A.49971.49971,0,1,1,7.252,1.96973l10.54,9.66211A.4976.4976,0,0,1,17.9541,12Z"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <g><g>
+                                                        <path d="M20.62109,8H17.5a.5.5,0,0,0,0,1h3.12109A.37927.37927,0,0,1,21,9.37891V22.62109A.37927.37927,0,0,1,20.62109,23H3.37891A.37927.37927,0,0,1,3,22.62109V9.37891A.37927.37927,0,0,1,3.37891,9H6.5a.5.5,0,0,0,0-1H3.37891A1.37994,1.37994,0,0,0,2,9.37891V22.62109A1.37994,1.37994,0,0,0,3.37891,24H20.62109A1.37994,1.37994,0,0,0,22,22.62109V9.37891A1.37994,1.37994,0,0,0,20.62109,8Z"></path>
+                                                        <path d="M7.87891,6.04395,11.5,1.84534V15.5a.5.5,0,0,0,1,0V1.84534l3.62109,4.19861a.5.5,0,1,0,.75781-.65234l-4.5-5.21777a.51644.51644,0,0,0-.75781,0l-4.5,5.21777a.5.5,0,1,0,.75781.65234Z"></path>
+                                                    </g></g>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <g>
+                                                        <path d="M22.5,1H14.82129l-.0127.00256L14.7959,1a3.294,3.294,0,0,0-2.80225,1.57465A3.294,3.294,0,0,0,9.19141,1l-.00635.00128L9.17871,1H1.5a.49971.49971,0,0,0-.5.5V19.63672a.49971.49971,0,0,0,.5.5H9.127A2.3677,2.3677,0,0,1,11.49316,22.5a.5.5,0,0,0,1,0,2.3677,2.3677,0,0,1,2.36621-2.36328H22.5a.49971.49971,0,0,0,.5-.5V1.5A.49971.49971,0,0,0,22.5,1ZM9.231,19.14722a.47109.47109,0,0,0-.05225-.0105H2V2H9.17871l.00635-.00128L9.19141,2a2.304,2.304,0,0,1,2.30225,2.296l-.00049.00287V20.11218A3.35258,3.35258,0,0,0,9.231,19.14722ZM22,19.13672H14.82129c-.01367,0-.0249.00665-.03809.00769a3.35349,3.35349,0,0,0-2.29.96777V4.3056l.001-.00482L12.49365,4.296A2.304,2.304,0,0,1,14.7959,2l.0127-.00256L14.82129,2H22Z"></path>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24">
+                                                    <g>
+                                                        <path d="M18.5,5h-16C2.2,5,2,5.2,2,5.5c0,0,0,0,0,0v16C2,21.8,2.2,22,2.5,22c0,0,0,0,0,0h16c0.3,0,0.5-0.2,0.5-0.5 c0,0,0,0,0,0v-16C19,5.2,18.8,5,18.5,5C18.5,5,18.5,5,18.5,5z M18,21H3V6h15V21z"></path>
+                                                        <path d="M21.5,2h-16C5.2,2,5,2.2,5,2.5S5.2,3,5.5,3H21v15.5c0,0.3,0.2,0.5,0.5,0.5s0.5-0.2,0.5-0.5v-16C22,2.2,21.8,2,21.5,2C21.5,2,21.5,2,21.5,2z"></path>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div id="preview-container" style="height: 100%; width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Phone_rightDiv__V8MGT"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function loadAdWithUrl() {
+            const adFormatSelect = document.getElementById('adFormat');
+            const selectedFormat = adFormatSelect.value;
+            const newUrl = document.getElementById('messageUrlInput').value;
+            const queryString = newUrl.split("?")[1];
+            const urlParams = new URLSearchParams(queryString);
+            const company_id = urlParams.get('company_id');
+            const line_item_id = urlParams.get('line_item_id');
+            const assigned_creative_id = urlParams.get('assigned_creative_id');
+            const supply_type = '2'; //hardcoded by page for desktop vs. mobile
+            const width = urlParams.get('width');
+            const height = urlParams.get('height');
+            const updatedMarkup = `
+                <div class='cnvr-ubr-adm cnvr-ubr-adm-2'><script>/* 1.11.0 | b73b500 | Wed, 04 Mar 2020 19:06:35 GMT */ !function(){'use strict';var r,n,e=Date.now(),t=window,i=t.document,a='https://iad-usadmm.dotomi.com/event/ad/lifecycle/current?magic=153562192&rt=1&ms=11&mwp=\${AUCTION_PRICE}&utype=0&icb=0&pid=33867&ptid=69787&pnid=243&tid=%{assigned_creative_id}&dtmid=&trid=2&ctrl_ad_id=5&btcurl=www.epsilon.com&dtm_user_ip=0.0.0.0&dvcid=&msgCampId=69440&parentMsgId=69439&supplyType=2&fpc=0&comId=2487&dtm_server_id=5020&ad_start='+e,u=new Image;u.setAttribute('importance','high'),u.src=a+'&etype=9999&edtl=-1,1,480d,33867,1002,1724,79190,2,2,iad,69788,69440,11,300,250,0&vtime='+(Date.now()-e),n='&pubUrl='+encodeURIComponent(function(r,n){('number'!=typeof r||r<0)&&(r=function r(n){return(n=n||window)===n.top?0:1+r(n.parent)}(n));var e=(n=n||window).document;if(0===r)return function(r){var n=(r=r||window).document.querySelector('link[rel=canonical]');return n?n.href:null}(n)||e.location.href;if(1===r)try{var t=n.parent.document.location.href;if(t)return t}catch(u){var i=e.referrer;if(i)return i}else if(2===r)try{var a=n.parent.document.referrer;if(a)return a}catch(u){}return function(r){var n=(r=r||window).location&&r.location.ancestorOrigins;return r&&n&&n.length>1?Array.isArray(n)?n.pop():n.item(n.length-1):null}(n)||''}()),t.cnvrReportUrl=a,t.cnvrAdStartTime=e,(r=i.createElement('script')).src='https://iad-usadmm.dotomi.com/fetch/cdt/preview/jsonp?cdtPreview=1&line_item_id=${line_item_id}&assigned_creative_id=${assigned_creative_id}&width=${width}&height=${height}&host=iad-usadmm.dotomi.com&trid=2&ops_test_camp=true&msgCampId=&ms=&tid=&comId=${company_id}&dtmid=&parentMsgId=&mraid=&ptid=&dvcid=&count_code=&post_code=&tz=-300'+-(new Date).getTimezoneOffset()+'&vtime='+(Date.now()-e)+n,i.querySelector('div.cnvr-ubr-adm-2').appendChild(r)}();<\/script><\/div>
+            `;
+            console.log("updatedmarkup");
+            console.log(updatedMarkup);
+            //console.log("updatedmarkup2");
+            //console.log(updatedMarkup2);
+                     
+            // Base64 encode the updated markup
+            const encodedMarkup = btoa(updatedMarkup);
+
+            //Kargo Data
+            const data = {
+                "props": {
+                    "pageProps": {
+                        "renderParams": {
+                            "adParams": {
+                                "kargo_id": "_xUJTs0TKaG",
+                                "platform_version": null,
+                                "kraken": {
+                                    "kargo_id": "_xUJTs0TKaG",
+                                    "krg_imp_id": "8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d",
+                                    "page_view_id": "997296af-daec-469a-a94b-1a58e2fc947b",
+                                    "viewability_tracker": "//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3",
+                                    "krk_imp_tracker": "//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}",
+                                    "context": "",
+                                    "ias_tag_params": "anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65",
+                                    "tracking": {
+                                        "serve": [],
+                                        "win": [],
+                                        "view": "//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3",
+                                        "billable": [
+                                            "//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}"
+                                        ],
+                                        "blocked": [
+                                            "//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "click": [
+                                            "//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "video_start": [
+                                            "//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "video_first_quartile": [
+                                            "//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "video_midpoint": [
+                                            "//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "video_third_quartile": [
+                                            "//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "video_complete": [
+                                            "//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "video_error": [
+                                            "//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ],
+                                        "video_load": [
+                                            "//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
+                                        ]
+                                    },
+                                    "creative_settings": null,
+                                    "format": selectedFormat,
+                                    "id": "7233",
+                                    "auction_type": "direct",
+                                    "adm": encodedMarkup,
+                                    "kraken_id": "123015"
+                                }
+                            },
+                            "adTagBaseUrl": "https://storage.cloud.kargo.com/ad/network/tag/v3/_bRQ5DD0Tun4RJLWj7MiIenVv.js",
+                            "testCaseDetails": {
+                                "ID": 7897,
+                                "Title": "Epsilon Test",
+                                "AdTag Version": "8.22.0",
+                                "AdPlatform Version": null,
+                                "Ad Format": selectedFormat,
+                                "Slot": "atf",
+                                "Delivery Method": "kraken-ssp",
+                                "Snippet ID": 8383
+                            },
+                            "slot": "atf",
+                            "title": "Kargonaut Test 7897 - Epsilon Test",
+                            "format": selectedFormat,
+                            "adTagVersionUrl": "https://storage.cloud.kargo.com/ad/network/tag/versions/8.22.0-20250818.js",
+                            "adParamStr": "\"kargo_id\":\"_xUJTs0TKaG\",\"platform_version\":null,\"kraken\":{\"kargo_id\":\"_xUJTs0TKaG\",\"krg_imp_id\":\"8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d\",\"page_view_id\":\"997296af-daec-469a-a94b-1a58e2fc947b\",\"viewability_tracker\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"krk_imp_tracker\":\"//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\",\"context\":\"\",\"ias_tag_params\":\"anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65\",\"tracking\":{\"serve\":[],\"win\":[],\"view\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"billable\":[\"//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\"],\"blocked\":[\"//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"click\":[\"//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_start\":[\"//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_first_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_midpoint\":[\"//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_third_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_complete\":[\"//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_error\":[\"//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_load\":[\"//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"]},\"creative_settings\":null,\"format\":\"" + selectedFormat + "\",\"id\":\"7233\",\"auction_type\":\"direct\",\"adm\":\"" + encodedMarkup + "\",\"kraken_id\":\"123015\"}",
+                            "isRawSnippet": false,
+                            "rawHTML": ""
+                        },
+                        "isMobileDevice": false
+                    },
+                    "__N_SSP": true
+                },
+                "page": "/kargonaut/[id]",
+                "query": {
+                    "id": "7897"
+                },
+                "buildId": "zoWgpZfx5Ox4DLALI1a3D",
+                "runtimeConfig": {
+                    "version": "4.41.0"
+                },
+                "isFallback": false,
+                "gssp": true,
+                "scriptLoader": []
+            };
+            const dataString = JSON.stringify(data);
+
+            const iframeHtml = `
+                <!DOCTYPE html>
+                <html>
+                    <head>
+                        <meta charSet="utf-8" />
+                        <title>Special Ads Demo</title>
+                        <link rel="preconnect" href="https://fonts.googleapis.com" />
+                        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+                        <link rel="shortcut icon" href="https://demo.kargo.com/img/favicon.ico" type="image/x-icon" />
+                        <meta name="next-head-count" content="6" />
+                        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                        <link rel="preload" href="https://demo.kargo.com/_next/static/css/89900292f3255a8b.css" as="style" />
+                        <link rel="stylesheet" href="https://demo.kargo.com/_next/static/css/89900292f3255a8b.css" data-n-g="" />
+                        <link rel="preload" href="https://demo.kargo.com/_next/static/css/1b2aacca4c8dbec6.css" as="style" />
+                        <link rel="stylesheet" href="https://demo.kargo.com/_next/static/css/1b2aacca4c8dbec6.css" data-n-p="" /><noscript data-n-css=""></noscript>
+                        <script defer="" nomodule="" src="https://demo.kargo.com/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/webpack-d3cee6d335fac432.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/framework-fae63b21a27d6472.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/main-8fb7aad491ebbf87.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/pages/_app-93cb2c83ae76efa9.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/733-0fc12c8b87373a78.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/185-578ffcdfb487b65a.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/10-cbbd4e841091b1f0.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/643-2519d3c4e787fb01.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/758-f3479fe70f9e63c0.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/402-069e973fe23e53f6.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/18-1794e3521c2ca359.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/200-066295561ea37aa5.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/542-3879968e3ec0a76e.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/pages/dm/preview/%5Buuid%5D-8c521bb928b4707b.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/zoWgpZfx5Ox4DLALI1a3D/_buildManifest.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/zoWgpZfx5Ox4DLALI1a3D/_ssgManifest.js" defer=""><\/script>
+                        <script src="https://demo.kargo.com/_next/static/chunks/pages/kargonaut/%5Bid%5D-383085f4c0e9d6a1.js" defer=""><\/script>
+                    </head>
+                    <div id="__next">
+                        <div>
+                            <div class="krg-preview Kargonaut_main__fBGku">
+                                    <div id="kargo-ad-atf-desktop"></div>
+                                    <div class="Kargonaut_desktopContainer__5oDH9">
+                                        <div class="Kargonaut_sidebar__OHCYO">
+                                            <div id="kargo-ad-side"></div>
+                                        </div>
+                                        <div class="Kargonaut_container__zyoD2">
+                                                <div id="kargo-ad-interstitial"></div>
+                                                <div id="kargo-ad-atf">
+                                                    <div></div>
+                                                </div>
+                                                <div>
+                                                    <ul class=" Channel_item__7hH0E Channel_kargonautDesktop__TPAiK undefined">
+                                                            <h1 class="Channel_theme__Ao_sk" id="channel-title-Channel1">Heading<!-- -->1</h1>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div>
+                                                    <ul class=" Channel_item__7hH0E Channel_kargonautDesktop__TPAiK false">
+                                                            <h1 class="Channel_theme__Ao_sk" id="channel-title-Channel2">Heading <!-- -->2</h1>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div id="kargo-ad-middle"></div>
+                                                <div>
+                                                    <ul class=" Channel_item__7hH0E Channel_kargonautDesktop__TPAiK false">
+                                                            <h1 class="Channel_theme__Ao_sk" id="channel-title-Channel3">Heading <!-- -->3</h1>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none"  xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sitamet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div>
+                                                    <ul class=" Channel_item__7hH0E Channel_kargonautDesktop__TPAiK false">
+                                                            <h1 class="Channel_theme__Ao_sk" id="channel-title-Channel4">Heading <!-- -->4</h1>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                            </a></li>
+                                                            <li><a id="link-homepage-list-1">
+                                                                <div class="Channel_grayRectangle__XHSzl">
+                                                                        <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M11.4107 8.55824C11.4107 9.31482 11.1101 10.0404 10.5751 10.5754C10.0402 11.1104 9.31458 11.4109 8.558 11.4109C7.80142 11.4109 7.07583 11.1104 6.54085 10.5754C6.00587 10.0404 5.70532 9.31482 5.70532 8.55824C5.70532 7.80167 6.00587 7.07608 6.54085 6.5411C7.07583 6.00612 7.80142 5.70557 8.558 5.70557C9.31458 5.70557 10.0402 6.00612 10.5751 6.5411C11.1101 7.07608 11.4107 7.80167 11.4107 8.55824Z" fill="white"></path>
+                                                                            <path d="M3.80357 0C2.7948 0 1.82735 0.400732 1.11404 1.11404C0.400732 1.82735 0 2.7948 0 3.80357V22.8214C0 23.8302 0.400732 24.7977 1.11404 25.511C1.82735 26.2243 2.7948 26.625 3.80357 26.625H26.625C27.6338 26.625 28.6012 26.2243 29.3145 25.511C30.0278 24.7977 30.4286 23.8302 30.4286 22.8214V3.80357C30.4286 2.7948 30.0278 1.82735 29.3145 1.11404C28.6012 0.400732 27.6338 0 26.625 0H3.80357ZM26.625 1.90179C27.1294 1.90179 27.6131 2.10215 27.9698 2.45881C28.3264 2.81546 28.5268 3.29919 28.5268 3.80357V16.1652L21.3437 12.4624C21.1654 12.3731 20.9635 12.3421 20.7665 12.3738C20.5696 12.4056 20.3877 12.4984 20.2464 12.6393L13.1908 19.6949L8.13204 16.3249C7.94939 16.2033 7.73031 16.1486 7.51194 16.1701C7.29357 16.1916 7.08935 16.288 6.93391 16.4428L1.90179 20.9196V3.80357C1.90179 3.29919 2.10215 2.81546 2.45881 2.45881C2.81546 2.10215 3.29919 1.90179 3.80357 1.90179H26.625Z" fill="white"></path>
+                                                                        </svg>
+                                                                </div>
+                                                                <p>Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite Lorem ipsum dolor sit amet br cite...</p>
+                                                                </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div id="kargo-ad-bottom"></div>
+                                        </div>
+                                    </div>
+                                    <div">© Special</div>
+                            </div>
+                        </div>
+                    </div>
+                    <script id="__NEXT_DATA__" type="application/json">
+                        ${dataString}
+                    <\/script> 
+                `;
+
+
+             // Create and write to an iframe
+            var iframe = document.createElement('iframe');
+            iframe.id = 'ad-preview-container';
+            iframe.className = 'Phone_ad-preview-container__D_Sur Phone_iframe__DKbdX krg-nobust Phone_display-ad__JD7px';
+            iframe.frameBorder = '0';
+            iframe.sandbox = 'allow-scripts allow-same-origin';
+            
+            var previewDiv = document.getElementById('preview-container');
+            previewDiv.appendChild(iframe);
+
+            iframe.contentWindow.document.open();
+            iframe.contentWindow.document.write(iframeHtml);
+            iframe.contentWindow.document.close();
+
+        }
+
+
+        document.getElementById('updateBtn').addEventListener('click', function() {
+                loadAdWithUrl();
+        });
+
+        
+    </script>
+
+
+</body>
+
+</html>
