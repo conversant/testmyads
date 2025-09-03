@@ -427,126 +427,43 @@
         </div>
     </div>
     <script>
-        function loadAdWithUrl() {
-            const adFormatSelect = document.getElementById('adFormat');
-            const selectedFormat = adFormatSelect.value;
-            const newUrl = document.getElementById('messageUrlInput').value;
-            const queryString = newUrl.split("?")[1];
-            const urlParams = new URLSearchParams(queryString);
-            const company_id = urlParams.get('company_id');
-            const line_item_id = urlParams.get('line_item_id');
-            const assigned_creative_id = urlParams.get('assigned_creative_id');
-            const supply_type = '2'; //hardcoded by page for desktop vs. mobile
-            const width = urlParams.get('width');
-            const height = urlParams.get('height');
-            const updatedMarkup = `
-                <div class='cnvr-ubr-adm cnvr-ubr-adm-2'><script>/* 1.11.0 | b73b500 | Wed, 04 Mar 2020 19:06:35 GMT */ !function(){'use strict';var r,n,e=Date.now(),t=window,i=t.document,a='https://iad-usadmm.dotomi.com/event/ad/lifecycle/current?magic=153562192&rt=1&ms=11&mwp=\${AUCTION_PRICE}&utype=0&icb=0&pid=33867&ptid=69787&pnid=243&tid=%{assigned_creative_id}&dtmid=&trid=2&ctrl_ad_id=5&btcurl=www.epsilon.com&dtm_user_ip=0.0.0.0&dvcid=&msgCampId=69440&parentMsgId=69439&supplyType=2&fpc=0&comId=2487&dtm_server_id=5020&ad_start='+e,u=new Image;u.setAttribute('importance','high'),u.src=a+'&etype=9999&edtl=-1,1,480d,33867,1002,1724,79190,2,2,iad,69788,69440,11,300,250,0&vtime='+(Date.now()-e),n='&pubUrl='+encodeURIComponent(function(r,n){('number'!=typeof r||r<0)&&(r=function r(n){return(n=n||window)===n.top?0:1+r(n.parent)}(n));var e=(n=n||window).document;if(0===r)return function(r){var n=(r=r||window).document.querySelector('link[rel=canonical]');return n?n.href:null}(n)||e.location.href;if(1===r)try{var t=n.parent.document.location.href;if(t)return t}catch(u){var i=e.referrer;if(i)return i}else if(2===r)try{var a=n.parent.document.referrer;if(a)return a}catch(u){}return function(r){var n=(r=r||window).location&&r.location.ancestorOrigins;return r&&n&&n.length>1?Array.isArray(n)?n.pop():n.item(n.length-1):null}(n)||''}()),t.cnvrReportUrl=a,t.cnvrAdStartTime=e,(r=i.createElement('script')).src='https://iad-usadmm.dotomi.com/fetch/cdt/preview/jsonp?cdtPreview=1&line_item_id=${line_item_id}&assigned_creative_id=${assigned_creative_id}&width=${width}&height=${height}&host=iad-usadmm.dotomi.com&trid=2&ops_test_camp=true&msgCampId=&ms=&tid=&comId=${company_id}&dtmid=&parentMsgId=&mraid=&ptid=&dvcid=&count_code=&post_code=&tz=-300'+-(new Date).getTimezoneOffset()+'&vtime='+(Date.now()-e)+n,i.querySelector('div.cnvr-ubr-adm-2').appendChild(r)}();<\/script><\/div>
-            `;
-            console.log("updatedmarkup");
-            console.log(updatedMarkup);
-            //console.log("updatedmarkup2");
-            //console.log(updatedMarkup2);
-                     
-            // Base64 encode the updated markup
-            const encodedMarkup = btoa(updatedMarkup);
-
-            //Kargo Data
-            const data = {
-                "props": {
-                    "pageProps": {
-                        "renderParams": {
-                            "adParams": {
-                                "kargo_id": "_xUJTs0TKaG",
-                                "platform_version": null,
-                                "kraken": {
-                                    "kargo_id": "_xUJTs0TKaG",
-                                    "krg_imp_id": "8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d",
-                                    "page_view_id": "997296af-daec-469a-a94b-1a58e2fc947b",
-                                    "viewability_tracker": "//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3",
-                                    "krk_imp_tracker": "//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}",
-                                    "context": "",
-                                    "ias_tag_params": "anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65",
-                                    "tracking": {
-                                        "serve": [],
-                                        "win": [],
-                                        "view": "//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3",
-                                        "billable": [
-                                            "//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}"
-                                        ],
-                                        "blocked": [
-                                            "//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "click": [
-                                            "//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "video_start": [
-                                            "//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "video_first_quartile": [
-                                            "//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "video_midpoint": [
-                                            "//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "video_third_quartile": [
-                                            "//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "video_complete": [
-                                            "//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "video_error": [
-                                            "//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ],
-                                        "video_load": [
-                                            "//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"
-                                        ]
-                                    },
-                                    "creative_settings": null,
-                                    "format": selectedFormat,
-                                    "id": "7233",
-                                    "auction_type": "direct",
-                                    "adm": encodedMarkup,
-                                    "kraken_id": "123015"
-                                }
-                            },
-                            "adTagBaseUrl": "https://storage.cloud.kargo.com/ad/network/tag/v3/_bRQ5DD0Tun4RJLWj7MiIenVv.js",
-                            "testCaseDetails": {
-                                "ID": 7897,
-                                "Title": "Epsilon Test",
-                                "AdTag Version": "8.22.0",
-                                "AdPlatform Version": null,
-                                "Ad Format": selectedFormat,
-                                "Slot": "atf",
-                                "Delivery Method": "kraken-ssp",
-                                "Snippet ID": 8383
-                            },
-                            "slot": "atf",
-                            "title": "Kargonaut Test 7897 - Epsilon Test",
-                            "format": selectedFormat,
-                            "adTagVersionUrl": "https://storage.cloud.kargo.com/ad/network/tag/versions/8.22.0-20250818.js",
-                            "adParamStr": "\"kargo_id\":\"_xUJTs0TKaG\",\"platform_version\":null,\"kraken\":{\"kargo_id\":\"_xUJTs0TKaG\",\"krg_imp_id\":\"8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d\",\"page_view_id\":\"997296af-daec-469a-a94b-1a58e2fc947b\",\"viewability_tracker\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"krk_imp_tracker\":\"//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\",\"context\":\"\",\"ias_tag_params\":\"anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65\",\"tracking\":{\"serve\":[],\"win\":[],\"view\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"billable\":[\"//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\"],\"blocked\":[\"//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"click\":[\"//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_start\":[\"//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_first_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_midpoint\":[\"//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_third_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_complete\":[\"//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_error\":[\"//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_load\":[\"//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"]},\"creative_settings\":null,\"format\":\"" + selectedFormat + "\",\"id\":\"7233\",\"auction_type\":\"direct\",\"adm\":\"" + encodedMarkup + "\",\"kraken_id\":\"123015\"}",
-                            "isRawSnippet": false,
-                            "rawHTML": ""
-                        },
-                        "isMobileDevice": false
-                    },
-                    "__N_SSP": true
-                },
-                "page": "/kargonaut/[id]",
-                "query": {
-                    "id": "7897"
-                },
-                "buildId": "zoWgpZfx5Ox4DLALI1a3D",
-                "runtimeConfig": {
-                    "version": "4.41.0"
-                },
-                "isFallback": false,
-                "gssp": true,
-                "scriptLoader": []
-            };
-            const dataString = JSON.stringify(data);
-
-            const iframeHtml = `
+        (function autoLoadAdFromQuery() { 
+            const urlParams = new URLSearchParams(window.location.search); 
+            const adUrlFromQuery = urlParams.get('adUrl'); 
+            const adFormatFromQuery = urlParams.get('adFormat'); 
+            const adFormatSelect = document.getElementById('adFormat'); 
+            if (adUrlFromQuery) { 
+                if (adFormatFromQuery) { 
+                    adFormatSelect.value = decodeURIComponent(adFormatFromQuery); 
+                } 
+            const inputEl = document.getElementById('messageUrlInput'); 
+            if (inputEl) { 
+                inputEl.value = decodeURIComponent(adUrlFromQuery);
+            } buildIframe(decodeURIComponent(adUrlFromQuery), adFormatSelect.value); } })(); 
+            
+            function loadAdWithUrl() { 
+                const newUrl = document.getElementById('messageUrlInput').value; 
+                const selectedFormat = document.getElementById('adFormat').value; 
+                if (!newUrl) { 
+                    alert('Please enter a URL first.'); 
+                    return; 
+                } 
+                
+                window.location.search = 'adUrl=' + encodeURIComponent(newUrl) + '&adFormat=' + encodeURIComponent(selectedFormat); 
+            } 
+            
+            
+            function buildIframe(newUrl, selectedFormat) {
+                const queryString = newUrl.split('?')[1] || ''; 
+                const urlParams = new URLSearchParams(queryString); 
+                const company_id = urlParams.get('company_id'); 
+                const line_item_id = urlParams.get('line_item_id'); 
+                const assigned_creative_id = urlParams.get('assigned_creative_id'); 
+                const width = urlParams.get('width');
+                const height = urlParams.get('height'); 
+                const supply_type = '1'; 
+                const updatedMarkup = ` <div class='cnvr-ubr-adm cnvr-ubr-adm-2'> <script>!function(){'use strict';var r,n,e=Date.now(),t=window,i=t.document,a='https://iad-usadmm.dotomi.com/event/ad/lifecycle/current?magic=153562192&rt=1&ms=11&mwp=\${AUCTION_PRICE}&utype=0&icb=0&pid=33867&ptid=69787&pnid=243&tid=%{assigned_creative_id}&dtmid=&trid=2&ctrl_ad_id=5&btcurl=www.epsilon.com&dtm_user_ip=0.0.0.0&dvcid=&msgCampId=69440&parentMsgId=69439&supplyType=2&fpc=0&comId=2487&dtm_server_id=5020&ad_start='+e,u=new Image;u.setAttribute('importance','high'),u.src=a+'&etype=9999&edtl=-1,1,480d,33867,1002,1724,79190,2,2,iad,69788,69440,11,300,250,0&vtime='+(Date.now()-e),n='&pubUrl='+encodeURIComponent(function(r,n){('number'!=typeof r||r<0)&&(r=function r(n){return(n=n||window)===n.top?0:1+r(n.parent)}(n));var e=(n=n||window).document;if(0===r)return function(r){var n=(r=r||window).document.querySelector('link[rel=canonical]');return n?n.href:null}(n)||e.location.href;if(1===r)try{var t=n.parent.document.location.href;if(t)return t}catch(u){var i=e.referrer;if(i)return i}else if(2===r)try{var a=n.parent.document.referrer;if(a)return a}catch(u){}return function(r){var n=(r=r||window).location&&r.location.ancestorOrigins;return r&&n&&n.length>1?Array.isArray(n)?n.pop():n.item(n.length-1):null}(n)||''}()),t.cnvrReportUrl=a,t.cnvrAdStartTime=e,(r=i.createElement('script')).src='https://iad-usadmm.dotomi.com/fetch/cdt/preview/jsonp?cdtPreview=1&line_item_id=${line_item_id}&assigned_creative_id=${assigned_creative_id}&width=${width}&height=${height}&host=iad-usadmm.dotomi.com&trid=2&ops_test_camp=true&msgCampId=&ms=&tid=&comId=${company_id}&dtmid=&parentMsgId=&mraid=&ptid=&dvcid=&count_code=&post_code=&tz=-300'+-(new Date).getTimezoneOffset()+'&vtime='+(Date.now()-e)+n,i.querySelector('div.cnvr-ubr-adm-2').appendChild(r)}();<\/script> </div> `; const encodedMarkup = btoa(updatedMarkup); const data = { "props": { "pageProps": { "renderParams": { "adParams": { "kargo_id": "_xUJTs0TKaG", "platform_version": null, "kraken": { "kargo_id": "_xUJTs0TKaG", "krg_imp_id": "8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d", "page_view_id": "997296af-daec-469a-a94b-1a58e2fc947b", "viewability_tracker": "//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3", "krk_imp_tracker": "//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}", "context": "", "ias_tag_params": "anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65", "tracking": { "serve": [], "win": [], "view": "//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3", "billable": ["//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}"], "blocked": ["//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "click": ["//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "video_start": ["//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "video_first_quartile": ["//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "video_midpoint": ["//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "video_third_quartile": ["//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "video_complete": ["//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "video_error": ["//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"], "video_load": ["//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3"] }, "creative_settings": null, "format": selectedFormat, "id": "7233", "auction_type": "direct", "adm": encodedMarkup, "kraken_id": "123015" } }, "adTagBaseUrl": "https://storage.cloud.kargo.com/ad/network/tag/v3/_bRQ5DD0Tun4RJLWj7MiIenVv.js", "testCaseDetails": { "ID": 7897, "Title": "Epsilon Test", "AdTag Version": "8.22.0", "AdPlatform Version": null, "Ad Format": selectedFormat, "Slot": "atf", "Delivery Method": "kraken-ssp", "Snippet ID": 8383 }, "slot": "atf", "title": "Kargonaut Test 7897 - Epsilon Test", "format": selectedFormat, "adTagVersionUrl": "https://storage.cloud.kargo.com/ad/network/tag/versions/8.22.0-20250818.js", "adParamStr": "\"kargo_id\":\"_xUJTs0TKaG\",\"platform_version\":null,\"kraken\":{\"kargo_id\":\"_xUJTs0TKaG\",\"krg_imp_id\":\"8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d\",\"page_view_id\":\"997296af-daec-469a-a94b-1a58e2fc947b\",\"viewability_tracker\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"krk_imp_tracker\":\"//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\",\"context\":\"\",\"ias_tag_params\":\"anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65\",\"tracking\":{\"serve\":[],\"win\":[],\"view\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"billable\":[\"//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\"],\"blocked\":[\"//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"click\":[\"//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_start\":[\"//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_first_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_midpoint\":[\"//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_third_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_complete\":[\"//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_error\":[\"//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_load\":[\"//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"]},\"creative_settings\":null,\"format\":\"" + selectedFormat + "\",\"id\":\"7233\",\"auction_type\":\"direct\",\"adm\":\"" + encodedMarkup + "\",\"kraken_id\":\"123015\"}", "isRawSnippet": false, "rawHTML": "" }, "isMobileDevice": false }, "__N_SSP": true }, "page": "/kargonaut/[id]", "query": { "id": "7897" }, "buildId": "zoWgpZfx5Ox4DLALI1a3D", "runtimeConfig": { "version": "4.41.0" }, "isFallback": false, "gssp": true, "scriptLoader": [] }; const dataString = JSON.stringify(data);
+                const iframeHtml = `
                 <!DOCTYPE html>
                 <html>
                     <head>
@@ -735,27 +652,19 @@
                     <\/script> 
                 `;
 
-
-             // Create and write to an iframe
-            var iframe = document.createElement('iframe');
-            iframe.id = 'ad-preview-container';
+            var iframe = document.createElement('iframe'); 
             iframe.className = 'Phone_ad-preview-container__D_Sur Phone_iframe__DKbdX krg-nobust Phone_display-ad__JD7px';
-            iframe.frameBorder = '0';
+            iframe.id = 'ad-preview-container'; iframe.frameBorder = '0';
             iframe.sandbox = 'allow-scripts allow-same-origin';
-            
             var previewDiv = document.getElementById('preview-container');
-            previewDiv.appendChild(iframe);
-
-            iframe.contentWindow.document.open();
-            iframe.contentWindow.document.write(iframeHtml);
-            iframe.contentWindow.document.close();
-
-        }
-
-
-        document.getElementById('updateBtn').addEventListener('click', function() {
-                loadAdWithUrl();
-        });
+            if (previewDiv) { 
+                previewDiv.innerHTML = ''; 
+                previewDiv.appendChild(iframe); 
+                iframe.contentWindow.document.open(); 
+                iframe.contentWindow.document.write(iframeHtml); 
+                iframe.contentWindow.document.close(); 
+            }
+        } document.getElementById('updateBtn').addEventListener('click', loadAdWithUrl); 
 
         
     </script>
