@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea, input[type="submit"], button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 22px);
+            font-size: 16px;
+        }
+        textarea {
+            height: 150px; /* Adjust this value to make the textbox taller */
+            resize: vertical; /* Allows users to resize the textarea vertically */
+        }
+    </style>
+</head>
+<body>
+    <h1>Kargo markup converter</h1>
+    <label for="inputString">Enter your Kargo markup:</label>
+    <textarea id="inputString" placeholder="Place Kargo markup here"></textarea>
+    
+    <input type="submit" id="submitButton" value="Submit">
+    
+    <label for="output">Output:</label>
+    <textarea id="output" readonly></textarea>
+    
+    <button id="copyButton">Copy to Clipboard</button>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const inputString = document.getElementById('inputString').value;
+            const manipulatedString = inputString.replace(/<\/script>/gi, '</SCR+IPT>');
+            const pre_string = `<script type="text/kargo_creative" data-ad-kargo-payload="cnvr_kargo_{{{TRANSACTION_ID}}}">`;
+            const post_string = '<\/script><script>(function() { try { var targetElement = parent.document.querySelector(\'div.cnvr-ubr-adm.cnvr-ubr-adm-{{{TRANSACTION_ID}}}\'); if (targetElement) { var adScript = document.querySelector(\'script[data-ad-kargo-payload=\"cnvr_kargo_{{{TRANSACTION_ID}}}\"]\'); if (adScript) { var adContent = adScript.textContent.split(\'\/scr+ipt>\').join(\'\/script>\').split(\'\/SCR+IPT>\').join(\'\/SCRIPT>\'); var tempDiv = parent.document.createElement(\'div\'); tempDiv.innerHTML = adContent; var oldScripts = tempDiv.querySelectorAll(\'script[src]\'); for (var i = 0; i < oldScripts.length; i++) { var oldScript = oldScripts[i]; var newScript = parent.document.createElement(\'script\'); for (var j = 0; j < oldScript.attributes.length; j++) { var attr = oldScript.attributes[j]; newScript.setAttribute(attr.name, attr.value); } oldScript.parentNode.replaceChild(newScript, oldScript); } while (tempDiv.firstChild) { targetElement.appendChild(tempDiv.firstChild); } console.log(\'Ad content inserted above target div with external scripts recreated successfully\'); } else { console.warn(\'Ad script not found\'); } } else { console.warn(\'Target element not found: div.cnvr-ubr-adm.cnvr-ubr-adm-2\'); } } catch (error) { console.error(\'Error inserting ad content:\', error); }})();<\/script>'
+            document.getElementById('output').value = pre_string + manipulatedString + post_string;
+        });
+
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const outputField = document.getElementById('output');
+            outputField.select();
+            document.execCommand('copy');
+            alert('Output copied to clipboard!');
+        });
+    </script>
+</body>
+</html>
