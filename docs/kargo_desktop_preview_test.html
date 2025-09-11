@@ -328,7 +328,7 @@
                 <option value="Anchor">Anchor</option>
                 <option value="Sidekick">Sidekick</option>
                 <option value="Runway">Runway</option>
-                <option value="Triplex">Triplex</option>
+                <option value="Tri-plex">Tri-plex</option>
                 <option value="Wrapper">Wrapper</option>
                 <option value="KeyArt">KeyArt</option>
                 <option value="Venti">Venti</option>
@@ -379,6 +379,7 @@
                 const encodedMarkup = btoa(updatedMarkup); 
                 const middleFormats = ["MiddleBanner", "KeyArt", "Venti", "Lighthouse", "HighRise"];
                 const adSlot = middleFormats.includes(selectedFormat) ? "middle" : "atf";
+                if (selectedFormat == "Tri-plex"){ selectedFormat = "Breakaway";}
                 const data = {
                     "props": {
                         "pageProps": {
@@ -622,7 +623,7 @@
             var iframe = document.createElement('iframe'); 
             iframe.className = 'Phone_ad-preview-container__D_Sur Phone_iframe__DKbdX krg-nobust Phone_display-ad__JD7px';
             iframe.id = 'ad-preview-container'; iframe.frameBorder = '0';
-            iframe.sandbox = 'allow-scripts allow-same-origin';
+            iframe.sandbox = 'allow-scripts allow-popups allow-same-origin';
             var previewDiv = document.getElementById('preview-container');
             if (previewDiv) { 
                 previewDiv.innerHTML = ''; 
