@@ -38,7 +38,6 @@ const callback = function(tcData, success) {
 __tcfapi('addEventListener', 2, callback);
 
 function getJwplayer() {
-  jwplayer.key = 'XZyU3yIB6FBlhDyQckG47C6EGgEeHnwGsexOZPejXhRT8F3e';
 
   var randomNum = Math.floor(Math.random() * 1000000);
   var fileUrl;
