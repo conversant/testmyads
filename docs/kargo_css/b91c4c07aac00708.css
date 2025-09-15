@@ -1,0 +1,356 @@
+.Channel_item__7hH0E {
+    clear: left;
+    list-style: none;
+    background-color: #fff;
+    margin: .531rem .438rem .531rem .5rem;
+    display: inline-block;
+    padding: 0;
+    border-left: 1px solid #e5eaef;
+    border-right: 1px solid #e5eaef
+}
+
+.Channel_item__7hH0E a {
+    display: flex;
+    border-bottom: 1px solid #e5eaef
+}
+
+.Channel_item__7hH0E p {
+    vertical-align: top;
+    font-size: .688rem;
+    margin: .938rem .625rem 1.063rem 0;
+    width: 100%;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    line-height: 1.031rem;
+    word-wrap: break-word;
+    color: #e5eaef
+}
+
+.Channel_kargonautDesktop__TPAiK {
+    width: 100%
+}
+
+.Channel_kargonautDesktop__TPAiK p {
+    margin: .938rem .625rem 4.063rem 0
+}
+
+.Channel_theme__Ao_sk {
+    background-color: #e5eaef;
+    padding: 1rem 1.25rem;
+    color: #fff;
+    position: relative;
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: .875rem;
+    line-height: 1.313rem
+}
+
+.Channel_grayRectangle__XHSzl {
+    background-color: #e5eaef;
+    width: 5.875rem;
+    height: 4.625rem;
+    vertical-align: top;
+    padding: 1.5rem 2rem;
+    margin: auto 1.188rem auto 1.063rem
+}
+
+.Logo_logoBg__FydrO {
+    width: 250px;
+    height: 50px;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15000
+}
+
+.Logo_fadeOut__urdxV {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    transition: width 1s 1s, height 1s 1s, opacity 1s
+}
+
+.Logo_logoImg__fhDBG {
+    max-width: 250px;
+    max-height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto
+}
+
+.TV_tvContainer__xA4cf {
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    display: flex;
+    height: calc(100% - 50px);
+    z-index: 1
+}
+
+.TV_tvContainerMobile__IqsCN {
+    background-color: #e5eaef;
+    height: 100%;
+    top: 0;
+    flex-direction: column;
+    justify-content: center
+}
+
+.TV_mobileLogoContainer__z2CJA {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    align-items: center
+}
+
+.TV_mobileLogoContainer__z2CJA svg {
+    width: 86px;
+    height: 32px
+}
+
+.TV_mobileLogoContainer__z2CJA svg path {
+    fill: #bdc7ce
+}
+
+.TV_mobileLogoContainerLandscape__73coc {
+    display: none
+}
+
+.TV_leftDivNavOpen__TKm2V {
+    min-width: 285px
+}
+
+.TV_TVView___8Usd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    position: relative
+}
+
+.TV_TVViewMobile__O4mv8 {
+    height: 70%;
+    justify-content: flex-end
+}
+
+.TV_TVShell__jDlPT {
+    width: 87.85%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    height: auto;
+    max-width: 120vmin;
+    min-width: 180px
+}
+
+.TV_TVShellMobile__1_6UW {
+    top: 7%
+}
+
+.TV_videoShell__aBbGe {
+    aspect-ratio: 19000/12347
+}
+
+.TV_CTVAd__hJc_M {
+    position: absolute;
+    top: 5.5%;
+    left: 3.57%;
+    width: 92.1%;
+    height: auto
+}
+
+.TV_TVButtons__U_j79 {
+    position: absolute;
+    top: 94%;
+    left: 0;
+    right: 0;
+    row-gap: 16px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    height: calc(480px - 50vw - 135px);
+    min-height: 40px;
+    max-height: 173px;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.TV_TVButtonsMobile__xOTqc {
+    position: relative;
+    top: unset;
+    flex-wrap: nowrap
+}
+
+.TV_buttonsLeftNavOpen__ZbJ7l {
+    height: calc(480px - 50vw)
+}
+
+.TV_playPauseButton__DzJEV {
+    width: 130px;
+    height: 40px;
+    display: flex;
+    padding: 10px 24px;
+    border-radius: 100px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .25);
+    background-color: #03f;
+    border: 0;
+    cursor: pointer;
+    justify-content: center
+}
+
+.TV_playPauseButton__DzJEV:hover {
+    background-color: #000
+}
+
+.TV_pauseButton__C3sN9 {
+    width: 143px
+}
+
+.TV_playPauseButtonMobile__C1hox:hover {
+    background-color: #03f
+}
+
+.TV_playPauseText__xAnej {
+    display: flex;
+    justify-content: space-around;
+    width: 93.4px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.43;
+    color: #fff
+}
+
+.TV_playPauseText__xAnej,
+.TV_textTooltip__G3Qt9 {
+    align-items: center;
+    font-family: Poppins, sans-serif
+}
+
+.TV_textTooltip__G3Qt9 {
+    display: "flex";
+    flex-direction: column;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: .25px
+}
+
+.TV_circularButtonWrapper__p6qbO,
+.TV_qrButtonWrapperMobile__aah9A {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0
+}
+
+.TV_circularButtonWrapper__p6qbO {
+    flex-wrap: nowrap
+}
+
+.TV_qrButtonWrapperMobile__aah9A {
+    margin-top: 20px
+}
+
+.TV_circularButtonMobile__xdopq,
+.TV_circularButton__Z2GnN {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid #03f;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: 12px
+}
+
+.TV_circularButtonMobile__xdopq svg path,
+.TV_circularButton__Z2GnN svg path {
+    fill: #03f
+}
+
+.TV_circularButton__Z2GnN:hover {
+    border: 1px solid #000
+}
+
+.TV_circularButton__Z2GnN:hover svg path {
+    fill: #000
+}
+
+.TV_volumeButtonMobile__a1xA3 {
+    margin-left: 0
+}
+
+.TV_mobileQrLandingPage__KedtX {
+    display: flex;
+    align-items: center;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.TV_mobileQrLandingPage__KedtX svg path {
+    fill: #03f
+}
+
+.TV_mobileQrLandingPage__KedtX p {
+    margin-left: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #03f
+}
+
+@media screen and (orientation:landscape) {
+    .TV_TVShellMobile__1_6UW {
+        width: 60%;
+        right: 28%;
+        top: 2%
+    }
+
+    .TV_mobileLogoContainer__z2CJA {
+        display: none
+    }
+
+    .TV_mobileLogoContainerLandscape__73coc {
+        display: flex;
+        justify-content: center
+    }
+
+    .TV_mobileLogoContainerLandscape__73coc svg {
+        width: 64.5px;
+        height: 24px
+    }
+
+    .TV_mobileLogoContainerLandscape__73coc svg path {
+        fill: #bdc7ce
+    }
+
+    .TV_TVButtonsLogo__li0Dt {
+        height: 50%;
+        width: 30%;
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between
+    }
+
+    .TV_tvContainerMobile__IqsCN {
+        height: 100%
+    }
+
+    .TV_TVViewMobile__O4mv8 {
+        height: 90%
+    }
+}
