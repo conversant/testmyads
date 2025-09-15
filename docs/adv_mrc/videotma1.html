@@ -17,7 +17,7 @@
             padding: 0px;
         }
     </style>
-    <script src="../js/jwplayer-8.9.3/jwplayer.js"></script>
+    <script src="https://cdn.jwplayer.com/libraries/9p8CFpVb.js"></script>
     <script>
         var bidRequest = {"id":"","site":{"id":"125684","name":"http://testmyads.com","domain":"http://testmyads.com","publisher":{"id":"21347"}},"imp":[{"id":"8aed19bd8125ae","video":{"playbackmethod": [2],"mimes":["application/javascript"],"api":[1,2],"w":640,"h":360},"displaymanager":"35001","displaymanagerver":"3.0.6","bidfloor":0.0000,"bidfloorcur":"USD","secure":1,"pmp":{"deals":[{"id":"213","bidfloor":0.00,"bidfloorcur":"USD","at":3}],"private_auction":1}}],"device":{"dnt":0,"ua":""},"user":{}}
         var vastUrl = "";
@@ -57,7 +57,6 @@
 
         function playvideo() {
             document.removeEventListener('DOMContentLoaded', playvideo);
-            jwplayer.key = "***REMOVED***";
             jwplayer("player").setup({
                 primary: "html5",
                 advertising: {
