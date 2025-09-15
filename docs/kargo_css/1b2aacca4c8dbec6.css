@@ -1,0 +1,235 @@
+.__404_body__zEozu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Colfax, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    color: #000;
+    background-color: #3f4853;
+    -webkit-text-size-adjust: none;
+    overflow-x: hidden
+}
+
+.__404_body__zEozu::-webkit-scrollbar {
+    display: none
+}
+
+.__404_body__zEozu * {
+    margin: 0;
+    padding: 0
+}
+
+.__404_body__zEozu a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 400
+}
+
+.__404_body__zEozu img {
+    border: 0;
+    display: block
+}
+
+.__404_body__zEozu p {
+    margin: 5px 0
+}
+
+.__404_footer__FZZq6 {
+    padding-top: 1rem;
+    text-align: center
+}
+
+.__404_bottom-text__2PAxG {
+    color: #656c75;
+    font-size: 12px;
+    line-height: 2
+}
+
+.__404_bottom-text__2PAxG a {
+    display: inline;
+    color: #c7cfd5;
+    font-weight: 400
+}
+
+.__404_bottom-text__2PAxG a:hover {
+    color: #c7cfd5
+}
+
+.__404_bottom-logo__sKDVK {
+    text-align: left;
+    text-indent: -9999em;
+    overflow: hidden;
+    display: inline-block;
+    background-image: url(/img/home/kargo_logo_frame_short_white.svg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
+    width: 78px;
+    height: 0;
+    opacity: .2;
+    padding-top: 28px
+}
+
+.__404_feature__6J0Bf {
+    background-color: #fff
+}
+
+.__404_feature__6J0Bf img {
+    margin: 0 auto
+}
+
+.__404_logo__Bhs_1 {
+    margin: 0 auto;
+    width: auto
+}
+
+.__404_header-logo__D3EaI {
+    height: 63px;
+    display: inline-block
+}
+
+.__404_logo-img__Viww7 {
+    position: relative;
+    max-height: 63px;
+    max-width: 320px
+}
+
+.__404_subheader__6bizS {
+    background-color: #e8ebed;
+    height: 30px;
+    width: 100%;
+    color: #2b313a;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: uppercase
+}
+
+.__404_ksl-header__KTiXT {
+    background-image: linear-gradient(90deg, #00e5d9, #00b5e2);
+    margin: 0;
+    max-height: 63px;
+    border-bottom: 1px solid #fff
+}
+
+.PreviewComponents_header__q_uPo,
+.__404_ksl-header__KTiXT {
+    z-index: 20;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle
+}
+
+.PreviewComponents_header__q_uPo {
+    background-color: #fff;
+    border-bottom: 1px solid #e5eaef;
+    margin: 0 0 .531rem
+}
+
+.PreviewComponents_logo__7yCNj {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem
+}
+
+.PreviewComponents_footer__ySgu8 {
+    display: block;
+    background-color: #e5eaef;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    text-align: center;
+    font-size: .875rem;
+    line-height: 1.313rem;
+    color: #fff;
+    padding: 2.188rem 0;
+    margin-top: .531rem
+}
+
+.Channel_item__7hH0E {
+    clear: left;
+    list-style: none;
+    background-color: #fff;
+    margin: .531rem .438rem .531rem .5rem;
+    display: inline-block;
+    padding: 0;
+    border-left: 1px solid #e5eaef;
+    border-right: 1px solid #e5eaef
+}
+
+.Channel_item__7hH0E a {
+    display: flex;
+    border-bottom: 1px solid #e5eaef
+}
+
+.Channel_item__7hH0E p {
+    vertical-align: top;
+    font-size: .688rem;
+    margin: .938rem .625rem 1.063rem 0;
+    width: 100%;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    line-height: 1.031rem;
+    word-wrap: break-word;
+    color: #e5eaef
+}
+
+.Channel_kargonautDesktop__TPAiK {
+    width: 100%
+}
+
+.Channel_kargonautDesktop__TPAiK p {
+    margin: .938rem .625rem 4.063rem 0
+}
+
+.Channel_theme__Ao_sk {
+    background-color: #e5eaef;
+    padding: 1rem 1.25rem;
+    color: #fff;
+    position: relative;
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: .875rem;
+    line-height: 1.313rem
+}
+
+.Channel_grayRectangle__XHSzl {
+    background-color: #e5eaef;
+    width: 5.875rem;
+    height: 4.625rem;
+    vertical-align: top;
+    padding: 1.5rem 2rem;
+    margin: auto 1.188rem auto 1.063rem
+}
+
+.Kargonaut_main__fBGku {
+    width: 100%
+}
+
+.Kargonaut_container__zyoD2 {
+    width: 66.66%
+}
+
+.Kargonaut_sidebar__OHCYO {
+    width: 33.33%;
+    position: absolute;
+    right: 0;
+    padding-left: 2rem;
+    top: 5rem
+}
+
+.Kargonaut_desktopContainer__5oDH9 {
+    width: 90%;
+    min-width: 890px;
+    margin: auto;
+    position: relative;
+    display: table
+}
+
+.Kargonaut_atfDesktop__pBbba {
+    margin: 1rem 0
+}
