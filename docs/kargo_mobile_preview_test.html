@@ -465,13 +465,40 @@
                 const encodedMarkup = btoa(updatedMarkup);
                 const middleFormats = ["MiddleBanner", "KeyArt", "Venti", "Lighthouse", "HighRise"];
                 const adSlot = middleFormats.includes(selectedFormat) ? "middle" : "atf";
+                let kargoId = "_xUJTs0TKaG"
                 if (selectedFormat == "Tri-plex"){ selectedFormat = "Breakaway";}
+                let lighthouseCSS = '';
+                if (selectedFormat == "Lighthouse"){
+                    kargoId = "_xI7TYUrF3c";
+                    lighthouseCSS = `
+                        <style>
+                            html, body {
+                                margin: 0;
+                                padding: 0;
+                                width: 100%;
+                                max-width: 100%;
+                                overflow-x: hidden; /* prevent sideways scrollbars */
+                                box-sizing: border-box;\
+                                height: 100%; 
+                                max-height: 100%;
+                            }
+                            div {
+                                max-width: 100% !important; /* stop anything from bleeding outside */
+                                box-sizing: border-box;
+                                max-height: 100% !important;
+                            }
+                            img, video, iframe {
+                                height: auto;
+                            }
+                        </style>
+                    `;
+                }
                 const data = {
                     "props": {
                         "pageProps": {
                             "renderParams": {
                                 "adParams": {
-                                    "kargo_id": "_xUJTs0TKaG",
+                                    "kargo_id": kargoId,
                                     "platform_version": null,
                                     "kraken": {
                                         "creative_settings": null,
@@ -482,7 +509,7 @@
                                         "kraken_id": "123015"
                                     }
                                 },
-                                "adTagBaseUrl": "/kargo_js/bRQ5DD0Tun4RJLWj7MiIenVv.js",
+                                "adTagBaseUrl": "/~cbehnke/Kargo/_bRQ5DD0Tun4RJLWj7MiIenVv.js",
                                 "testCaseDetails": {
                                     "ID": 7897,
                                     "Title": "Epsilon Test",
@@ -496,8 +523,8 @@
                                 "slot": adSlot,
                                 "title": "Kargonaut Test 7897 - Epsilon Test",
                                 "format": selectedFormat,
-                                "adTagVersionUrl": "/kargo_js/8.22.0-20250818.js",
-                                "adParamStr": "\"kargo_id\":\"_xUJTs0TKaG\",\"platform_version\":null,\"kraken\":{\"kargo_id\":\"_xUJTs0TKaG\",\"krg_imp_id\":\"8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d\",\"page_view_id\":\"997296af-daec-469a-a94b-1a58e2fc947b\",\"viewability_tracker\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"krk_imp_tracker\":\"//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\",\"context\":\"\",\"ias_tag_params\":\"anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65\",\"tracking\":{\"serve\":[],\"win\":[],\"view\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"billable\":[\"//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\"],\"blocked\":[\"//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"click\":[\"//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_start\":[\"//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_first_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_midpoint\":[\"//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_third_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_complete\":[\"//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_error\":[\"//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_load\":[\"//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"]},\"creative_settings\":null,\"format\":\"" + selectedFormat + "\",\"id\":\"7233\",\"auction_type\":\"direct\",\"adm\":\"" + encodedMarkup + "\",\"kraken_id\":\"123015\"}",
+                                "adTagVersionUrl": "/~cbehnke/Kargo/8.22.0-20250818.js",
+                                "adParamStr": "\"kargo_id\":\"" + kargoId + "\",\"platform_version\":null,\"kraken\":{\"kargo_id\":\"" + kargoId + "\",\"krg_imp_id\":\"8c5e9c7f-1457-490c-bdbf-0b33b5ae7d6d\",\"page_view_id\":\"997296af-daec-469a-a94b-1a58e2fc947b\",\"viewability_tracker\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"krk_imp_tracker\":\"//kraken.prod.kargo.com/api/v1/event/adtag-pixel?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\",\"context\":\"\",\"ias_tag_params\":\"anId=931662\u0026chanId=direct\u0026uId=krk.kargo.com\u0026custom4=direct\u0026custom5=ad-tag.krg.io\u0026ias_adpath={{AdPath}}\u0026impId=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026placementId=atf\u0026pubId=65\",\"tracking\":{\"serve\":[],\"win\":[],\"view\":\"//kraken.prod.kargo.com/api/v1/event/moat?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\",\"billable\":[\"//kraken.prod.kargo.com/api/v1/event/billable?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\u0026line_item={DFP_LINE_ITEM}\u0026adtag_version={AD_TAG_VERSION}\u0026creative={KARGO_CREATIVE}\u0026format_id={KARGO_FORMAT}\u0026sequence={SEQUENCE}\"],\"blocked\":[\"//kraken.prod.kargo.com/api/v1/event/blocked?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"click\":[\"//kraken.prod.kargo.com/api/v1/event/click?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_start\":[\"//kraken.prod.kargo.com/api/v1/event/video/start?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_first_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/first-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_midpoint\":[\"//kraken.prod.kargo.com/api/v1/event/video/midpoint?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_third_quartile\":[\"//kraken.prod.kargo.com/api/v1/event/video/third-quartile?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_complete\":[\"//kraken.prod.kargo.com/api/v1/event/video/complete?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_error\":[\"//kraken.prod.kargo.com/api/v1/event/video/error?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"],\"video_load\":[\"//kraken.prod.kargo.com/api/v1/event/video/load?ctx=ce6eb568-5984-4212-b374-b9c79bd472b3\"]},\"creative_settings\":null,\"format\":\"" + selectedFormat + "\",\"id\":\"7233\",\"auction_type\":\"direct\",\"adm\":\"" + encodedMarkup + "\",\"kraken_id\":\"123015\"}",
                                 "isRawSnippet": false,
                                 "rawHTML": ""
                             },
@@ -516,7 +543,7 @@
                     "isFallback": false,
                     "gssp": true,
                     "scriptLoader": []
-                }; 
+                };
                 const dataString = JSON.stringify(data);
                 const iframeHtml = `
                 <!DOCTYPE html>
@@ -552,26 +579,7 @@
                         <script src="/kargo_js/buildManifest.js" defer=""><\/script>
                         <script src="/kargo_js/ssgManifest.js" defer=""><\/script>
                         <script src="/kargo_js/5Bid5D-383085f4c0e9d6a1.js" defer=""><\/script>
-                        <style>
-                            html, body {
-                                margin: 0;
-                                padding: 0;
-                                width: 100%;
-                                max-width: 100%;
-                                overflow-x: hidden; /* prevent sideways scrollbars */
-                                box-sizing: border-box;\
-                                height: 100%; 
-                                max-height: 100%;
-                            }
-                            * {
-                                max-width: 100% !important; /* stop anything from bleeding outside */
-                                box-sizing: border-box;
-                                max-height: 100% !important;
-                            }
-                            img, video, iframe {
-                                height: auto;
-                            }
-                        </style>
+                        ${lighthouseCSS}
                     </head>
                     <div id="__next">
                         <div>
