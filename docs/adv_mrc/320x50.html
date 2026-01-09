@@ -3,6 +3,31 @@
 <head>
     <script>
         var cnvr_pubcode_options={consent: {timeout: 7000}};
+        window.cnvr_pubcode_options = {pubcid: {name: '_pubcid_mrc'}};
+        
+        function setCookie(cName, cValue, expDays) {
+            let date = new Date();
+            date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + date.toUTCString();
+            document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+        }
+        function getCookie(cname) {
+          let name = cname + "=";
+          let ca = document.cookie.split(';');
+          for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
+        if(!getCookie('_pubcid_mrc')){
+            setCookie('_pubcid_mrc', crypto.randomUUID(), 365);
+        }
     </script>
     <!-- InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
     <script type="text/javascript" src="../js/inmobi_cmp.js"></script>
@@ -16,17 +41,7 @@
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M3SVNMD');</script>
     <!-- End Google Tag Manager -->
 </head>
-
 <body>
-  <script>
-    (function() {
-        var randomNum = Math.floor(1000000 + Math.random() * 9000000);
-        var img = document.createElement('img');
-        img.src = 'https://login-ds.dotomi.com/profile/visit/px/1_0?dtm_cid=80041&dtm_cmagic=0a0254&dtm_fid=105&dtm_promo_id=1&cachebuster=' + randomNum;
-        img.style.display = 'none';
-        document.body.appendChild(img);
-    })();
-  </script>
     <a href="http://www.conversantmedia.com"><img src="../images/Epsilon_Primary Blue Navy Notch w-TM cropped.png" alt="" height="72" border="0"></a>
     <br />
     <!--<img src="images/fakeheader.gif" width="730" height="125" />-->
